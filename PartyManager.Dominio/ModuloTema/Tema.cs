@@ -18,15 +18,12 @@ namespace PartyManager.Dominio.ModuloTema
             this.ListaItens = listaItens;
         }
 
-        public void AtribuirItensTema(List<Item> itens)
-        {
-            ListaItens.Clear();
-            ListaItens.AddRange(itens);
-        }
-
         public override void AtualizarRegistros(Tema registroAtualizado)
         {
             nome = registroAtualizado.nome;
+
+            ListaItens.Clear();
+            valorTotalItens = 0;
 
             foreach(Item registro in registroAtualizado.ListaItens)
             {

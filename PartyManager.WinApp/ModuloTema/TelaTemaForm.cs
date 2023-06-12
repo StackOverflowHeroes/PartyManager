@@ -33,9 +33,10 @@ namespace PartyManager.WinApp.ModuloTema
             tboxId.Text = tema.id.ToString();
             tboxNome.Text = tema.nome;
 
-            foreach(Item registro in tema.ListaItens)
+            foreach (Item registro in tema.ListaItens)
             {
-                ListBoxItens.Items.Add($"Nome: {registro.nome} - Valor: R${registro.valor}");
+                ListBoxItens.Items.Add(registro);
+                ListaItensTema.Add(registro);
             }
         }
 
@@ -66,6 +67,13 @@ namespace PartyManager.WinApp.ModuloTema
             txtboxValorItem.Text = "";
 
             ListBoxItens.Items.Add(novoItem);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Item item = ListBoxItens.SelectedItem as Item;
+            ListBoxItens.Items.Remove(item);
+            ListaItensTema.Remove(item); 
         }
     }
 }
