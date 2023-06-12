@@ -17,6 +17,11 @@ namespace PartyManager.Dominio.ModuloTema
             this.valor = valor;
         }
 
+        public override string? ToString()
+        {
+            return $"Nome: {nome}, valor: R$: {valor}";
+        }
+
         public override void AtualizarRegistros(Item registroAtualizado)
         {
             nome = registroAtualizado.nome;

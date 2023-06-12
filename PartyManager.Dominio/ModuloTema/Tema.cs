@@ -11,10 +11,11 @@ namespace PartyManager.Dominio.ModuloTema
         {
         }
 
-        public Tema(int id, string nome)
+        public Tema(int id, string nome, List<Item> listaItens)
         {
             this.id = id;
             this.nome = nome;
+            this.ListaItens = listaItens;
         }
 
         public void AtribuirItensTema(List<Item> itens)
@@ -26,6 +27,12 @@ namespace PartyManager.Dominio.ModuloTema
         public override void AtualizarRegistros(Tema registroAtualizado)
         {
             nome = registroAtualizado.nome;
+
+            foreach(Item registro in registroAtualizado.ListaItens)
+            {
+                ListaItens.Add(registro);
+                valorTotalItens += registro.valor;
+            }
         }
 
         public void CalcularPrecoTotal()
@@ -34,8 +41,6 @@ namespace PartyManager.Dominio.ModuloTema
             {
                 valorTotalItens += itemTema.valor;
             }
-
-
         }
 
         public override string[] ValidarErros()
@@ -44,6 +49,9 @@ namespace PartyManager.Dominio.ModuloTema
 
             if (string.IsNullOrEmpty(nome) || string.IsNullOrWhiteSpace(nome))
                 ErrosTema.Add("O nome é obrigatório");
+
+            if (ListaItens.Count == 0)
+                ErrosTema.Add("O tema deve ter pelo menos um item");
 
             return ErrosTema.ToArray();
         }

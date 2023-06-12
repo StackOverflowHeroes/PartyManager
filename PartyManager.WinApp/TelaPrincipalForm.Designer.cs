@@ -42,8 +42,6 @@
             btnEditar = new ToolStripButton();
             btnDeletar = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
-            btnAdicionarItem = new ToolStripButton();
-            toolStripSeparator2 = new ToolStripSeparator();
             tslTipoCadastros = new ToolStripLabel();
             panelRegistros = new Panel();
             temporizador = new System.Windows.Forms.Timer(components);
@@ -56,16 +54,17 @@
             // 
             statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { tssStatus });
-            statusStrip1.Location = new Point(0, 439);
+            statusStrip1.Location = new Point(0, 575);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(709, 22);
+            statusStrip1.Padding = new Padding(1, 0, 16, 0);
+            statusStrip1.Size = new Size(1026, 26);
             statusStrip1.TabIndex = 0;
             statusStrip1.Text = "statusStrip1";
             // 
             // tssStatus
             // 
             tssStatus.Name = "tssStatus";
-            tssStatus.Size = new Size(39, 17);
+            tssStatus.Size = new Size(49, 20);
             tssStatus.Text = "Status";
             // 
             // menuStrip1
@@ -74,7 +73,8 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { cadastrosMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(709, 24);
+            menuStrip1.Padding = new Padding(7, 3, 0, 3);
+            menuStrip1.Size = new Size(1026, 30);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -82,37 +82,37 @@
             // 
             cadastrosMenuItem.DropDownItems.AddRange(new ToolStripItem[] { clientesMenuItem, temasToolStripMenuItem, festasMenuItem });
             cadastrosMenuItem.Name = "cadastrosMenuItem";
-            cadastrosMenuItem.Size = new Size(71, 20);
+            cadastrosMenuItem.Size = new Size(88, 24);
             cadastrosMenuItem.Text = "Cadastros";
             // 
             // clientesMenuItem
             // 
             clientesMenuItem.Name = "clientesMenuItem";
-            clientesMenuItem.Size = new Size(180, 22);
+            clientesMenuItem.Size = new Size(224, 26);
             clientesMenuItem.Text = "Clientes";
             clientesMenuItem.Click += clientesMenuItem_Click;
             // 
             // temasToolStripMenuItem
             // 
             temasToolStripMenuItem.Name = "temasToolStripMenuItem";
-            temasToolStripMenuItem.Size = new Size(180, 22);
+            temasToolStripMenuItem.Size = new Size(224, 26);
             temasToolStripMenuItem.Text = "Temas";
             temasToolStripMenuItem.Click += temasMenuItem_Click;
             // 
             // festasMenuItem
             // 
             festasMenuItem.Name = "festasMenuItem";
-            festasMenuItem.Size = new Size(180, 22);
+            festasMenuItem.Size = new Size(224, 26);
             festasMenuItem.Text = "Festas";
             festasMenuItem.Click += festasMenuItem_Click;
             // 
             // toolStrip1
             // 
             toolStrip1.ImageScalingSize = new Size(20, 20);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnInserir, btnEditar, btnDeletar, toolStripSeparator1, btnAdicionarItem, toolStripSeparator2, tslTipoCadastros });
-            toolStrip1.Location = new Point(0, 24);
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnInserir, btnEditar, btnDeletar, toolStripSeparator1, tslTipoCadastros });
+            toolStrip1.Location = new Point(0, 30);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(709, 45);
+            toolStrip1.Size = new Size(1026, 45);
             toolStrip1.TabIndex = 2;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -163,34 +163,19 @@
             toolStripSeparator1.Name = "toolStripSeparator1";
             toolStripSeparator1.Size = new Size(6, 45);
             // 
-            // btnAdicionarItem
-            // 
-            btnAdicionarItem.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            btnAdicionarItem.Enabled = false;
-            btnAdicionarItem.Image = Properties.Resources.add_itens_icon;
-            btnAdicionarItem.ImageTransparentColor = Color.Magenta;
-            btnAdicionarItem.Name = "btnAdicionarItem";
-            btnAdicionarItem.Size = new Size(24, 42);
-            btnAdicionarItem.Text = "Adicionar item";
-            btnAdicionarItem.Click += btnAdicionarItem_Click;
-            // 
-            // toolStripSeparator2
-            // 
-            toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(6, 45);
-            // 
             // tslTipoCadastros
             // 
             tslTipoCadastros.Name = "tslTipoCadastros";
-            tslTipoCadastros.Size = new Size(90, 42);
+            tslTipoCadastros.Size = new Size(114, 42);
             tslTipoCadastros.Text = "Tipos Cadastros";
             // 
             // panelRegistros
             // 
             panelRegistros.Dock = DockStyle.Fill;
-            panelRegistros.Location = new Point(0, 69);
+            panelRegistros.Location = new Point(0, 75);
+            panelRegistros.Margin = new Padding(3, 4, 3, 4);
             panelRegistros.Name = "panelRegistros";
-            panelRegistros.Size = new Size(709, 370);
+            panelRegistros.Size = new Size(1026, 500);
             panelRegistros.TabIndex = 3;
             // 
             // temporizador
@@ -199,16 +184,17 @@
             // 
             // TelaPrincipalForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(709, 461);
+            ClientSize = new Size(1026, 601);
             Controls.Add(panelRegistros);
             Controls.Add(toolStrip1);
             Controls.Add(statusStrip1);
             Controls.Add(menuStrip1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
-            MinimumSize = new Size(725, 498);
+            Margin = new Padding(3, 4, 3, 4);
+            MinimumSize = new Size(826, 648);
             Name = "TelaPrincipalForm";
             Text = "PartyManager1.0";
             statusStrip1.ResumeLayout(false);
@@ -237,8 +223,6 @@
         private System.Windows.Forms.Timer temporizador;
         private ToolStripMenuItem temasToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator1;
-        private ToolStripButton btnAdicionarItem;
-        private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem festasMenuItem;
     }
 }

@@ -19,7 +19,6 @@ namespace PartyManager.WinApp.ModuloTema
 
         public override string ToolTipDeletar => "Deletar Tema";
 
-        public override bool AdicionarItemHabilitado { get { return true; } }
         public override void Deletar()
         {
             Tema temaSelecionado = ObterTemaSelecionado();
@@ -59,44 +58,15 @@ namespace PartyManager.WinApp.ModuloTema
                 return;
             }
 
-
             telaTema.ConfigurarTela(temaSelecionado);
 
             if (telaTema.ShowDialog() == DialogResult.OK)
             {
                 Tema temaAtualizado = telaTema.ObterTema();
+                temaAtualizado.CalcularPrecoTotal();
                 repoTema.Editar(temaAtualizado.id, temaAtualizado);
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Tema editado com sucesso!", TipoStatusEnum.Sucesso);
             }
-            CarregarTemas();
-            TelaPrincipalForm.Instancia.AtualizarRodape($"Tema editado com sucesso!", TipoStatusEnum.Sucesso);
-
-        }
-
-        public override void AdicionarItem()
-        {
-            Tema temaSelecionado = ObterTemaSelecionado();
-
-
-            if (temaSelecionado == null)
-            {
-                MessageBox.Show($"Selecione um tema primeiro!",
-                    "Edição de Temas",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation);
-                return;
-            }
-
-            TelaItensForm telaItens = new TelaItensForm();
-            telaItens.PopularListaDeItens(temaSelecionado.id, temaSelecionado.ListaItens);
-
-            if (telaItens.ShowDialog() == DialogResult.OK)
-            {
-                List<Item> itens = telaItens.ObterListaItens();
-                temaSelecionado.AtribuirItensTema(itens);
-                temaSelecionado.CalcularPrecoTotal();
-            }
-
-            repoTema.Editar(temaSelecionado.id, temaSelecionado);
             CarregarTemas();
         }
 
@@ -107,11 +77,12 @@ namespace PartyManager.WinApp.ModuloTema
             if (telaTema.ShowDialog() == DialogResult.OK)
             {
                 Tema novoTema = telaTema.ObterTema();
+                novoTema.CalcularPrecoTotal();
                 repoTema.Inserir(novoTema);
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Tema inserido com sucesso!", TipoStatusEnum.Sucesso);
             }
 
             CarregarTemas();
-            TelaPrincipalForm.Instancia.AtualizarRodape($"Tema inserido com sucesso!", TipoStatusEnum.Sucesso);
         }
 
         private Tema ObterTemaSelecionado()

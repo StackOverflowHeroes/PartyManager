@@ -15,7 +15,6 @@
         public virtual bool InserirHabilitado { get { return true; } }
         public virtual bool EditarHabilitado { get { return true; } }
         public virtual bool DeletarHabilitado { get { return true; } }
-        public virtual bool AdicionarItemHabilitado{ get { return false; } }
 
         #endregion
 
@@ -47,7 +46,5 @@
         /// </summary>
         /// <returns>Uma string indicando o nome da entidade a ser cadastrada.</returns>
         public abstract string ObterTipoCadastro();
-
-        public virtual void AdicionarItem() { }
     }
 }
