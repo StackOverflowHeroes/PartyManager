@@ -10,4 +10,10 @@
     <ProjectReference Include="..\PartyManager.Dominio\PartyManager.Dominio.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Compartilhado\PartyManager.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
