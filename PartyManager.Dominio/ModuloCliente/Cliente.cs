@@ -4,18 +4,12 @@ namespace PartyManager.Dominio.ModuloCliente
 {
      public class Cliente : EntidadeBase<Cliente>
      {
-          public string nome { get; set;}
+          public string nome { get; set; }
           public string telefone;
-          public int contadorFestas = 0;
+          public int contadorFesta = 0;
           public Cliente()
           {
 
-          }
-
-          public Cliente(string nome, string telefone)
-          {
-               this.nome = nome;
-               this.telefone = telefone;
           }
           public Cliente(int id, string nome, string telefone)
           {
@@ -49,7 +43,7 @@ namespace PartyManager.Dominio.ModuloCliente
                       id == cliente.id &&
                       nome == cliente.nome &&
                       telefone == cliente.telefone &&
-                      contador == cliente.contador;
+                      contadorFesta == cliente.contadorFesta;
           }
      }
 }
