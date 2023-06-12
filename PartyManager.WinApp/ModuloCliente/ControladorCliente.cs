@@ -38,9 +38,11 @@ namespace PartyManager.WinApp.ModuloCliente
             if (opcaoEscolhida == DialogResult.OK)
             {
                 repoCliente.Deletar(cliente);
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Cliente deletado com sucesso!", TipoStatusEnum.Sucesso);
             }
+
             CarregarClientes();
-            TelaPrincipalForm.Instancia.AtualizarRodape($"Cliente deletado com sucesso!", TipoStatusEnum.Sucesso);
+            
         }
 
         private Cliente ObterClienteSelecionado()
@@ -72,9 +74,11 @@ namespace PartyManager.WinApp.ModuloCliente
             {
                 Cliente clienteAtualizado = telaCliente.ObterCliente();
                 repoCliente.Editar(clienteAtualizado.id, clienteAtualizado);
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Cliente editado com sucesso!", TipoStatusEnum.Sucesso);
             }
+
             CarregarClientes();
-            TelaPrincipalForm.Instancia.AtualizarRodape($"Cliente editado com sucesso!", TipoStatusEnum.Sucesso);
+            
         }
 
         public override void Inserir()
@@ -86,12 +90,12 @@ namespace PartyManager.WinApp.ModuloCliente
             if (opcaoEscolhida == DialogResult.OK)
             {
                 Cliente cliente = telaCliente.ObterCliente();
-
                 repoCliente.Inserir(cliente);
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Cliente inserido com sucesso!", TipoStatusEnum.Sucesso);
             }
 
             CarregarClientes();
-            TelaPrincipalForm.Instancia.AtualizarRodape($"Cliente inserido com sucesso!", TipoStatusEnum.Sucesso);
+            
         }
 
         private void CarregarClientes()
