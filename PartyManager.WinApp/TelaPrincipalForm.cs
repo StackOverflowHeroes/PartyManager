@@ -99,7 +99,6 @@ namespace PartyManager.WinApp
             btnInserir.Enabled = controlador.InserirHabilitado;
             btnEditar.Enabled = controlador.EditarHabilitado;
             btnDeletar.Enabled = controlador.DeletarHabilitado;
-            btnAdicionarItem.Enabled = controlador.AdicionarItemHabilitado;
         }
 
         private void ConfigurarTelaPrincipal(ControladorBase controladorBase)
@@ -124,7 +123,6 @@ namespace PartyManager.WinApp
             controlador.Deletar();
         }
 
-
         private void clientesMenuItem_Click(object sender, EventArgs e)
         {
             controlador = new ControladorCliente(repositorioCliente);
@@ -135,11 +133,6 @@ namespace PartyManager.WinApp
         {
             controlador = new ControladorTema(repositorioTema);
             ConfigurarTelaPrincipal(controlador);
-        }
-
-        private void btnAdicionarItem_Click(object sender, EventArgs e)
-        {
-            controlador.AdicionarItem();
         }
 
         private void festasMenuItem_Click(object sender, EventArgs e)

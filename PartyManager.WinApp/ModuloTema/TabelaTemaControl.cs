@@ -44,7 +44,7 @@ namespace PartyManager.WinApp.ModuloTema
 
             foreach (Tema tema in temas)
             {
-                tabelaTemas.Rows.Add(tema.id, tema.nome, tema.valorTotalItens);
+                tabelaTemas.Rows.Add(tema.id, tema.nome.ToUpper(), $"R$  {tema.valorTotalItens}");
             }
         }
 
