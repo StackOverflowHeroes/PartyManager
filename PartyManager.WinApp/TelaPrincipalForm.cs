@@ -106,7 +106,6 @@ namespace PartyManager.WinApp
         {
             tslTipoCadastros.Text = controlador.ObterTipoCadastro();
             ConfigurarBarraFerramentas(controladorBase);
-            ConfigurarToolTips(controladorBase);
             ConfigurarListas(controladorBase);
         }
 
