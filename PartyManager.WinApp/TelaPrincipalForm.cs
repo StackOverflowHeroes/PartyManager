@@ -20,10 +20,6 @@ namespace PartyManager.WinApp
         private IRepositorioTema repositorioTema = new RepositorioTemaArquivo(contexto);
         private IRepositorioFesta repositorioFesta = new RepositorioFestaArquivo(contexto);
 
-        /*
-        Implementar instâncias dos repositorios
-        */
-
         private static TelaPrincipalForm telaPrincipal;
 
         public static TelaPrincipalForm Instancia
@@ -45,11 +41,6 @@ namespace PartyManager.WinApp
             telaPrincipal = this;
         }
 
-        /// <summary>
-        /// Atualiza a mensagem do rodapé da tela principal, modificando sua cor dependendo do tipo da mensagem informada.
-        /// </summary>
-        /// <param name="mensagem"></param>
-        /// <param name="tipoStatus"></param>
         public void AtualizarRodape(string mensagem, TipoStatusEnum tipoStatus)
         {
             contadorTemporizador = 5;
@@ -69,11 +60,6 @@ namespace PartyManager.WinApp
                 temporizador.Start();
         }
 
-        /// <summary>
-        /// Define a configuração padrão da mensagem do rodapé da tela principal. Controlado por um intervalo de tempo.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void Timer_tick(object? sender, EventArgs e)
         {
             contadorTemporizador--;
@@ -86,10 +72,6 @@ namespace PartyManager.WinApp
             }
         }
 
-        /// <summary>
-        /// Define a descrição de cada botão de funcionalidade da tela principal.
-        /// </summary>
-        /// <param name="controlador"></param>
         private void ConfigurarToolTips(ControladorBase controlador)
         {
             btnInserir.ToolTipText = controlador.ToolTipInserir;
@@ -97,10 +79,6 @@ namespace PartyManager.WinApp
             btnDeletar.ToolTipText = controlador.ToolTipDeletar;
         }
 
-        /// <summary>
-        /// Define a tabela de uma entidade específica, no painel da tela principal.
-        /// </summary>
-        /// <param name="controladorBase"></param>
         private void ConfigurarListas(ControladorBase controladorBase)
         {
             UserControl listas = controladorBase.ObterListagem();
@@ -109,10 +87,6 @@ namespace PartyManager.WinApp
             panelRegistros.Controls.Add(listas);
         }
 
-        /// <summary>
-        /// Habilita botões e outras configurações relacionadas.
-        /// </summary>
-        /// <param name="controlador"></param>
         private void ConfigurarBarraFerramentas(ControladorBase controlador)
         {
             toolStrip1.Enabled = true;
@@ -120,10 +94,6 @@ namespace PartyManager.WinApp
             ConfigurarEstadosBotoes(controlador);
         }
 
-        /// <summary>
-        /// Habilita botões da tela principal.
-        /// </summary>
-        /// <param name="controlador"></param>
         private void ConfigurarEstadosBotoes(ControladorBase controlador)
         {
             btnInserir.Enabled = controlador.InserirHabilitado;
@@ -132,10 +102,6 @@ namespace PartyManager.WinApp
             btnAdicionarItem.Enabled = controlador.AdicionarItemHabilitado;
         }
 
-        /// <summary>
-        /// Define todas as configurações da tela principal para a entidade selecionada.
-        /// </summary>
-        /// <param name="controladorBase"></param>
         private void ConfigurarTelaPrincipal(ControladorBase controladorBase)
         {
             tslTipoCadastros.Text = controlador.ObterTipoCadastro();
@@ -144,32 +110,16 @@ namespace PartyManager.WinApp
             ConfigurarListas(controladorBase);
         }
 
-
-        /// <summary>
-        /// Chama a função de inserir do repositório do elemento selecionado.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btnInserir_Click(object sender, EventArgs e)
         {
             controlador.Inserir();
         }
 
-        /// <summary>
-        /// Chama a função de editar do repositório do elemento selecionado.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btnEditar_Click(object sender, EventArgs e)
         {
             controlador.Editar();
         }
 
-        /// <summary>
-        /// Chama a função de deletar do repositório do elemento selecionado.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btnDeletar_Click(object sender, EventArgs e)
         {
             controlador.Deletar();
