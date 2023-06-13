@@ -28,10 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            tabelaAluguel = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)tabelaAluguel).BeginInit();
+            SuspendLayout();
+            // 
+            // tabelaAluguel
+            // 
+            tabelaAluguel.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            tabelaAluguel.Dock = DockStyle.Fill;
+            tabelaAluguel.Location = new Point(0, 0);
+            tabelaAluguel.Name = "tabelaAluguel";
+            tabelaAluguel.RowHeadersWidth = 51;
+            tabelaAluguel.RowTemplate.Height = 29;
+            tabelaAluguel.Size = new Size(645, 524);
+            tabelaAluguel.TabIndex = 0;
+            // 
+            // TabelaAluguelControl
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(tabelaAluguel);
+            Name = "TabelaAluguelControl";
+            Size = new Size(645, 524);
+            ((System.ComponentModel.ISupportInitialize)tabelaAluguel).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private DataGridView tabelaAluguel;
     }
 }

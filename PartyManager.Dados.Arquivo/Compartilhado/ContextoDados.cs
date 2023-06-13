@@ -1,4 +1,5 @@
-﻿using PartyManager.Dominio.ModuloCliente;
+﻿using PartyManager.Dominio.ModuloAluguel;
+using PartyManager.Dominio.ModuloCliente;
 using PartyManager.Dominio.ModuloFesta;
 using PartyManager.Dominio.ModuloTema;
 using System.Text.Json;
@@ -13,12 +14,14 @@ namespace PartyManager.Dados.Arquivo.Compartilhado
         public List<Cliente> clientes;
         public List<Tema> temas;
         public List<Festa> festas;
+        public List<Aluguel> alugueis;
 
         public ContextoDados()
         {
             clientes = new List<Cliente>();
             temas = new List<Tema>();
             festas = new List<Festa>();
+            alugueis = new List<Aluguel>();
         }
 
         public ContextoDados(bool carregarDados) : this()
@@ -51,6 +54,7 @@ namespace PartyManager.Dados.Arquivo.Compartilhado
                     clientes = dadosJson.clientes;
                     temas = dadosJson.temas;
                     festas = dadosJson.festas;
+                    alugueis = dadosJson.alugueis;
                 }
             }
         }

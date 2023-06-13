@@ -1,7 +1,9 @@
 ﻿
+using PartyManager.Dominio.Compartilhado;
+
 namespace PartyManager.Dominio.ModuloAluguel
 {
-    public interface IRepositorioAluguel
+    public interface IRepositorioAluguel : IRepositorioBase<Aluguel>
     {
     }
 }

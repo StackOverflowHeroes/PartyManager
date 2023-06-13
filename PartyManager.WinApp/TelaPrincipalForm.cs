@@ -1,10 +1,13 @@
 using PartyManager.Dados.Arquivo.Compartilhado;
+using PartyManager.Dados.Arquivo.ModuloAluguel;
 using PartyManager.Dados.Arquivo.ModuloCliente;
 using PartyManager.Dados.Arquivo.ModuloFesta;
 using PartyManager.Dados.Arquivo.ModuloTema;
+using PartyManager.Dominio.ModuloAluguel;
 using PartyManager.Dominio.ModuloCliente;
 using PartyManager.Dominio.ModuloFesta;
 using PartyManager.Dominio.ModuloTema;
+using PartyManager.WinApp.ModuloAluguel;
 using PartyManager.WinApp.ModuloCliente;
 using PartyManager.WinApp.ModuloFesta;
 using PartyManager.WinApp.ModuloTema;
@@ -19,6 +22,7 @@ namespace PartyManager.WinApp
         private IRepositorioCliente repositorioCliente = new RepositorioClienteArquivo(contexto);
         private IRepositorioTema repositorioTema = new RepositorioTemaArquivo(contexto);
         private IRepositorioFesta repositorioFesta = new RepositorioFestaArquivo(contexto);
+        private IRepositorioAluguel repositorioAluguel = new RepositorioAluguelArquivo(contexto);
 
         private static TelaPrincipalForm telaPrincipal;
 
@@ -138,6 +142,12 @@ namespace PartyManager.WinApp
         private void festasMenuItem_Click(object sender, EventArgs e)
         {
             controlador = new ControladorFesta(repositorioFesta, repositorioCliente, repositorioTema);
+            ConfigurarTelaPrincipal(controlador);
+        }
+
+        private void AluguelMenuItem_Click(object sender, EventArgs e)
+        {
+            controlador = new ControladorAluguel(repositorioAluguel);
             ConfigurarTelaPrincipal(controlador);
         }
     }
