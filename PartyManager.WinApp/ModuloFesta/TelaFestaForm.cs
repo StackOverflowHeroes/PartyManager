@@ -38,7 +38,7 @@ namespace PartyManager.WinApp.ModuloFesta
                 cbBoxCliente.Items.Add(cliente);
             };
         }
-        
+
         public void ConfigurarTela(Festa festaSelecionada)
         {
             tboxId.Text = festaSelecionada.id.ToString();

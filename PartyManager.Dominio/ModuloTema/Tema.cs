@@ -3,7 +3,7 @@ namespace PartyManager.Dominio.ModuloTema
 {
     public class Tema : EntidadeBase<Tema>
     {
-        public string nome;
+        public string nome { get; set; }
         public List<Item> ListaItens = new List<Item>();
         public decimal valorTotalItens;
 
