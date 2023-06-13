@@ -42,6 +42,11 @@ namespace PartyManager.Dominio.ModuloCliente
                }
         }
 
+        public void AumentarContagemFestas()
+        {
+               contadorFesta++;
+        }
+
         public override string[] ValidarErros()
           {
                List<string> erros = new List<string>();
