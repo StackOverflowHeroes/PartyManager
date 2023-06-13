@@ -30,16 +30,18 @@ namespace PartyManager.Dominio.ModuloCliente
                telefone = registroAtualizado.telefone;
           }
 
-        public void CalcularDescontoCliente()
+        public decimal CalcularDescontoCliente()
         {
                switch (contadorFesta)
                {
-                    case 0: desconto = 0; break;
-                    case 1: desconto = 0.05m; break;
-                    case 2: desconto = 0.1m; break;
-                    case 3: desconto = 0.15m; break;
-                    default: desconto = 0.20m; break;
+                    case 1: desconto = 1; break;
+                    case 2: desconto = 0.95m; break;
+                    case 3: desconto = 0.90m; break;
+                    case 4: desconto = 0.85m; break;
+                    default: desconto = 0.80m; break;
                }
+
+               return desconto;
         }
 
         public void AumentarContagemFestas()

@@ -27,7 +27,7 @@ namespace PartyManager.Dominio.ModuloFesta
             this.tema = tema;
             this.data = data;
             this.horaInicio = horaInicio;
-            this.horaTermino = horaTermino;
+            this.horaTermino = horaTermino;          
         }
 
         public override string? ToString()

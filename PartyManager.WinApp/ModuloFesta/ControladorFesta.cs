@@ -101,6 +101,7 @@ namespace PartyManager.WinApp.ModuloFesta
             {
                 Festa novaFesta = telaFesta.ObterFesta();
                 repoFesta.Inserir(novaFesta);
+                novaFesta.cliente.AumentarContagemFestas();
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Festas inserida com sucesso!", TipoStatusEnum.Sucesso);
             }
 
