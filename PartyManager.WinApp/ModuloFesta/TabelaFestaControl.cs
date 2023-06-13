@@ -30,7 +30,12 @@ namespace PartyManager.WinApp.ModuloFesta
                          Name = "id",
                          HeaderText = "Nº"
                     },
-
+                    
+                    new DataGridViewTextBoxColumn()
+                    {
+                         Name = "Nome",
+                         HeaderText = "Nome"
+                    },
                     new DataGridViewTextBoxColumn()
                     {
                          Name = "Cliente",
@@ -57,7 +62,7 @@ namespace PartyManager.WinApp.ModuloFesta
 
             foreach (Festa festa in festas)
             {
-                tabelaFestas.Rows.Add(festa.id, festa.cliente.nome,festa.data, festa.tema.nome);
+                tabelaFestas.Rows.Add(festa.id, festa.nome,festa.cliente.nome,festa.data, festa.tema.nome);
             }
         }
         public int ObterIdSelecionado()
