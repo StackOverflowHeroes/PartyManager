@@ -9,7 +9,7 @@ namespace PartyManager.Dominio.ModuloFesta
 
         public Cliente cliente { get; set; }
         public Tema tema;
-
+        public string nome;
         public DateTime data;
         public TimeSpan horaInicio;
         public TimeSpan horaTermino;
@@ -19,7 +19,7 @@ namespace PartyManager.Dominio.ModuloFesta
 
         }
 
-        public Festa(int id, string endereco, Tema tema, Cliente cliente, DateTime data, TimeSpan horaInicio, TimeSpan horaTermino)
+        public Festa(int id, string endereco, Tema tema, Cliente cliente, DateTime data, TimeSpan horaInicio, TimeSpan horaTermino, string nome)
         {
             this.id = id;
             this.endereco = endereco;
@@ -27,7 +27,8 @@ namespace PartyManager.Dominio.ModuloFesta
             this.tema = tema;
             this.data = data;
             this.horaInicio = horaInicio;
-            this.horaTermino = horaTermino;          
+            this.horaTermino = horaTermino;
+            this.nome = nome;
         }
 
         public override string? ToString()
@@ -43,13 +44,17 @@ namespace PartyManager.Dominio.ModuloFesta
             data = registroAtualizado.data;
             horaInicio = registroAtualizado.horaInicio;
             horaTermino = registroAtualizado.horaTermino;
+            nome = registroAtualizado.nome;
         }
 
         public override string[] ValidarErros()
         {
             List<string> errosFesta = new List<string>();
 
-            if (cliente == null) 
+            if (string.IsNullOrEmpty(nome) || string.IsNullOrWhiteSpace(nome))
+                errosFesta.Add("Campo \"Nome\" é obrigatório!");
+
+               if (cliente == null) 
             {
                 errosFesta.Add("Campo \"Cliente\" é obrigatório!");
             }
@@ -58,7 +63,7 @@ namespace PartyManager.Dominio.ModuloFesta
                 errosFesta.Add("Campo \"Tema\" é obrigatório!");
             }
 
-            if (string.IsNullOrEmpty(endereco))
+            if (string.IsNullOrEmpty(endereco) || string.IsNullOrWhiteSpace(nome))
                 errosFesta.Add("Campo \"Endereço\" é obrigatório!");
 
             if (data < DateTime.Now)
@@ -80,6 +85,7 @@ namespace PartyManager.Dominio.ModuloFesta
                     tema == festa.tema &&
                     cliente == festa.cliente &&
                     data == festa.data &&
+                    nome == festa.nome &&
                     horaInicio.Equals(festa.horaInicio) &&
                     horaTermino.Equals(festa.horaTermino) &&
                     EqualityComparer<Cliente>.Default.Equals(cliente, festa.cliente) &&
