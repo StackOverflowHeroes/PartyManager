@@ -46,7 +46,6 @@
             // 
             // comboBoxFesta
             // 
-            comboBoxFesta.DisplayMember = "cliente.nome";
             comboBoxFesta.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxFesta.FormattingEnabled = true;
             comboBoxFesta.Location = new Point(65, 100);
@@ -75,7 +74,8 @@
             // 
             // dateAbertura
             // 
-            dateAbertura.Format = DateTimePickerFormat.Short;
+            dateAbertura.CustomFormat = "";
+            dateAbertura.Format = DateTimePickerFormat.Custom;
             dateAbertura.Location = new Point(190, 201);
             dateAbertura.Name = "dateAbertura";
             dateAbertura.Size = new Size(250, 27);

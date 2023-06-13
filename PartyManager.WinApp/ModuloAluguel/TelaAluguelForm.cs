@@ -17,8 +17,8 @@ namespace PartyManager.WinApp.ModuloAluguel
             int id = Convert.ToInt32(tboxId.Text);
             Festa festa = comboBoxFesta.SelectedItem as Festa;
             Cliente cliente = comboBoxCliente.SelectedItem as Cliente;
-            DateTime dataAbertura = dateAbertura.Value;
-            DateTime dataFechamento = dateFechamento.Value;
+            DateTime dataAbertura = dateAbertura.Value.Date;
+            DateTime dataFechamento = dateFechamento.Value.Date;
             StatusPagamentoEnum status = (StatusPagamentoEnum)comboBoxPagamento.SelectedItem;
 
             Aluguel aluguel = new Aluguel(id, festa, cliente, dataAbertura, dataFechamento, status);
@@ -50,6 +50,15 @@ namespace PartyManager.WinApp.ModuloAluguel
 
             listaCompletaFesta.ForEach(festa => comboBoxFesta.Items.Add(festa));
             listaCompletaCliente.ForEach(cliente => comboBoxCliente.Items.Add(cliente));
+        }
+
+        public void ConfigurarTela(Aluguel aluguelSelecionado)
+        {
+            comboBoxFesta.SelectedItem = aluguelSelecionado.festa;
+            comboBoxCliente.SelectedItem = aluguelSelecionado.cliente;
+            comboBoxPagamento.SelectedItem = aluguelSelecionado.statusPagamento;
+            dateAbertura.Value = aluguelSelecionado.dataAbertura;
+            dateFechamento.Value = aluguelSelecionado.dataFechamento;
         }
     }
 }

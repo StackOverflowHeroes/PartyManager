@@ -2,7 +2,9 @@
 using PartyManager.Dominio.ModuloAluguel;
 using PartyManager.Dominio.ModuloCliente;
 using PartyManager.Dominio.ModuloFesta;
+using PartyManager.Dominio.ModuloTema;
 using PartyManager.WinApp.ModuloCliente;
+using PartyManager.WinApp.ModuloTema;
 
 namespace PartyManager.WinApp.ModuloAluguel
 {
@@ -28,12 +30,56 @@ namespace PartyManager.WinApp.ModuloAluguel
 
         public override void Deletar()
         {
-            throw new NotImplementedException();
+            Aluguel aluguelSelecionado = ObterAluguelSelecionado();
+
+            if (aluguelSelecionado == null)
+            {
+                MessageBox.Show($"Selecione um aluguel primeiro!",
+                    "Exclusão de Aluguéis",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+
+                return;
+            }
+
+            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o aluguel do client {aluguelSelecionado.cliente.nome}?", "Exclusão de Aluguéis",
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            if (opcaoEscolhida == DialogResult.OK)
+            {
+                repoAluguel.Deletar(aluguelSelecionado);
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Tema deletado com sucesso!", TipoStatusEnum.Sucesso);
+            }
+            CarregarAlugueis();
         }
 
         public override void Editar()
         {
-            throw new NotImplementedException();
+            TelaAluguelForm telaAluguel = new TelaAluguelForm();
+            Aluguel aluguelSelecionado = ObterAluguelSelecionado();
+
+            if (aluguelSelecionado == null)
+            {
+                MessageBox.Show($"Selecione um aluguel primeiro!",
+                    "Edição de Aluguéis",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            List<Cliente> ListaCompletaCliente = repoCliente.SelecionarTodos();
+            List<Festa> ListaCompletaFesta = repoFesta.SelecionarTodos();
+            telaAluguel.PopularComboBox(ListaCompletaCliente, ListaCompletaFesta);
+            telaAluguel.ConfigurarTela(aluguelSelecionado);
+
+            if (telaAluguel.ShowDialog() == DialogResult.OK)
+            {
+                Aluguel aluguelAtualizado = telaAluguel.ObterAluguel();
+                aluguelAtualizado.CalcularValorPagamento();
+                repoAluguel.Editar(aluguelSelecionado.id, aluguelAtualizado);
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Aluguel editado com sucesso!", TipoStatusEnum.Sucesso);
+            }
+            CarregarAlugueis();
         }
 
         public override void Inserir()
@@ -56,7 +102,7 @@ namespace PartyManager.WinApp.ModuloAluguel
 
         }
 
-        private Aluguel ObterClienteSelecionado()
+        private Aluguel ObterAluguelSelecionado()
         {
             int id = tabelaAluguel.ObterIdSelecionado();
             return repoAluguel.SelecionarPorId(id);
