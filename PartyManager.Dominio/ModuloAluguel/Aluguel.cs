@@ -39,7 +39,7 @@ namespace PartyManager.Dominio.ModuloAluguel
 
         public void CalcularValorPagamento()
         {
-            valor += festa.tema.valorTotalItens;
+            valor *= festa.cliente.Desconto;
         }
 
         public override string[] ValidarErros()
