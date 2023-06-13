@@ -58,7 +58,17 @@ namespace PartyManager.WinApp.ModuloTema
         {
             int id = Convert.ToInt32(tboxId.Text);
             string nome = txtBoxNomeItem.Text;
-            decimal valor = Convert.ToDecimal(txtboxValorItem.Text);
+            decimal valor = 0;
+
+               try
+               {
+                    valor = Convert.ToDecimal(txtboxValorItem.Text);
+               }
+               catch(FormatException)
+               {
+                    TelaPrincipalForm.Instancia.AtualizarRodape("Entre com um valor númerico no campo \"Valor\" dos itens!", TipoStatusEnum.Erro);
+                    return;
+               }
 
             Item novoItem = new Item(id, nome, valor);
             ListaItensTema.Add(novoItem);
