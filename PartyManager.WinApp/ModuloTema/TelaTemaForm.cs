@@ -49,7 +49,7 @@ namespace PartyManager.WinApp.ModuloTema
                if (erros.Length > 0)
                {
                     TelaPrincipalForm.Instancia.AtualizarRodape(erros[0], TipoStatusEnum.Erro);
-                    return;
+                    DialogResult = DialogResult.None;
                }
           }
 
