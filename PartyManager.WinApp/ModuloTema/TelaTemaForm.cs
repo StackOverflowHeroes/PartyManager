@@ -7,7 +7,7 @@ namespace PartyManager.WinApp.ModuloTema
      public partial class TelaTemaForm : Form
      {
           List<Item> ListaItensTema = new List<Item>();
-
+          List<string> erros = new List<string>();
           public TelaTemaForm()
           {
                InitializeComponent();
@@ -44,40 +44,41 @@ namespace PartyManager.WinApp.ModuloTema
           {
                Tema tema = ObterTema();
 
-               string[] erros = tema.ValidarErros();
+               string[] erros = tema.ValidarErros(); 
 
                if (erros.Length > 0)
                {
                     TelaPrincipalForm.Instancia.AtualizarRodape(erros[0], TipoStatusEnum.Erro);
-                    DialogResult = DialogResult.None;
+                    return;
                }
-
           }
 
           private void btnAdicionarItem_Click(object sender, EventArgs e)
           {
+               erros.Clear();
                int id = Convert.ToInt32(tboxId.Text);
                string nome = txtBoxNomeItem.Text;
-
-               if (string.IsNullOrEmpty(nome) || string.IsNullOrWhiteSpace(nome))
-               {
-                    TelaPrincipalForm.Instancia.AtualizarRodape("Entre com um nome no campo \"Nome\" dos itens!", TipoStatusEnum.Erro);
-                    return;
-               }
-
                decimal valor = 0;
-
+              
                try
                {
                     valor = Convert.ToDecimal(txtboxValorItem.Text);
                }
                catch (FormatException)
                {
-                    TelaPrincipalForm.Instancia.AtualizarRodape("Entre com um valor númerico no campo \"Valor\" dos itens!", TipoStatusEnum.Erro);
-                    return;
+                    erros.Add("O campo \"Valor\" em itens deve ser numérico!");
                }
 
                Item novoItem = new Item(id, nome, valor);
+
+               erros.AddRange(novoItem.ValidarErros());
+
+               if (erros.Count > 0)
+               {
+                    TelaPrincipalForm.Instancia.AtualizarRodape(erros[0], TipoStatusEnum.Erro);
+                    return;
+               }
+
                ListaItensTema.Add(novoItem);
 
                txtBoxNomeItem.Text = "";
