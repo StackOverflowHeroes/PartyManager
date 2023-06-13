@@ -38,8 +38,12 @@
             cbBoxTema = new ComboBox();
             label4 = new Label();
             cbBoxCliente = new ComboBox();
-            dtData = new DateTimePicker();
             label5 = new Label();
+            label6 = new Label();
+            label7 = new Label();
+            txtHoraInicio = new DateTimePicker();
+            txtHoraFim = new DateTimePicker();
+            txtData = new DateTimePicker();
             SuspendLayout();
             // 
             // label2
@@ -52,7 +56,6 @@
             label2.Size = new Size(59, 15);
             label2.TabIndex = 28;
             label2.Text = "Endereço";
-            label2.Click += label2_Click;
             // 
             // tboxEndereco
             // 
@@ -91,12 +94,13 @@
             btnCadastrar.BackColor = SystemColors.ButtonHighlight;
             btnCadastrar.DialogResult = DialogResult.OK;
             btnCadastrar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnCadastrar.Location = new Point(210, 258);
+            btnCadastrar.Location = new Point(211, 320);
             btnCadastrar.Name = "btnCadastrar";
             btnCadastrar.Size = new Size(71, 66);
             btnCadastrar.TabIndex = 32;
             btnCadastrar.Text = "Cadastrar";
             btnCadastrar.UseVisualStyleBackColor = false;
+            btnCadastrar.Click += btnCadastrar_Click;
             // 
             // btnCancelar
             // 
@@ -104,7 +108,7 @@
             btnCancelar.BackColor = SystemColors.ButtonHighlight;
             btnCancelar.DialogResult = DialogResult.Cancel;
             btnCancelar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnCancelar.Location = new Point(287, 258);
+            btnCancelar.Location = new Point(288, 320);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(71, 66);
             btnCancelar.TabIndex = 33;
@@ -121,7 +125,6 @@
             label3.Size = new Size(37, 15);
             label3.TabIndex = 34;
             label3.Text = "Tema";
-            label3.Click += label3_Click;
             // 
             // cbBoxTema
             // 
@@ -146,20 +149,12 @@
             // cbBoxCliente
             // 
             cbBoxCliente.Anchor = AnchorStyles.None;
+            cbBoxCliente.AutoCompleteCustomSource.AddRange(new string[] { "Cliente 1" });
             cbBoxCliente.FormattingEnabled = true;
             cbBoxCliente.Location = new Point(120, 184);
             cbBoxCliente.Name = "cbBoxCliente";
             cbBoxCliente.Size = new Size(247, 23);
             cbBoxCliente.TabIndex = 37;
-            // 
-            // dtData
-            // 
-            dtData.Anchor = AnchorStyles.None;
-            dtData.CustomFormat = "dd/MM/yyyy";
-            dtData.Location = new Point(120, 213);
-            dtData.Name = "dtData";
-            dtData.Size = new Size(247, 23);
-            dtData.TabIndex = 38;
             // 
             // label5
             // 
@@ -171,15 +166,66 @@
             label5.Size = new Size(33, 15);
             label5.TabIndex = 39;
             label5.Text = "Data";
-            label5.Click += label5_Click;
+            // 
+            // label6
+            // 
+            label6.Anchor = AnchorStyles.None;
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.Location = new Point(29, 242);
+            label6.Name = "label6";
+            label6.Size = new Size(85, 15);
+            label6.TabIndex = 40;
+            label6.Text = "Horário Início:";
+            // 
+            // label7
+            // 
+            label7.Anchor = AnchorStyles.None;
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label7.Location = new Point(39, 271);
+            label7.Name = "label7";
+            label7.Size = new Size(75, 15);
+            label7.TabIndex = 41;
+            label7.Text = "Horário Fim:";
+            // 
+            // txtHoraInicio
+            // 
+            txtHoraInicio.Format = DateTimePickerFormat.Time;
+            txtHoraInicio.Location = new Point(120, 242);
+            txtHoraInicio.Name = "txtHoraInicio";
+            txtHoraInicio.ShowUpDown = true;
+            txtHoraInicio.Size = new Size(124, 23);
+            txtHoraInicio.TabIndex = 42;
+            // 
+            // txtHoraFim
+            // 
+            txtHoraFim.Format = DateTimePickerFormat.Time;
+            txtHoraFim.Location = new Point(120, 271);
+            txtHoraFim.Name = "txtHoraFim";
+            txtHoraFim.ShowUpDown = true;
+            txtHoraFim.Size = new Size(124, 23);
+            txtHoraFim.TabIndex = 43;
+            // 
+            // txtData
+            // 
+            txtData.Format = DateTimePickerFormat.Short;
+            txtData.Location = new Point(120, 213);
+            txtData.Name = "txtData";
+            txtData.Size = new Size(124, 23);
+            txtData.TabIndex = 44;
             // 
             // TelaFestaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(513, 408);
+            Controls.Add(txtData);
+            Controls.Add(txtHoraFim);
+            Controls.Add(txtHoraInicio);
+            Controls.Add(label7);
+            Controls.Add(label6);
             Controls.Add(label5);
-            Controls.Add(dtData);
             Controls.Add(cbBoxCliente);
             Controls.Add(label4);
             Controls.Add(cbBoxTema);
@@ -208,7 +254,11 @@
         private ComboBox cbBoxTema;
         private Label label4;
         private ComboBox cbBoxCliente;
-        private DateTimePicker dtData;
         private Label label5;
+        private Label label6;
+        private Label label7;
+        private DateTimePicker txtHoraInicio;
+        private DateTimePicker txtHoraFim;
+        private DateTimePicker txtData;
     }
 }

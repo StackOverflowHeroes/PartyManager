@@ -10,64 +10,91 @@ namespace PartyManager.Dominio.ModuloFesta
 {
     public class Festa : EntidadeBase<Festa>
     {
-        public Cliente Cliente { get; set; }
-        public Tema Tema { get; set; }
-        public string Endereco { get; set; }
-        public DateTime Data { get; set; }
-        public TimeSpan HoraInicio { get; set; }
-        public TimeSpan HoraTermino { get; set; }
+        public string endereco;
+
+        public Cliente cliente;
+        public Tema tema;
+
+        public DateTime data;
+        public TimeSpan horaInicio;
+        public TimeSpan horaTermino;
+
         public Festa()
         {
 
         }
 
-        public Festa(int id, Cliente cliente, Tema tema, string endereco, DateTime data, TimeSpan horaInicio, TimeSpan horaTermino)
+        public Festa(int id, string endereco, Tema tema, Cliente cliente, DateTime data, TimeSpan horaInicio, TimeSpan horaTermino)
         {
             this.id = id;
-            Cliente = cliente;
-            Tema = tema;
-            Endereco = endereco;
-            Data = data;
-            HoraInicio = horaInicio;
-            HoraTermino = horaTermino;
+            this.endereco = endereco;
+            this.cliente = cliente;
+            this.tema = tema;
+            this.data = data;
+            this.horaInicio = horaInicio;
+            this.horaTermino = horaTermino;
         }
+        public Festa(string endereco, Cliente cliente, Tema tema, DateTime data, TimeSpan horaInicio, TimeSpan horaTermino)
+        {
+            this.endereco = endereco;
+            this.cliente = cliente;
+            this.tema = tema;
+            this.data = data;
+            this.horaInicio = horaInicio;
+            this.horaTermino = horaTermino;
+        }
+
+
 
         public override void AtualizarRegistros(Festa registroAtualizado)
         {
-            Cliente = registroAtualizado.Cliente;
-            Tema = registroAtualizado.Tema;
-            Endereco = registroAtualizado.Endereco;
-            Data = registroAtualizado.Data;
-            HoraInicio = registroAtualizado.HoraInicio;
-            HoraTermino = registroAtualizado.HoraTermino;
+            endereco = registroAtualizado.endereco;
+            tema = registroAtualizado.tema;
+            cliente = registroAtualizado.cliente;
+            data = registroAtualizado.data;
+            horaInicio = registroAtualizado.horaInicio;
+            horaTermino = registroAtualizado.horaTermino;
         }
 
         public override string[] ValidarErros()
         {
             List<string> errosFesta = new List<string>();
 
-            if (Cliente == null) 
+            if (cliente == null) 
             {
                 errosFesta.Add("Campo \"Cliente\" é obrigatório!");
             }
-            if (Tema == null)
+            if (tema == null)
             {
                 errosFesta.Add("Campo \"Tema\" é obrigatório!");
             }
 
-            if (string.IsNullOrEmpty(Endereco))
+            if (string.IsNullOrEmpty(endereco))
                 errosFesta.Add("Campo \"Endereço\" é obrigatório!");
 
-            if (Data < DateTime.Now)
+            if (data < DateTime.Now)
             {
                 errosFesta.Add("Campo \"Data\" não pode ser anterior a data atual!");
             }
-            if (HoraTermino <= HoraInicio)
+            if (horaTermino <= horaInicio)
             {
                 errosFesta.Add("Campo \"Hora Término\" deve ser superior ao horário de início!");
             }
 
             return errosFesta.ToArray();
+        }
+        public override bool Equals(object? obj)
+        {
+            return obj is Festa festa &&
+                    id == festa.id &&
+                    endereco == festa.endereco &&
+                    tema == festa.tema &&
+                    cliente == festa.cliente &&
+                    data == festa.data &&
+                    horaInicio.Equals(festa.horaInicio) &&
+                    horaTermino.Equals(festa.horaTermino) &&
+                    EqualityComparer<Cliente>.Default.Equals(cliente, festa.cliente) &&
+                    EqualityComparer<Tema>.Default.Equals(tema, festa.tema);
         }
     }
 }

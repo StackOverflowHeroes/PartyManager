@@ -17,8 +17,6 @@ namespace PartyManager.WinApp.ModuloFesta
         private IRepositorioTema repositorioTema;
         private IRepositorioFesta repoFesta;
         private TabelaFestaControl tabelaFesta;
-        private List<Tema> temas;
-        private List<Cliente> clientes;
 
         public ControladorFesta (IRepositorioFesta repoFesta, IRepositorioCliente repositorioCliente, IRepositorioTema repositorioTema)
         {
@@ -46,6 +44,16 @@ namespace PartyManager.WinApp.ModuloFesta
 
                 return;
             }
+            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir a festa {festaSeleciado}?", "Exclusão de Festa",
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            if (opcaoEscolhida == DialogResult.OK)
+            {
+                repoFesta.Deletar(festaSeleciado);
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Festa deletada com sucesso!", TipoStatusEnum.Sucesso);
+            }
+
+            CarregarFestas();
         }
         private Festa ObterFestaSelecionado()
         {
@@ -53,8 +61,7 @@ namespace PartyManager.WinApp.ModuloFesta
             return repoFesta.SelecionarPorId(id);
         }
         public override void Editar()
-        {
-            TelaFestaForm telaFesta = new TelaFestaForm();
+        {            
             Festa festaSelecionado = ObterFestaSelecionado();
 
             if (festaSelecionado == null)
@@ -65,14 +72,17 @@ namespace PartyManager.WinApp.ModuloFesta
                     MessageBoxIcon.Exclamation);
                 return;
             }
+            List<Cliente> clientes = repositorioCliente.SelecionarTodos();
+            List<Tema> temas = repositorioTema.SelecionarTodos();
 
+            TelaFestaForm telaFesta = new TelaFestaForm(clientes, temas);
+            telaFesta.ConfigurarTela(festaSelecionado);
+            DialogResult opcaoEscolhida = telaFesta.ShowDialog();
 
-            telaFesta.ConfigurarTela(festaSelecionado, temas, clientes);
-
-            if (telaFesta.ShowDialog() == DialogResult.OK)
+            if (opcaoEscolhida == DialogResult.OK)
             {
-                Festa festaAtualizado = telaFesta.ObterFesta();
-                repoFesta.Editar(festaAtualizado.id, festaAtualizado);
+                Festa festa = telaFesta.ObterFesta();
+                repoFesta.Editar(festa.id, festa);
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Festa editada com sucesso!", TipoStatusEnum.Sucesso);
             }
             CarregarFestas();
@@ -81,9 +91,13 @@ namespace PartyManager.WinApp.ModuloFesta
 
         public override void Inserir()
         {
-            TelaFestaForm telaFesta = new TelaFestaForm();
+            List<Cliente> clientes = repositorioCliente.SelecionarTodos();
+            List<Tema> temas = repositorioTema.SelecionarTodos();
 
-            if (telaFesta.ShowDialog() == DialogResult.OK)
+            TelaFestaForm telaFesta = new TelaFestaForm(clientes, temas);
+            DialogResult opcaoEscolhida = telaFesta.ShowDialog();
+
+            if (opcaoEscolhida == DialogResult.OK)
             {
                 Festa novaFesta = telaFesta.ObterFesta();
                 repoFesta.Inserir(novaFesta);
@@ -95,10 +109,12 @@ namespace PartyManager.WinApp.ModuloFesta
         }
         private void CarregarFestas()
         {
-            temas = repositorioTema.SelecionarTodos();
-            clientes = repositorioCliente.SelecionarTodos();
             List<Festa> festas = repoFesta.SelecionarTodos();
             
+            tabelaFesta.AtualizarRegistros(festas);
+        }
+        private void CarregarFestas(List<Festa> festas)
+        {
             tabelaFesta.AtualizarRegistros(festas);
         }
         

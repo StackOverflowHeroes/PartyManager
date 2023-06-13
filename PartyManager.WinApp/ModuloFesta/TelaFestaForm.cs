@@ -15,48 +15,69 @@ namespace PartyManager.WinApp.ModuloFesta
 {
     public partial class TelaFestaForm : Form
     {
-        public TelaFestaForm()
+        public TelaFestaForm(List<Cliente> clientes, List<Tema> temas)
         {
             InitializeComponent();
+            this.ConfigurarDialog();
+            CarregarCliente(clientes);
+            CarregarTema(temas);
         }
-        public void ConfigurarTela(Festa festa, List<Tema> temas, List<Cliente> clientes)
+
+        private void CarregarTema(List<Tema> temas)
         {
-            tboxId.Text = festa.id.ToString();
-            tboxEndereco.Text = festa.Endereco;
-            cbBoxTema.DataSource = temas;
-            cbBoxTema.ValueMember = "Nome";
-            cbBoxTema.SelectedItem = festa.Tema;
-            cbBoxCliente.DataSource = clientes;
-            cbBoxCliente.ValueMember = "Nome";
-            cbBoxCliente.SelectedItem = festa.Cliente;
-            dtData.Value = festa.Data;
+            foreach (Tema tema in temas)
+            {
+                cbBoxTema.Items.Add(tema);
+            }
+        }
+
+        private void CarregarCliente(List<Cliente> clientes)
+        {
+            foreach (Cliente cliente in clientes)
+            {
+                cbBoxCliente.Items.Add(cliente);
+            };
+        }
+        
+        public void ConfigurarTela(Festa festaSelecionada)
+        {
+            tboxId.Text = festaSelecionada.id.ToString();
+            tboxEndereco.Text = festaSelecionada.endereco;
+            cbBoxTema.SelectedItem = festaSelecionada.tema;
+            cbBoxCliente.SelectedItem = festaSelecionada.cliente;
+            txtData.Value = festaSelecionada.data;
+            txtHoraInicio.Value = DateTime.Now.Date.Add(festaSelecionada.horaInicio);
+            txtHoraFim.Value = DateTime.Now.Date.Add(festaSelecionada.horaTermino);
         }
         public Festa ObterFesta()
         {
             int id = Convert.ToInt32(tboxId.Text);
             string endereco = tboxEndereco.Text;
-            
 
-            Festa festa = new Festa();
+            Tema tema = (Tema)cbBoxTema.SelectedItem;
+            Cliente cliente = (Cliente)cbBoxCliente.SelectedItem;
+
+            DateTime data = txtData.Value;
+            TimeSpan horaInicio = txtHoraInicio.Value.TimeOfDay;
+            TimeSpan horaTermino = txtHoraFim.Value.TimeOfDay;
+            Festa festa = new Festa(id, endereco, tema, cliente, data, horaInicio, horaTermino);
 
             if (id > 0)
                 festa.id = id;
 
             return festa;
         }
-        private void label2_Click(object sender, EventArgs e)
+        private void btnCadastrar_Click(object sender, EventArgs e)
         {
+            Festa festa = ObterFesta();
+            string[] erros = festa.ValidarErros();
 
-        }
+            if (erros.Length > 0)
+            {
+                TelaPrincipalForm.Instancia.AtualizarRodape(erros[0], TipoStatusEnum.Erro);
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
+                DialogResult = DialogResult.None;
+            }
         }
     }
 }

@@ -57,7 +57,7 @@ namespace PartyManager.WinApp.ModuloFesta
 
             foreach (Festa festa in festas)
             {
-                tabelaFestas.Rows.Add(festa.id, festa.Cliente.nome,festa.Data, festa.Tema.nome);
+                tabelaFestas.Rows.Add(festa.id, festa.cliente.nome,festa.data, festa.tema.nome);
             }
         }
         public int ObterIdSelecionado()
