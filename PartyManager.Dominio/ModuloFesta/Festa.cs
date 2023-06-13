@@ -33,7 +33,7 @@ namespace PartyManager.Dominio.ModuloFesta
 
         public override string? ToString()
         {
-            return $"Cliente: {cliente.nome}";
+            return nome;
         }
 
         public override void AtualizarRegistros(Festa registroAtualizado)
