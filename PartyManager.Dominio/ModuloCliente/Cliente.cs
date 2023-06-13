@@ -37,7 +37,12 @@ namespace PartyManager.Dominio.ModuloCliente
                return erros.ToArray();
           }
 
-          public override bool Equals(object? obj)
+        public override string? ToString()
+        {
+            return $"Nome: {nome}, telefone: {telefone}";
+        }
+
+        public override bool Equals(object? obj)
           {
                return obj is Cliente cliente &&
                       id == cliente.id &&

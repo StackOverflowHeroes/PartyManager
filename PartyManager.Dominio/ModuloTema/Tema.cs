@@ -11,6 +11,11 @@ namespace PartyManager.Dominio.ModuloTema
         {
         }
 
+        public override string? ToString()
+        {
+            return $"Nome: {nome}";
+        }
+
         public Tema(int id, string nome, List<Item> listaItens)
         {
             this.id = id;
