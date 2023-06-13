@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            comboBox1 = new ComboBox();
-            comboBox2 = new ComboBox();
-            comboBox3 = new ComboBox();
-            dateTimePicker1 = new DateTimePicker();
-            dateTimePicker2 = new DateTimePicker();
+            comboBoxFesta = new ComboBox();
+            comboBoxCliente = new ComboBox();
+            comboBoxPagamento = new ComboBox();
+            dateAbertura = new DateTimePicker();
+            dateFechamento = new DateTimePicker();
             btnCadastrar = new Button();
             btnCancelar = new Button();
             tboxId = new TextBox();
@@ -44,47 +44,50 @@
             label6 = new Label();
             SuspendLayout();
             // 
-            // comboBox1
+            // comboBoxFesta
             // 
-            comboBox1.DisplayMember = "nome";
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(65, 100);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(375, 28);
-            comboBox1.TabIndex = 0;
+            comboBoxFesta.DisplayMember = "cliente.nome";
+            comboBoxFesta.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxFesta.FormattingEnabled = true;
+            comboBoxFesta.Location = new Point(65, 100);
+            comboBoxFesta.Name = "comboBoxFesta";
+            comboBoxFesta.Size = new Size(375, 28);
+            comboBoxFesta.TabIndex = 0;
             // 
-            // comboBox2
+            // comboBoxCliente
             // 
-            comboBox2.DisplayMember = "nome";
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(65, 156);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(375, 28);
-            comboBox2.TabIndex = 1;
+            comboBoxCliente.DisplayMember = "nome";
+            comboBoxCliente.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxCliente.FormattingEnabled = true;
+            comboBoxCliente.Location = new Point(65, 156);
+            comboBoxCliente.Name = "comboBoxCliente";
+            comboBoxCliente.Size = new Size(375, 28);
+            comboBoxCliente.TabIndex = 1;
             // 
-            // comboBox3
+            // comboBoxPagamento
             // 
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(65, 295);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(375, 28);
-            comboBox3.TabIndex = 2;
+            comboBoxPagamento.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxPagamento.FormattingEnabled = true;
+            comboBoxPagamento.Location = new Point(65, 295);
+            comboBoxPagamento.Name = "comboBoxPagamento";
+            comboBoxPagamento.Size = new Size(375, 28);
+            comboBoxPagamento.TabIndex = 2;
             // 
-            // dateTimePicker1
+            // dateAbertura
             // 
-            dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(190, 191);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(250, 27);
-            dateTimePicker1.TabIndex = 3;
+            dateAbertura.Format = DateTimePickerFormat.Short;
+            dateAbertura.Location = new Point(190, 201);
+            dateAbertura.Name = "dateAbertura";
+            dateAbertura.Size = new Size(250, 27);
+            dateAbertura.TabIndex = 3;
             // 
-            // dateTimePicker2
+            // dateFechamento
             // 
-            dateTimePicker2.Format = DateTimePickerFormat.Short;
-            dateTimePicker2.Location = new Point(190, 229);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(250, 27);
-            dateTimePicker2.TabIndex = 4;
+            dateFechamento.Format = DateTimePickerFormat.Short;
+            dateFechamento.Location = new Point(190, 239);
+            dateFechamento.Name = "dateFechamento";
+            dateFechamento.Size = new Size(250, 27);
+            dateFechamento.TabIndex = 4;
             // 
             // btnCadastrar
             // 
@@ -99,6 +102,7 @@
             btnCadastrar.TabIndex = 18;
             btnCadastrar.Text = "Cadastrar";
             btnCadastrar.UseVisualStyleBackColor = false;
+            btnCadastrar.Click += btnCadastrar_Click;
             // 
             // btnCancelar
             // 
@@ -159,7 +163,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(65, 194);
+            label4.Location = new Point(65, 204);
             label4.Name = "label4";
             label4.Size = new Size(101, 20);
             label4.TabIndex = 25;
@@ -168,7 +172,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(65, 232);
+            label5.Location = new Point(65, 242);
             label5.Name = "label5";
             label5.Size = new Size(124, 20);
             label5.TabIndex = 26;
@@ -197,11 +201,11 @@
             Controls.Add(label1);
             Controls.Add(btnCadastrar);
             Controls.Add(btnCancelar);
-            Controls.Add(dateTimePicker2);
-            Controls.Add(dateTimePicker1);
-            Controls.Add(comboBox3);
-            Controls.Add(comboBox2);
-            Controls.Add(comboBox1);
+            Controls.Add(dateFechamento);
+            Controls.Add(dateAbertura);
+            Controls.Add(comboBoxPagamento);
+            Controls.Add(comboBoxCliente);
+            Controls.Add(comboBoxFesta);
             Name = "TelaAluguelForm";
             ShowIcon = false;
             Text = "Cadastro de Aluguéis";
@@ -211,11 +215,11 @@
 
         #endregion
 
-        private ComboBox comboBox1;
-        private ComboBox comboBox2;
-        private ComboBox comboBox3;
-        private DateTimePicker dateTimePicker1;
-        private DateTimePicker dateTimePicker2;
+        private ComboBox comboBoxFesta;
+        private ComboBox comboBoxCliente;
+        private ComboBox comboBoxPagamento;
+        private DateTimePicker dateAbertura;
+        private DateTimePicker dateFechamento;
         private Button btnCadastrar;
         private Button btnCancelar;
         private TextBox tboxId;

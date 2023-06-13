@@ -147,7 +147,7 @@ namespace PartyManager.WinApp
 
         private void AluguelMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorAluguel(repositorioAluguel);
+            controlador = new ControladorAluguel(repositorioAluguel, repositorioFesta, repositorioCliente);
             ConfigurarTelaPrincipal(controlador);
         }
     }

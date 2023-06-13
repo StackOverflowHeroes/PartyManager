@@ -7,7 +7,7 @@ namespace PartyManager.Dominio.ModuloFesta
     {
         public string endereco;
 
-        public Cliente cliente;
+        public Cliente cliente { get; set; }
         public Tema tema;
 
         public DateTime data;
@@ -29,17 +29,11 @@ namespace PartyManager.Dominio.ModuloFesta
             this.horaInicio = horaInicio;
             this.horaTermino = horaTermino;
         }
-        public Festa(string endereco, Cliente cliente, Tema tema, DateTime data, TimeSpan horaInicio, TimeSpan horaTermino)
+
+        public override string? ToString()
         {
-            this.endereco = endereco;
-            this.cliente = cliente;
-            this.tema = tema;
-            this.data = data;
-            this.horaInicio = horaInicio;
-            this.horaTermino = horaTermino;
+            return $"Cliente: {cliente.nome}";
         }
-
-
 
         public override void AtualizarRegistros(Festa registroAtualizado)
         {
