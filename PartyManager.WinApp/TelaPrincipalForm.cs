@@ -53,7 +53,7 @@ namespace PartyManager.WinApp
                 case TipoStatusEnum.Nenhum: break;
                 case TipoStatusEnum.Erro: cor = Color.Red; break;
                 case TipoStatusEnum.Sucesso: cor = Color.Green; break;
-                case TipoStatusEnum.Visualizando: cor = Color.DarkGray; break;
+                case TipoStatusEnum.Visualizando: cor = Color.Blue; break;
             }
 
             tssStatus.ForeColor = cor;

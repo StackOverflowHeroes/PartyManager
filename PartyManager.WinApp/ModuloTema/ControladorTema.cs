@@ -1,4 +1,5 @@
-﻿using PartyManager.Dominio.ModuloTema;
+﻿using PartyManager.Dominio.ModuloCliente;
+using PartyManager.Dominio.ModuloTema;
 
 namespace PartyManager.WinApp.ModuloTema
 {
@@ -94,8 +95,8 @@ namespace PartyManager.WinApp.ModuloTema
           private void CarregarTemas()
           {
                List<Tema> temas = repoTema.SelecionarTodos();
-
                tabelaTema.AtualizarRegistros(temas);
+               TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {temas.Count} tema(s)", TipoStatusEnum.Visualizando);
           }
           public override UserControl ObterListagem()
           {

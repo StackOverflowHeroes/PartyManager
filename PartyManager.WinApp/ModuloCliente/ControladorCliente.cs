@@ -105,6 +105,7 @@ namespace PartyManager.WinApp.ModuloCliente
                List<Cliente> clientes = repoCliente.SelecionarTodos();
 
                tabelaCliente.AtualizarRegistros(clientes);
+               TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {clientes.Count} cliente(s)", TipoStatusEnum.Visualizando);
           }
 
           public override UserControl ObterListagem()

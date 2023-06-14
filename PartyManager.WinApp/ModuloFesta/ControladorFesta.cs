@@ -104,10 +104,10 @@ namespace PartyManager.WinApp.ModuloFesta
         }
         private void CarregarFestas()
         {
-            List<Festa> festas = repoFesta.SelecionarTodos();
-            
+            List<Festa> festas = repoFesta.SelecionarTodos();    
             tabelaFesta.AtualizarRegistros(festas);
-        }
+            TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {festas.Count} festa(s)", TipoStatusEnum.Visualizando);
+          }
         
         public override UserControl ObterListagem()
         {

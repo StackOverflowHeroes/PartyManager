@@ -108,9 +108,9 @@ namespace PartyManager.WinApp.ModuloAluguel
         public void CarregarAlugueis()
         {
             List<Aluguel> alugueis = repoAluguel.SelecionarTodos();
-
             tabelaAluguel.AtualizarRegistros(alugueis);
-        }
+            TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {alugueis.Count} aluguel/alguéis", TipoStatusEnum.Visualizando);
+          }
 
         public override UserControl ObterListagem()
         {
