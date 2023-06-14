@@ -62,7 +62,14 @@ namespace PartyManager.WinApp.ModuloAluguel
 
             foreach (Aluguel registro in alugueis)
             {
-                tabelaAluguel.Rows.Add(registro.id, registro.festa.data, registro.cliente.nome, registro.valor, registro.dataAbertura, registro.dataFechamento, registro.statusPagamento );
+                tabelaAluguel.Rows.Add(
+                    registro.id, 
+                    registro.festa.data.ToShortDateString(), 
+                    registro.festa.cliente.nome, 
+                    registro.valor,
+                    registro.dataAbertura.ToShortDateString(), 
+                    registro.dataFechamento.ToShortDateString(), 
+                    registro.statusPagamento);
             }
         }
 

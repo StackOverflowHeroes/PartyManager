@@ -114,10 +114,6 @@ namespace PartyManager.WinApp.ModuloFesta
             
             tabelaFesta.AtualizarRegistros(festas);
         }
-        private void CarregarFestas(List<Festa> festas)
-        {
-            tabelaFesta.AtualizarRegistros(festas);
-        }
         
         public override UserControl ObterListagem()
         {

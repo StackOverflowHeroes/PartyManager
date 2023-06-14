@@ -42,7 +42,7 @@ namespace PartyManager.WinApp.ModuloAluguel
                 return;
             }
 
-            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o aluguel do client {aluguelSelecionado.cliente.nome}?", "Exclusão de Aluguéis",
+            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o aluguel do client {aluguelSelecionado.festa.cliente.nome}?", "Exclusão de Aluguéis",
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (opcaoEscolhida == DialogResult.OK)

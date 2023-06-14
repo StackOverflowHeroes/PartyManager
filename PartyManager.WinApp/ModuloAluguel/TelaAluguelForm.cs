@@ -16,12 +16,11 @@ namespace PartyManager.WinApp.ModuloAluguel
         {
             int id = Convert.ToInt32(tboxId.Text);
             Festa festa = comboBoxFesta.SelectedItem as Festa;
-            Cliente cliente = comboBoxCliente.SelectedItem as Cliente;
             DateTime dataAbertura = dateAbertura.Value.Date;
             DateTime dataFechamento = dateFechamento.Value.Date;
             StatusPagamentoEnum status = (StatusPagamentoEnum)comboBoxPagamento.SelectedItem;
 
-            Aluguel aluguel = new Aluguel(id, festa, cliente, dataAbertura, dataFechamento, status);
+            Aluguel aluguel = new Aluguel(id, festa/*, cliente*/, dataAbertura, dataFechamento, status);
 
             if (id > 0)
                 aluguel.id = id;
@@ -47,18 +46,25 @@ namespace PartyManager.WinApp.ModuloAluguel
         {
             List<StatusPagamentoEnum> statusPagamento = Enum.GetValues<StatusPagamentoEnum>().ToList();
             statusPagamento.ForEach(status => comboBoxPagamento.Items.Add(status));
+            comboBoxPagamento.SelectedIndex = 0;
 
             listaCompletaFesta.ForEach(festa => comboBoxFesta.Items.Add(festa));
-            listaCompletaCliente.ForEach(cliente => comboBoxCliente.Items.Add(cliente));
+            //listaCompletaCliente.ForEach(cliente => comboBoxCliente.Items.Add(cliente));
         }
 
         public void ConfigurarTela(Aluguel aluguelSelecionado)
         {
             comboBoxFesta.SelectedItem = aluguelSelecionado.festa;
-            comboBoxCliente.SelectedItem = aluguelSelecionado.cliente;
+            //comboBoxCliente.SelectedItem = aluguelSelecionado.cliente;
             comboBoxPagamento.SelectedItem = aluguelSelecionado.statusPagamento;
             dateAbertura.Value = aluguelSelecionado.dataAbertura;
             dateFechamento.Value = aluguelSelecionado.dataFechamento;
+        }
+
+        private void comboBoxFesta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Festa festaSelecionada = (Festa)comboBoxFesta.SelectedItem;
+            txtCliente.Text = festaSelecionada.cliente.nome;
         }
     }
 }

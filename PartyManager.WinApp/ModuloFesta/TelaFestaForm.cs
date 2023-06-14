@@ -39,7 +39,6 @@ namespace PartyManager.WinApp.ModuloFesta
                txtData.Value = festaSelecionada.data;
                txtHoraInicio.Value = DateTime.Now.Date.Add(festaSelecionada.horaInicio);
                txtHoraFim.Value = DateTime.Now.Date.Add(festaSelecionada.horaTermino);
-
           }
           public Festa ObterFesta()
           {
