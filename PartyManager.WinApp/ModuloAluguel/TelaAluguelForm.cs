@@ -55,7 +55,7 @@ namespace PartyManager.WinApp.ModuloAluguel
         public void ConfigurarTela(Aluguel aluguelSelecionado)
         {
             comboBoxFesta.SelectedItem = aluguelSelecionado.festa;
-            //comboBoxCliente.SelectedItem = aluguelSelecionado.cliente;
+            //comboBoxCliente.SelectedItem = aluguelSelecionado.festa.cliente;
             comboBoxPagamento.SelectedItem = aluguelSelecionado.statusPagamento;
             dateAbertura.Value = aluguelSelecionado.dataAbertura;
             dateFechamento.Value = aluguelSelecionado.dataFechamento;
@@ -65,11 +65,6 @@ namespace PartyManager.WinApp.ModuloAluguel
         {
             Festa festaSelecionada = (Festa)comboBoxFesta.SelectedItem;
             txtCliente.Text = festaSelecionada.cliente.nome;
-        }
-
-        private void TelaAluguelForm_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

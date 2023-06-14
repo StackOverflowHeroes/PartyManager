@@ -14,7 +14,7 @@ namespace PartyManager.Dominio.ModuloAluguel
         {
         }
 
-        public Aluguel(int id, Festa festa/*, Cliente cliente*/, DateTime dataAbertura, DateTime dataFechamento, StatusPagamentoEnum statusPagamento = StatusPagamentoEnum.Pendente)
+        public Aluguel(int id, Festa festa, /*Cliente cliente */ DateTime dataAbertura, DateTime dataFechamento, StatusPagamentoEnum statusPagamento = StatusPagamentoEnum.Pendente)
         {
             this.id = id;
             this.festa = festa;

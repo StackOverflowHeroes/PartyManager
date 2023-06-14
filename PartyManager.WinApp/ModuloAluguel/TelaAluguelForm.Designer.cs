@@ -41,9 +41,9 @@
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
-            txtCliente = new TextBox();
             label7 = new Label();
             TextBoxValorEntrada = new TextBox();
+            txtCliente = new TextBox();
             SuspendLayout();
             // 
             // comboBoxFesta
@@ -149,7 +149,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(71, 183);
+            label3.Location = new Point(71, 184);
             label3.Name = "label3";
             label3.Size = new Size(57, 20);
             label3.TabIndex = 24;
@@ -185,15 +185,6 @@
             label6.TabIndex = 27;
             label6.Text = "Pagamento";
             // 
-            // txtCliente
-            // 
-            txtCliente.Location = new Point(207, 180);
-            txtCliente.Margin = new Padding(3, 4, 3, 4);
-            txtCliente.Name = "txtCliente";
-            txtCliente.ReadOnly = true;
-            txtCliente.Size = new Size(238, 27);
-            txtCliente.TabIndex = 28;
-            // 
             // label7
             // 
             label7.AutoSize = true;
@@ -212,14 +203,22 @@
             TextBoxValorEntrada.Size = new Size(238, 27);
             TextBoxValorEntrada.TabIndex = 30;
             // 
+            // txtCliente
+            // 
+            txtCliente.Location = new Point(206, 181);
+            txtCliente.Name = "txtCliente";
+            txtCliente.ReadOnly = true;
+            txtCliente.Size = new Size(239, 27);
+            txtCliente.TabIndex = 31;
+            // 
             // TelaAluguelForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(511, 519);
+            Controls.Add(txtCliente);
             Controls.Add(TextBoxValorEntrada);
             Controls.Add(label7);
-            Controls.Add(txtCliente);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -236,7 +235,6 @@
             Name = "TelaAluguelForm";
             ShowIcon = false;
             Text = "Cadastro de Aluguéis";
-            Load += TelaAluguelForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -256,8 +254,8 @@
         private Label label4;
         private Label label5;
         private Label label6;
-        private TextBox txtCliente;
         private Label label7;
         private TextBox TextBoxValorEntrada;
+        private TextBox txtCliente;
     }
 }
