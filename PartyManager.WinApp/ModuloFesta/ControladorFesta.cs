@@ -37,7 +37,7 @@ namespace PartyManager.WinApp.ModuloFesta
 
                 return;
             }
-            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir a festa {festaSeleciado}?", "Exclusão de Festa",
+            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir a festa {festaSeleciado}?", "Exclusão de Festas",
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (opcaoEscolhida == DialogResult.OK)
@@ -59,7 +59,7 @@ namespace PartyManager.WinApp.ModuloFesta
 
             if (festaSelecionado == null)
             {
-                MessageBox.Show($"Selecione uma Festa primeiro!",
+                MessageBox.Show($"Selecione uma festa primeiro!",
                     "Edição de Festas",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
@@ -69,6 +69,7 @@ namespace PartyManager.WinApp.ModuloFesta
             List<Tema> temas = repositorioTema.SelecionarTodos();
 
             TelaFestaForm telaFesta = new TelaFestaForm(clientes, temas);
+            telaFesta.Text = "Edição de Festas";
             telaFesta.ConfigurarTela(festaSelecionado);
             DialogResult opcaoEscolhida = telaFesta.ShowDialog();
 

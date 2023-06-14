@@ -18,10 +18,10 @@ namespace PartyManager.WinApp.ModuloCliente
 
                Cliente cliente = new Cliente(id, nome, telefone);
 
-               if(id > 0)
+               if (id > 0)
                     cliente.id = id;
 
-               return cliente; 
+               return cliente;
           }
 
           public void ConfigurarTela(Cliente cliente)

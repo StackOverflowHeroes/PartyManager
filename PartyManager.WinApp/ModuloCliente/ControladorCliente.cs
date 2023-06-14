@@ -2,122 +2,124 @@
 
 namespace PartyManager.WinApp.ModuloCliente
 {
-    public class ControladorCliente : ControladorBase
-    {
-        private IRepositorioCliente repoCliente;
-        private TabelaClienteControl tabelaCliente;
+     public class ControladorCliente : ControladorBase
+     {
+          private IRepositorioCliente repoCliente;
+          private TabelaClienteControl tabelaCliente;
 
-        public ControladorCliente(IRepositorioCliente repoCliente)
-        {
-            this.repoCliente = repoCliente;
-        }
+          public ControladorCliente(IRepositorioCliente repoCliente)
+          {
+               this.repoCliente = repoCliente;
+          }
 
-        public override string ToolTipInserir => "Inserir Cliente";
+          public override string ToolTipInserir => "Inserir Cliente";
 
-        public override string ToolTipEditar => "Editar Cliente";
+          public override string ToolTipEditar => "Editar Cliente";
 
-        public override string ToolTipDeletar => "Deletar Cliente";
+          public override string ToolTipDeletar => "Deletar Cliente";
 
-        public override void Deletar()
-        {
-            Cliente cliente = ObterClienteSelecionado();
+          public override void Deletar()
+          {
+               Cliente cliente = ObterClienteSelecionado();
 
-            if (cliente == null)
-            {
-                MessageBox.Show($"Selecione um cliente primeiro!",
-                    "Exclusão de Clientes",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation);
+               if (cliente == null)
+               {
+                    MessageBox.Show($"Selecione um cliente primeiro!",
+                        "Exclusão de Clientes",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
 
-                return;
-            }
+                    return;
+               }
 
-            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o cliente {cliente.nome}?", "Exclusão de Clientes",
-                MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+               DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o cliente {cliente.nome}?", "Exclusão de Clientes",
+                   MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-            if (opcaoEscolhida == DialogResult.OK)
-            {
-                repoCliente.Deletar(cliente);
-                TelaPrincipalForm.Instancia.AtualizarRodape($"Cliente deletado com sucesso!", TipoStatusEnum.Sucesso);
-            }
+               if (opcaoEscolhida == DialogResult.OK)
+               {
+                    repoCliente.Deletar(cliente);
+                    TelaPrincipalForm.Instancia.AtualizarRodape($"Cliente deletado com sucesso!", TipoStatusEnum.Sucesso);
+               }
 
-            CarregarClientes();
-            
-        }
+               CarregarClientes();
 
-        private Cliente ObterClienteSelecionado()
-        {
-            int id = tabelaCliente.ObterIdSelecionado();
-            return repoCliente.SelecionarPorId(id);
-        }
+          }
 
-        public override void Editar()
-        {
-            Cliente cliente = ObterClienteSelecionado();
+          private Cliente ObterClienteSelecionado()
+          {
+               int id = tabelaCliente.ObterIdSelecionado();
+               return repoCliente.SelecionarPorId(id);
+          }
 
-            if (cliente == null)
-            {
-                MessageBox.Show($"Selecione um cliente primeiro!",
-                    "Edição de Clientes",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation);
+          public override void Editar()
+          {
+               Cliente cliente = ObterClienteSelecionado();
 
-                return;
-            }
+               if (cliente == null)
+               {
+                    MessageBox.Show($"Selecione um cliente primeiro!",
+                        "Edição de Clientes",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
 
-            TelaClienteForm telaCliente = new TelaClienteForm();
-            telaCliente.ConfigurarTela(cliente);
+                    return;
+               }
 
-            DialogResult opcaoEscolhida = telaCliente.ShowDialog();
+               TelaClienteForm telaCliente = new TelaClienteForm();
+               telaCliente.Text = "Edição de Clientes";
+               telaCliente.ConfigurarTela(cliente);
 
-            if (opcaoEscolhida == DialogResult.OK)
-            {
-                Cliente clienteAtualizado = telaCliente.ObterCliente();
-                repoCliente.Editar(clienteAtualizado.id, clienteAtualizado);
-                TelaPrincipalForm.Instancia.AtualizarRodape($"Cliente editado com sucesso!", TipoStatusEnum.Sucesso);
-            }
 
-            CarregarClientes();
-            
-        }
+               DialogResult opcaoEscolhida = telaCliente.ShowDialog();
 
-        public override void Inserir()
-        {
-            TelaClienteForm telaCliente = new TelaClienteForm();
+               if (opcaoEscolhida == DialogResult.OK)
+               {
+                    Cliente clienteAtualizado = telaCliente.ObterCliente();
+                    repoCliente.Editar(clienteAtualizado.id, clienteAtualizado);
+                    TelaPrincipalForm.Instancia.AtualizarRodape($"Cliente editado com sucesso!", TipoStatusEnum.Sucesso);
+               }
 
-            DialogResult opcaoEscolhida = telaCliente.ShowDialog();
+               CarregarClientes();
 
-            if (opcaoEscolhida == DialogResult.OK)
-            {
-                Cliente cliente = telaCliente.ObterCliente();
-                repoCliente.Inserir(cliente);
-                TelaPrincipalForm.Instancia.AtualizarRodape($"Cliente inserido com sucesso!", TipoStatusEnum.Sucesso);
-            }
+          }
 
-            CarregarClientes();
-            
-        }
+          public override void Inserir()
+          {
+               TelaClienteForm telaCliente = new TelaClienteForm();
 
-        private void CarregarClientes()
-        {
-            List<Cliente> clientes = repoCliente.SelecionarTodos();
+               DialogResult opcaoEscolhida = telaCliente.ShowDialog();
 
-            tabelaCliente.AtualizarRegistros(clientes);
-        }
+               if (opcaoEscolhida == DialogResult.OK)
+               {
+                    Cliente cliente = telaCliente.ObterCliente();
+                    repoCliente.Inserir(cliente);
+                    TelaPrincipalForm.Instancia.AtualizarRodape($"Cliente inserido com sucesso!", TipoStatusEnum.Sucesso);
+               }
 
-        public override UserControl ObterListagem()
-        {
-            if (tabelaCliente == null)
-                tabelaCliente = new TabelaClienteControl();
+               CarregarClientes();
 
-            CarregarClientes();
+          }
 
-            return tabelaCliente;
-        }
+          private void CarregarClientes()
+          {
+               List<Cliente> clientes = repoCliente.SelecionarTodos();
 
-        public override string ObterTipoCadastro()
-        {
-            return "Cadastros de Clientes";
-        }
-    }
+               tabelaCliente.AtualizarRegistros(clientes);
+          }
+
+          public override UserControl ObterListagem()
+          {
+               if (tabelaCliente == null)
+                    tabelaCliente = new TabelaClienteControl();
+
+               CarregarClientes();
+
+               return tabelaCliente;
+          }
+
+          public override string ObterTipoCadastro()
+          {
+               return "Cadastros de Clientes";
+          }
+     }
 }

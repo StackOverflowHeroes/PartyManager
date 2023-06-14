@@ -56,7 +56,7 @@ namespace PartyManager.WinApp.ModuloFesta
                     festa.nome,
                     festa.cliente.nome,
                     festa.data.ToShortDateString(), 
-                    festa.tema.nome);
+                    festa.tema.nome.ToUpper());
             }
         }
         public int ObterIdSelecionado()

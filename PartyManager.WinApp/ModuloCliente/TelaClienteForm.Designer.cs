@@ -44,7 +44,7 @@
                btnCadastrar.BackColor = SystemColors.ButtonHighlight;
                btnCadastrar.DialogResult = DialogResult.OK;
                btnCadastrar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-               btnCadastrar.Location = new Point(302, 362);
+               btnCadastrar.Location = new Point(279, 277);
                btnCadastrar.Name = "btnCadastrar";
                btnCadastrar.Size = new Size(75, 45);
                btnCadastrar.TabIndex = 16;
@@ -58,7 +58,7 @@
                btnCancelar.BackColor = SystemColors.ButtonHighlight;
                btnCancelar.DialogResult = DialogResult.Cancel;
                btnCancelar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-               btnCancelar.Location = new Point(383, 362);
+               btnCancelar.Location = new Point(360, 277);
                btnCancelar.Name = "btnCancelar";
                btnCancelar.Size = new Size(75, 45);
                btnCancelar.TabIndex = 15;
@@ -68,7 +68,7 @@
                // mtboxTelefone
                // 
                mtboxTelefone.Anchor = AnchorStyles.None;
-               mtboxTelefone.Location = new Point(127, 221);
+               mtboxTelefone.Location = new Point(115, 179);
                mtboxTelefone.Mask = "(00) 0000-0000";
                mtboxTelefone.Name = "mtboxTelefone";
                mtboxTelefone.RejectInputOnFirstFailure = true;
@@ -80,7 +80,7 @@
                label3.Anchor = AnchorStyles.None;
                label3.AutoSize = true;
                label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-               label3.Location = new Point(68, 224);
+               label3.Location = new Point(56, 182);
                label3.Name = "label3";
                label3.Size = new Size(56, 15);
                label3.TabIndex = 17;
@@ -89,7 +89,7 @@
                // tboxNome
                // 
                tboxNome.Anchor = AnchorStyles.None;
-               tboxNome.Location = new Point(127, 179);
+               tboxNome.Location = new Point(115, 137);
                tboxNome.Name = "tboxNome";
                tboxNome.Size = new Size(251, 23);
                tboxNome.TabIndex = 22;
@@ -99,7 +99,7 @@
                label2.Anchor = AnchorStyles.None;
                label2.AutoSize = true;
                label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-               label2.Location = new Point(84, 182);
+               label2.Location = new Point(72, 140);
                label2.Name = "label2";
                label2.Size = new Size(41, 15);
                label2.TabIndex = 21;
@@ -110,7 +110,7 @@
                tboxId.Anchor = AnchorStyles.None;
                tboxId.BackColor = SystemColors.ActiveBorder;
                tboxId.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-               tboxId.Location = new Point(214, 130);
+               tboxId.Location = new Point(202, 88);
                tboxId.Name = "tboxId";
                tboxId.ReadOnly = true;
                tboxId.Size = new Size(55, 23);
@@ -122,7 +122,7 @@
                label1.Anchor = AnchorStyles.None;
                label1.AutoSize = true;
                label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-               label1.Location = new Point(190, 133);
+               label1.Location = new Point(178, 91);
                label1.Name = "label1";
                label1.Size = new Size(21, 15);
                label1.TabIndex = 19;
@@ -132,7 +132,7 @@
                // 
                AutoScaleDimensions = new SizeF(7F, 15F);
                AutoScaleMode = AutoScaleMode.Font;
-               ClientSize = new Size(470, 419);
+               ClientSize = new Size(447, 334);
                Controls.Add(tboxNome);
                Controls.Add(label2);
                Controls.Add(tboxId);
@@ -142,7 +142,7 @@
                Controls.Add(btnCadastrar);
                Controls.Add(btnCancelar);
                Name = "TelaClienteForm";
-               Text = "Cadastro Cliente";
+               Text = "Cadastro de Clientes";
                ResumeLayout(false);
                PerformLayout();
           }

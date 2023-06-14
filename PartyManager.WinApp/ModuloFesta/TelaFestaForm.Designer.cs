@@ -53,7 +53,7 @@
                label2.Anchor = AnchorStyles.None;
                label2.AutoSize = true;
                label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-               label2.Location = new Point(55, 121);
+               label2.Location = new Point(108, 135);
                label2.Name = "label2";
                label2.Size = new Size(59, 15);
                label2.TabIndex = 28;
@@ -62,7 +62,7 @@
                // tboxEndereco
                // 
                tboxEndereco.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-               tboxEndereco.Location = new Point(120, 121);
+               tboxEndereco.Location = new Point(173, 135);
                tboxEndereco.Name = "tboxEndereco";
                tboxEndereco.Size = new Size(247, 23);
                tboxEndereco.TabIndex = 29;
@@ -72,7 +72,7 @@
                label1.Anchor = AnchorStyles.None;
                label1.AutoSize = true;
                label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-               label1.Location = new Point(93, 63);
+               label1.Location = new Point(146, 77);
                label1.Name = "label1";
                label1.Size = new Size(21, 15);
                label1.TabIndex = 30;
@@ -83,7 +83,7 @@
                tboxId.Anchor = AnchorStyles.None;
                tboxId.BackColor = SystemColors.ActiveBorder;
                tboxId.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-               tboxId.Location = new Point(120, 63);
+               tboxId.Location = new Point(173, 77);
                tboxId.Name = "tboxId";
                tboxId.ReadOnly = true;
                tboxId.Size = new Size(55, 23);
@@ -96,9 +96,9 @@
                btnCadastrar.BackColor = SystemColors.ButtonHighlight;
                btnCadastrar.DialogResult = DialogResult.OK;
                btnCadastrar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-               btnCadastrar.Location = new Point(211, 320);
+               btnCadastrar.Location = new Point(345, 351);
                btnCadastrar.Name = "btnCadastrar";
-               btnCadastrar.Size = new Size(71, 66);
+               btnCadastrar.Size = new Size(75, 45);
                btnCadastrar.TabIndex = 32;
                btnCadastrar.Text = "Cadastrar";
                btnCadastrar.UseVisualStyleBackColor = false;
@@ -110,9 +110,9 @@
                btnCancelar.BackColor = SystemColors.ButtonHighlight;
                btnCancelar.DialogResult = DialogResult.Cancel;
                btnCancelar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-               btnCancelar.Location = new Point(288, 320);
+               btnCancelar.Location = new Point(426, 351);
                btnCancelar.Name = "btnCancelar";
-               btnCancelar.Size = new Size(71, 66);
+               btnCancelar.Size = new Size(75, 45);
                btnCancelar.TabIndex = 33;
                btnCancelar.Text = "Cancelar";
                btnCancelar.UseVisualStyleBackColor = false;
@@ -122,7 +122,7 @@
                label3.Anchor = AnchorStyles.None;
                label3.AutoSize = true;
                label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-               label3.Location = new Point(77, 152);
+               label3.Location = new Point(130, 166);
                label3.Name = "label3";
                label3.Size = new Size(37, 15);
                label3.TabIndex = 34;
@@ -134,7 +134,7 @@
                cbBoxTema.DisplayMember = "nome";
                cbBoxTema.DropDownStyle = ComboBoxStyle.DropDownList;
                cbBoxTema.FormattingEnabled = true;
-               cbBoxTema.Location = new Point(120, 152);
+               cbBoxTema.Location = new Point(173, 166);
                cbBoxTema.Name = "cbBoxTema";
                cbBoxTema.Size = new Size(247, 23);
                cbBoxTema.TabIndex = 35;
@@ -144,7 +144,7 @@
                label4.Anchor = AnchorStyles.None;
                label4.AutoSize = true;
                label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-               label4.Location = new Point(68, 184);
+               label4.Location = new Point(121, 198);
                label4.Name = "label4";
                label4.Size = new Size(46, 15);
                label4.TabIndex = 36;
@@ -157,7 +157,7 @@
                cbBoxCliente.DisplayMember = "nome";
                cbBoxCliente.DropDownStyle = ComboBoxStyle.DropDownList;
                cbBoxCliente.FormattingEnabled = true;
-               cbBoxCliente.Location = new Point(120, 184);
+               cbBoxCliente.Location = new Point(173, 198);
                cbBoxCliente.Name = "cbBoxCliente";
                cbBoxCliente.Size = new Size(247, 23);
                cbBoxCliente.TabIndex = 37;
@@ -167,7 +167,7 @@
                label5.Anchor = AnchorStyles.None;
                label5.AutoSize = true;
                label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-               label5.Location = new Point(81, 213);
+               label5.Location = new Point(134, 227);
                label5.Name = "label5";
                label5.Size = new Size(33, 15);
                label5.TabIndex = 39;
@@ -178,7 +178,7 @@
                label6.Anchor = AnchorStyles.None;
                label6.AutoSize = true;
                label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-               label6.Location = new Point(29, 242);
+               label6.Location = new Point(82, 256);
                label6.Name = "label6";
                label6.Size = new Size(85, 15);
                label6.TabIndex = 40;
@@ -189,7 +189,7 @@
                label7.Anchor = AnchorStyles.None;
                label7.AutoSize = true;
                label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-               label7.Location = new Point(39, 271);
+               label7.Location = new Point(92, 285);
                label7.Name = "label7";
                label7.Size = new Size(75, 15);
                label7.TabIndex = 41;
@@ -198,7 +198,7 @@
                // txtHoraInicio
                // 
                txtHoraInicio.Format = DateTimePickerFormat.Time;
-               txtHoraInicio.Location = new Point(120, 242);
+               txtHoraInicio.Location = new Point(173, 256);
                txtHoraInicio.Name = "txtHoraInicio";
                txtHoraInicio.ShowUpDown = true;
                txtHoraInicio.Size = new Size(124, 23);
@@ -207,7 +207,7 @@
                // txtHoraFim
                // 
                txtHoraFim.Format = DateTimePickerFormat.Time;
-               txtHoraFim.Location = new Point(120, 271);
+               txtHoraFim.Location = new Point(173, 285);
                txtHoraFim.Name = "txtHoraFim";
                txtHoraFim.ShowUpDown = true;
                txtHoraFim.Size = new Size(124, 23);
@@ -216,7 +216,7 @@
                // txtData
                // 
                txtData.Format = DateTimePickerFormat.Short;
-               txtData.Location = new Point(120, 213);
+               txtData.Location = new Point(173, 227);
                txtData.Name = "txtData";
                txtData.Size = new Size(124, 23);
                txtData.TabIndex = 44;
@@ -224,7 +224,7 @@
                // tboxNome
                // 
                tboxNome.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-               tboxNome.Location = new Point(120, 92);
+               tboxNome.Location = new Point(173, 106);
                tboxNome.Name = "tboxNome";
                tboxNome.Size = new Size(247, 23);
                tboxNome.TabIndex = 46;
@@ -234,7 +234,7 @@
                label8.Anchor = AnchorStyles.None;
                label8.AutoSize = true;
                label8.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-               label8.Location = new Point(73, 92);
+               label8.Location = new Point(126, 106);
                label8.Name = "label8";
                label8.Size = new Size(41, 15);
                label8.TabIndex = 45;
@@ -264,7 +264,7 @@
                Controls.Add(tboxEndereco);
                Controls.Add(label2);
                Name = "TelaFestaForm";
-               Text = "TelaFestaForm";
+               Text = "Cadastro de Festas";
                ResumeLayout(false);
                PerformLayout();
           }

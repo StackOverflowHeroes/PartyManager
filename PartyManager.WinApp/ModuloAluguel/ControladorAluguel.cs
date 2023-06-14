@@ -18,11 +18,11 @@ namespace PartyManager.WinApp.ModuloAluguel
             repoCliente = repositorioCliente;
         }
 
-        public override string ToolTipInserir => "Inserir um novo aluguel";
+        public override string ToolTipInserir => "Inserir Aluguel";
 
-        public override string ToolTipEditar => "Editar um aluguel existente";
+        public override string ToolTipEditar => "Editar Aluguel";
 
-        public override string ToolTipDeletar => "Excluir um aluguel existente";
+        public override string ToolTipDeletar => "Deletar Aluguel";
 
         public override void Deletar()
         {
@@ -38,7 +38,7 @@ namespace PartyManager.WinApp.ModuloAluguel
                 return;
             }
 
-            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o aluguel do client {aluguelSelecionado.festa.cliente.nome}?", "Exclusão de Aluguéis",
+            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o aluguel do cliente {aluguelSelecionado.festa.cliente.nome}?", "Exclusão de Aluguéis",
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (opcaoEscolhida == DialogResult.OK)
@@ -66,6 +66,7 @@ namespace PartyManager.WinApp.ModuloAluguel
             List<Cliente> ListaCompletaCliente = repoCliente.SelecionarTodos();
             List<Festa> ListaCompletaFesta = repoFesta.SelecionarTodos();
             telaAluguel.PopularComboBox(ListaCompletaCliente, ListaCompletaFesta);
+            telaAluguel.Text = "Edição de Aluguéis";
             telaAluguel.ConfigurarTela(aluguelSelecionado);
 
             if (telaAluguel.ShowDialog() == DialogResult.OK)
