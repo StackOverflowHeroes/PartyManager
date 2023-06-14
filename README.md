@@ -17,6 +17,10 @@ Projeto destinado a Rafaela, que precisa controlar os aluguéis de seu negócio 
 - Possibilitar descontos nos aluguéis
 - Controlar o pagamento dos aluguéis, assim como, verificar o fechamento do negócio
 
+## 🗺️ RoadMap
+
+- Implementar função de filtro em Festas
+- Implementar função de filtro em Aluguéis
 
 ## 💻 Tecnologia utilizada
 
