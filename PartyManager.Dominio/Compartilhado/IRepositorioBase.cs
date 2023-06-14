@@ -1,5 +1,4 @@
-﻿
-namespace PartyManager.Dominio.Compartilhado
+﻿namespace PartyManager.Dominio.Compartilhado
 {
     public interface IRepositorioBase<T>
     {    

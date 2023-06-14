@@ -1,13 +1,6 @@
 ﻿using PartyManager.Dominio.ModuloCliente;
 using PartyManager.Dominio.ModuloFesta;
 using PartyManager.Dominio.ModuloTema;
-using PartyManager.WinApp.ModuloCliente;
-using PartyManager.WinApp.ModuloTema;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PartyManager.WinApp.ModuloFesta
 {

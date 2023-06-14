@@ -1,5 +1,4 @@
-﻿
-namespace PartyManager.Dominio.ModuloAluguel
+﻿namespace PartyManager.Dominio.ModuloAluguel
 {
     public enum StatusPagamentoEnum
     {

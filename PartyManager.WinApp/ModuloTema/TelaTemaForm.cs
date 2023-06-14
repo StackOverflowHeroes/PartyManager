@@ -1,6 +1,4 @@
-﻿
-using System.Drawing;
-using PartyManager.Dominio.ModuloTema;
+﻿using PartyManager.Dominio.ModuloTema;
 
 namespace PartyManager.WinApp.ModuloTema
 {

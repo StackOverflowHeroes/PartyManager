@@ -1,10 +1,6 @@
-﻿
-using PartyManager.Dominio.ModuloAluguel;
+﻿using PartyManager.Dominio.ModuloAluguel;
 using PartyManager.Dominio.ModuloCliente;
 using PartyManager.Dominio.ModuloFesta;
-using PartyManager.Dominio.ModuloTema;
-using PartyManager.WinApp.ModuloCliente;
-using PartyManager.WinApp.ModuloTema;
 
 namespace PartyManager.WinApp.ModuloAluguel
 {

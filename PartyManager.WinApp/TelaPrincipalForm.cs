@@ -1,4 +1,3 @@
-using PartyManager.Dados.Arquivo.Compartilhado;
 using PartyManager.Dados.Arquivo.ModuloAluguel;
 using PartyManager.Dados.Arquivo.ModuloCliente;
 using PartyManager.Dados.Arquivo.ModuloFesta;

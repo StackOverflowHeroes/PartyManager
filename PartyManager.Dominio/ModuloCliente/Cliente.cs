@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace PartyManager.Dominio.ModuloCliente
+﻿namespace PartyManager.Dominio.ModuloCliente
 {
      public class Cliente : EntidadeBase<Cliente>
      {

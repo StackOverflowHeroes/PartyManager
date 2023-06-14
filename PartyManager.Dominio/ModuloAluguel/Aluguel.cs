@@ -1,13 +1,10 @@
-﻿
-using PartyManager.Dominio.ModuloCliente;
-using PartyManager.Dominio.ModuloFesta;
+﻿using PartyManager.Dominio.ModuloFesta;
 
 namespace PartyManager.Dominio.ModuloAluguel
 {
     public class Aluguel : EntidadeBase<Aluguel>
     {
         public Festa festa;
-        //public Cliente cliente;
         public decimal valor;
         public StatusPagamentoEnum statusPagamento;
         public DateTime dataAbertura;
@@ -21,7 +18,6 @@ namespace PartyManager.Dominio.ModuloAluguel
         {
             this.id = id;
             this.festa = festa;
-            //this.cliente = cliente;
             this.statusPagamento = statusPagamento;
             this.dataAbertura = dataAbertura;
             this.dataFechamento = dataFechamento;
@@ -30,7 +26,6 @@ namespace PartyManager.Dominio.ModuloAluguel
         public override void AtualizarRegistros(Aluguel registroAtualizado)
         {
             festa = registroAtualizado.festa;
-            //cliente = registroAtualizado.cliente;
             valor = registroAtualizado.valor;
             statusPagamento = registroAtualizado.statusPagamento;
             dataAbertura = registroAtualizado.dataAbertura;
@@ -48,9 +43,6 @@ namespace PartyManager.Dominio.ModuloAluguel
 
             if (festa == null)
                 ErrosAluguel.Add("É obrigatório atribuir uma festa");
-
-            //if (cliente == null)
-            //    ErrosAluguel.Add("É obrigatório atribuir um cliente");
 
             if (dataAbertura < DateTime.Today)
                 ErrosAluguel.Add("Não é possível cadastrar um aluguel no passado");

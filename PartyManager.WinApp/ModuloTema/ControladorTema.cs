@@ -1,5 +1,4 @@
-﻿using PartyManager.Dominio.ModuloCliente;
-using PartyManager.Dominio.ModuloTema;
+﻿using PartyManager.Dominio.ModuloTema;
 
 namespace PartyManager.WinApp.ModuloTema
 {

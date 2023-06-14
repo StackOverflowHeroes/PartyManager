@@ -1,5 +1,4 @@
-﻿
-using PartyManager.Dominio.ModuloAluguel;
+﻿using PartyManager.Dominio.ModuloAluguel;
 
 namespace PartyManager.Dados.Arquivo.ModuloAluguel
 {

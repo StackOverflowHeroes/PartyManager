@@ -2,10 +2,6 @@
 {
      public static class GridExtensions
      {
-          /// <summary>
-          /// Define configurações que permitem apenas a leitura de uma DataGridView.
-          /// </summary>
-          /// <param name="grid"></param>
           public static void ConfigurarGridSomenteLeitura(this DataGridView grid)
           {
                grid.AllowUserToAddRows = false;
@@ -24,10 +20,6 @@
                grid.AllowUserToResizeRows = false;
           }
 
-          /// <summary>
-          /// Define configurações que permita intercalar dois esquemas de cores para o DataGridView.
-          /// </summary>
-          /// <param name="grid"></param>
           public static void ConfigurarGridZebrado(this DataGridView grid)
           {
                Font font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);

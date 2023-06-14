@@ -2,10 +2,6 @@
 {
      public static class FormExtensions
      {
-          /// <summary>
-          /// Define configurações de um Dialog para o formulário.
-          /// </summary>
-          /// <param name="form"></param>
           public static void ConfigurarDialog(this Form form)
           {
                form.ShowIcon = false;

@@ -1,5 +1,4 @@
-﻿
-using PartyManager.Dominio.ModuloTema;
+﻿using PartyManager.Dominio.ModuloTema;
 
 namespace PartyManager.Dados.Arquivo.ModuloTema
 {
