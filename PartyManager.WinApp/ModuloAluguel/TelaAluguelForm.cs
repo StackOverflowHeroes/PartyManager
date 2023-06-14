@@ -66,5 +66,10 @@ namespace PartyManager.WinApp.ModuloAluguel
             Festa festaSelecionada = (Festa)comboBoxFesta.SelectedItem;
             txtCliente.Text = festaSelecionada.cliente.nome;
         }
+
+        private void TelaAluguelForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
