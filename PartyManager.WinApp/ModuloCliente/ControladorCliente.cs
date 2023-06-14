@@ -36,13 +36,12 @@ namespace PartyManager.WinApp.ModuloCliente
                    MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                if (opcaoEscolhida == DialogResult.OK)
-               {
                     repoCliente.Deletar(cliente);
-                    TelaPrincipalForm.Instancia.AtualizarRodape($"Cliente deletado com sucesso!", TipoStatusEnum.Sucesso);
-               }
 
                CarregarClientes();
 
+               if (opcaoEscolhida == DialogResult.OK)
+                    TelaPrincipalForm.Instancia.AtualizarRodape($"Cliente deletado com sucesso!", TipoStatusEnum.Sucesso);
           }
 
           private Cliente ObterClienteSelecionado()
@@ -76,10 +75,12 @@ namespace PartyManager.WinApp.ModuloCliente
                {
                     Cliente clienteAtualizado = telaCliente.ObterCliente();
                     repoCliente.Editar(clienteAtualizado.id, clienteAtualizado);
-                    TelaPrincipalForm.Instancia.AtualizarRodape($"Cliente editado com sucesso!", TipoStatusEnum.Sucesso);
                }
 
                CarregarClientes();
+
+               if (opcaoEscolhida == DialogResult.OK)
+                    TelaPrincipalForm.Instancia.AtualizarRodape($"Cliente editado com sucesso!", TipoStatusEnum.Sucesso);
 
           }
 
@@ -93,17 +94,17 @@ namespace PartyManager.WinApp.ModuloCliente
                {
                     Cliente cliente = telaCliente.ObterCliente();
                     repoCliente.Inserir(cliente);
-                    TelaPrincipalForm.Instancia.AtualizarRodape($"Cliente inserido com sucesso!", TipoStatusEnum.Sucesso);
                }
 
                CarregarClientes();
 
+               if (opcaoEscolhida == DialogResult.OK)
+                    TelaPrincipalForm.Instancia.AtualizarRodape($"Cliente inserido com sucesso!", TipoStatusEnum.Sucesso);
           }
 
           private void CarregarClientes()
           {
                List<Cliente> clientes = repoCliente.SelecionarTodos();
-
                tabelaCliente.AtualizarRegistros(clientes);
                TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {clientes.Count} cliente(s)", TipoStatusEnum.Visualizando);
           }

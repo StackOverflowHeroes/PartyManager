@@ -40,8 +40,11 @@ namespace PartyManager.WinApp.ModuloTema
                {
                     repoTema.Deletar(temaSelecionado);
                }
+
                CarregarTemas();
-               TelaPrincipalForm.Instancia.AtualizarRodape($"Tema deletado com sucesso!", TipoStatusEnum.Sucesso);
+
+               if (opcaoEscolhida == DialogResult.OK)
+                    TelaPrincipalForm.Instancia.AtualizarRodape($"Tema deletado com sucesso!", TipoStatusEnum.Sucesso);
           }
 
           public override void Editar()
@@ -61,29 +64,38 @@ namespace PartyManager.WinApp.ModuloTema
                telaTema.Text = "Edição de Temas";
                telaTema.ConfigurarTela(temaSelecionado);
 
-               if (telaTema.ShowDialog() == DialogResult.OK)
+               DialogResult opcaoEscolhida = telaTema.ShowDialog();
+               if (opcaoEscolhida == DialogResult.OK)
                {
                     Tema temaAtualizado = telaTema.ObterTema();
                     temaAtualizado.CalcularPrecoTotal();
                     repoTema.Editar(temaAtualizado.id, temaAtualizado);
-                    TelaPrincipalForm.Instancia.AtualizarRodape($"Tema editado com sucesso!", TipoStatusEnum.Sucesso);
                }
+
                CarregarTemas();
+
+               if (opcaoEscolhida == DialogResult.OK)
+                    TelaPrincipalForm.Instancia.AtualizarRodape($"Tema editado com sucesso!", TipoStatusEnum.Sucesso);
+
           }
 
           public override void Inserir()
           {
                TelaTemaForm telaTema = new TelaTemaForm();
 
-               if (telaTema.ShowDialog() == DialogResult.OK)
+               DialogResult opcaoEscolhida = telaTema.ShowDialog();
+
+               if (opcaoEscolhida == DialogResult.OK)
                {
                     Tema novoTema = telaTema.ObterTema();
                     novoTema.CalcularPrecoTotal();
                     repoTema.Inserir(novoTema);
-                    TelaPrincipalForm.Instancia.AtualizarRodape($"Tema inserido com sucesso!", TipoStatusEnum.Sucesso);
                }
 
                CarregarTemas();
+
+               if (opcaoEscolhida == DialogResult.OK)
+                    TelaPrincipalForm.Instancia.AtualizarRodape($"Tema inserido com sucesso!", TipoStatusEnum.Sucesso);
           }
 
           private Tema ObterTemaSelecionado()
