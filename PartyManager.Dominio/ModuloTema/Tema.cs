@@ -1,4 +1,5 @@
-﻿using PartyManager.Dominio.ModuloItens;
+﻿using System.Reflection.Metadata.Ecma335;
+using PartyManager.Dominio.ModuloItens;
 
 namespace PartyManager.Dominio.ModuloTema
 {
@@ -17,11 +18,11 @@ namespace PartyManager.Dominio.ModuloTema
             return $"Nome: {nome}";
         }
 
-        public Tema(int id, string nome, List<Item> listaItens)
+        public Tema(int id, string nome, List<Item> ListaCompletaItens)
         {
             this.id = id;
             this.nome = nome;
-            this.ListaItens = listaItens;
+            this.ListaItens = ListaCompletaItens;
         }
 
         public override void AtualizarRegistros(Tema registroAtualizado)
@@ -34,15 +35,18 @@ namespace PartyManager.Dominio.ModuloTema
             foreach(Item registro in registroAtualizado.ListaItens)
             {
                 ListaItens.Add(registro);
-                valorTotalItens += registro.valor;
+
+                if (registro.statusItem == true)
+                    valorTotalItens += registro.valor;
             }
         }
 
         public void CalcularPrecoTotal()
         {
-            foreach(Item itemTema in ListaItens)
+            foreach(Item registro in ListaItens)
             {
-                valorTotalItens += itemTema.valor;
+                if (registro.statusItem == true)
+                    valorTotalItens += registro.valor;
             }
         }
 
@@ -53,7 +57,9 @@ namespace PartyManager.Dominio.ModuloTema
             if (string.IsNullOrEmpty(nome) || string.IsNullOrWhiteSpace(nome))
                 ErrosTema.Add("O nome é obrigatório");
 
-            if (ListaItens.Count == 0)
+            int ItensSelecionados = ListaItens.Count(item => item.statusItem == true);
+
+            if (ItensSelecionados == 0)
                 ErrosTema.Add("O tema deve ter pelo menos um item");
 
             return ErrosTema.ToArray();

@@ -4,94 +4,84 @@ using PartyManager.Dominio.ModuloTema;
 namespace PartyManager.WinApp.ModuloTema
 {
     public partial class TelaTemaForm : Form
-     {
-          List<Item> ListaItensTema = new List<Item>();
-          List<string> erros = new List<string>();
-          public TelaTemaForm()
-          {
-               InitializeComponent();
-               this.ConfigurarDialog();
-          }
+    {
+        private List<Item> ListaItensTema =new List<Item>();
+        public TelaTemaForm()
+        {
+            InitializeComponent();
+            this.ConfigurarDialog();
+        }
 
-          public Tema ObterTema()
-          {
-               int id = Convert.ToInt32(tboxId.Text);
-               string nome = tboxNome.Text;
-               List<Item> lista = ListaItensTema;
+        public Tema ObterTema()
+        {
+            int id = Convert.ToInt32(tboxId.Text);
+            string nome = tboxNome.Text;
 
-               Tema tema = new Tema(id, nome, lista);
+            ListaItensTema.Clear();
 
-               if (id > 0)
-                    tema.id = id;
+            List<Item> ListaItensSelecionados = PegarItensSelecionados();
+            List<Item> ListaItensNaoSelecionados = PegarItensNaoSelecionados();
 
-               return tema;
-          }
+            ListaItensSelecionados.ForEach(item => item.MarcarComoSelecionado());
+            ListaItensNaoSelecionados.ForEach(item => item.MarcarComoNaoSelecionado());
 
-          public void ConfigurarTela(Tema tema)
-          {
-               tboxId.Text = tema.id.ToString();
-               tboxNome.Text = tema.nome;
+            ListaItensTema.AddRange(ListaItensSelecionados);
+            ListaItensTema.AddRange(ListaItensNaoSelecionados);
 
-               foreach (Item registro in tema.ListaItens)
-               {
-                    ListBoxItens.Items.Add(registro);
-                    ListaItensTema.Add(registro);
-               }
-          }
+            Tema tema = new Tema(id, nome, ListaItensTema);
 
-          private void btnCadastrar_Click(object sender, EventArgs e)
-          {
-               Tema tema = ObterTema();
+            if (id > 0)
+                tema.id = id;
 
-               string[] erros = tema.ValidarErros(); 
+            return tema;
+        }
 
-               if (erros.Length > 0)
-               {
-                    TelaPrincipalForm.Instancia.AtualizarRodape(erros[0], TipoStatusEnum.Erro);
-                    DialogResult = DialogResult.None;
-               }
-          }
+        public void ConfigurarTela(Tema tema)
+        {
+            tboxId.Text = tema.id.ToString();
+            tboxNome.Text = tema.nome;
 
-          private void btnAdicionarItem_Click(object sender, EventArgs e)
-          {
-               erros.Clear();
-               int id = Convert.ToInt32(tboxId.Text);
-               string nome = txtBoxNomeItem.Text;
-               decimal valor = 0;
-              
-               try
-               {
-                    valor = Convert.ToDecimal(txtboxValorItem.Text);
-               }
-               catch (FormatException)
-               {
-                    erros.Add("O campo \"Valor\" em itens deve ser numérico!");
-               }
+            ListaItensTema.Clear();
 
-               Item novoItem = new Item(id, nome, valor);
+            foreach (Item registro in tema.ListaItens)
+            {
+                if (registro.statusItem == true)
+                    CheckListBoxItens.Items.Add(registro, true);
+                else
+                    CheckListBoxItens.Items.Add(registro, false); 
+            }
+        }
 
-               erros.AddRange(novoItem.ValidarErros());
+        public List<Item> PegarItensNaoSelecionados()
+        {
+            return CheckListBoxItens.Items.Cast<Item>().Except(PegarItensSelecionados()).ToList();
+        }
 
-               if (erros.Count > 0)
-               {
-                    TelaPrincipalForm.Instancia.AtualizarRodape(erros[0], TipoStatusEnum.Erro);
-                    return;
-               }
+        public List<Item> PegarItensSelecionados()
+        {
+            return CheckListBoxItens.CheckedItems.Cast<Item>().ToList();
+        }
 
-               ListaItensTema.Add(novoItem);
+        public void PopularCheckedListBox(List<Item> listaCompletaItens)
+        {
+            foreach (Item registro in listaCompletaItens)
+            {
+                CheckListBoxItens.Items.Add(registro);
+            }
+        }
 
-               txtBoxNomeItem.Text = "";
-               txtboxValorItem.Text = "";
+        private void btnCadastrar_Click(object sender, EventArgs e)
+        {
+            Tema tema = ObterTema();
 
-               ListBoxItens.Items.Add(novoItem);
-          }
+            string[] erros = tema.ValidarErros();
 
-          private void button1_Click(object sender, EventArgs e)
-          {
-               Item item = ListBoxItens.SelectedItem as Item;
-               ListBoxItens.Items.Remove(item);
-               ListaItensTema.Remove(item);
-          }
-     }
+            if (erros.Length > 0)
+            {
+                TelaPrincipalForm.Instancia.AtualizarRodape(erros[0], TipoStatusEnum.Erro);
+                DialogResult = DialogResult.None;
+            }
+        }
+    }
 }
 

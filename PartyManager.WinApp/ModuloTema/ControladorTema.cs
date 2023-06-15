@@ -1,128 +1,132 @@
 ﻿using PartyManager.Dominio.ModuloCliente;
+using PartyManager.Dominio.ModuloItens;
 using PartyManager.Dominio.ModuloTema;
 
 namespace PartyManager.WinApp.ModuloTema
 {
-     public class ControladorTema : ControladorBase
-     {
-          private IRepositorioTema repoTema;
-          private TabelaTemaControl tabelaTema;
+    public class ControladorTema : ControladorBase
+    {
+        private IRepositorioTema repoTema;
+        private IRepositorioItem repoItem;
+        private TabelaTemaControl tabelaTema;
 
-          public ControladorTema(IRepositorioTema repoTema)
-          {
-               this.repoTema = repoTema;
-          }
+        public ControladorTema(IRepositorioTema repoTema, IRepositorioItem repoItem)
+        {
+            this.repoTema = repoTema;
+            this.repoItem = repoItem;
+        }
 
-          public override string ToolTipInserir => "Inserir Tema";
+        public override string ToolTipInserir => "Inserir Tema";
 
-          public override string ToolTipEditar => "Editar Tema";
+        public override string ToolTipEditar => "Editar Tema";
 
-          public override string ToolTipDeletar => "Deletar Tema";
+        public override string ToolTipDeletar => "Deletar Tema";
 
-          public override void Deletar()
-          {
-               Tema temaSelecionado = ObterTemaSelecionado();
+        public override void Deletar()
+        {
+            Tema temaSelecionado = ObterTemaSelecionado();
 
-               if (temaSelecionado == null)
-               {
-                    MessageBox.Show($"Selecione um tema primeiro!",
-                        "Exclusão de Temas",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Exclamation);
+            if (temaSelecionado == null)
+            {
+                MessageBox.Show($"Selecione um tema primeiro!",
+                    "Exclusão de Temas",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
 
-                    return;
-               }
+                return;
+            }
 
-               DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o tema {temaSelecionado.nome.ToUpper()}?", "Exclusão de Temas",
-               MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o tema {temaSelecionado.nome.ToUpper()}?", "Exclusão de Temas",
+            MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-               if (opcaoEscolhida == DialogResult.OK)
-               {
-                    repoTema.Deletar(temaSelecionado);
-               }
+            if (opcaoEscolhida == DialogResult.OK)
+            {
+                repoTema.Deletar(temaSelecionado);
+            }
 
-               CarregarTemas();
+            CarregarTemas();
 
-               if (opcaoEscolhida == DialogResult.OK)
-                    TelaPrincipalForm.Instancia.AtualizarRodape($"Tema deletado com sucesso!", TipoStatusEnum.Sucesso);
-          }
+            if (opcaoEscolhida == DialogResult.OK)
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Tema deletado com sucesso!", TipoStatusEnum.Sucesso);
+        }
 
-          public override void Editar()
-          {
-               TelaTemaForm telaTema = new TelaTemaForm();
-               Tema temaSelecionado = ObterTemaSelecionado();
+        public override void Editar()
+        {
+            TelaTemaForm telaTema = new TelaTemaForm();
+            Tema temaSelecionado = ObterTemaSelecionado();
 
-               if (temaSelecionado == null)
-               {
-                    MessageBox.Show($"Selecione um tema primeiro!",
-                        "Edição de Temas",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Exclamation);
-                    return;
-               }
+            if (temaSelecionado == null)
+            {
+                MessageBox.Show($"Selecione um tema primeiro!",
+                    "Edição de Temas",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+                return;
+            }
 
-               telaTema.Text = "Edição de Temas";
-               telaTema.ConfigurarTela(temaSelecionado);
+            telaTema.Text = "Edição de Temas";
+            telaTema.ConfigurarTela(temaSelecionado);
 
-               DialogResult opcaoEscolhida = telaTema.ShowDialog();
-               if (opcaoEscolhida == DialogResult.OK)
-               {
-                    Tema temaAtualizado = telaTema.ObterTema();
-                    temaAtualizado.CalcularPrecoTotal();
-                    repoTema.Editar(temaAtualizado.id, temaAtualizado);
-               }
+            DialogResult opcaoEscolhida = telaTema.ShowDialog();
+            if (opcaoEscolhida == DialogResult.OK)
+            {
+                Tema temaAtualizado = telaTema.ObterTema();
+                temaAtualizado.CalcularPrecoTotal();
+                repoTema.Editar(temaAtualizado.id, temaAtualizado);
+            }
 
-               CarregarTemas();
+            CarregarTemas();
 
-               if (opcaoEscolhida == DialogResult.OK)
-                    TelaPrincipalForm.Instancia.AtualizarRodape($"Tema editado com sucesso!", TipoStatusEnum.Sucesso);
+            if (opcaoEscolhida == DialogResult.OK)
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Tema editado com sucesso!", TipoStatusEnum.Sucesso);
 
-          }
+        }
 
-          public override void Inserir()
-          {
-               TelaTemaForm telaTema = new TelaTemaForm();
+        public override void Inserir()
+        {
+            TelaTemaForm telaTema = new TelaTemaForm();
 
-               DialogResult opcaoEscolhida = telaTema.ShowDialog();
+            telaTema.PopularCheckedListBox(repoItem.SelecionarTodos());
+            DialogResult opcaoEscolhida = telaTema.ShowDialog();
 
-               if (opcaoEscolhida == DialogResult.OK)
-               {
-                    Tema novoTema = telaTema.ObterTema();
-                    novoTema.CalcularPrecoTotal();
-                    repoTema.Inserir(novoTema);
-               }
+            if (opcaoEscolhida == DialogResult.OK)
+            {
+                Tema novoTema = telaTema.ObterTema();
+                novoTema.CalcularPrecoTotal();
+                repoTema.Inserir(novoTema);
+            }
 
-               CarregarTemas();
+            CarregarTemas();
 
-               if (opcaoEscolhida == DialogResult.OK)
-                    TelaPrincipalForm.Instancia.AtualizarRodape($"Tema inserido com sucesso!", TipoStatusEnum.Sucesso);
-          }
+            if (opcaoEscolhida == DialogResult.OK)
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Tema inserido com sucesso!", TipoStatusEnum.Sucesso);
+        }
 
-          private Tema ObterTemaSelecionado()
-          {
-               int id = tabelaTema.ObterIdSelecionado();
-               return repoTema.SelecionarPorId(id);
-          }
+        private Tema ObterTemaSelecionado()
+        {
+            int id = tabelaTema.ObterIdSelecionado();
+            return repoTema.SelecionarPorId(id);
+        }
 
-          private void CarregarTemas()
-          {
-               List<Tema> temas = repoTema.SelecionarTodos();
-               tabelaTema.AtualizarRegistros(temas);
-               TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {temas.Count} tema(s)", TipoStatusEnum.Visualizando);
-          }
-          public override UserControl ObterListagem()
-          {
-               if (tabelaTema == null)
-                    tabelaTema = new TabelaTemaControl();
+        private void CarregarTemas()
+        {
+            List<Tema> temas = repoTema.SelecionarTodos();
+            tabelaTema.AtualizarRegistros(temas);
+            TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {temas.Count} tema(s)", TipoStatusEnum.Visualizando);
+        }
+        public override UserControl ObterListagem()
+        {
+            if (tabelaTema == null)
+                tabelaTema = new TabelaTemaControl();
 
-               CarregarTemas();
+            CarregarTemas();
 
-               return tabelaTema;
-          }
-          public override string ObterTipoCadastro()
-          {
-               return "Cadastros de Temas";
+            return tabelaTema;
+        }
+        public override string ObterTipoCadastro()
+        {
+            return "Cadastros de Temas";
 
-          }
-     }
+        }
+    }
 }
