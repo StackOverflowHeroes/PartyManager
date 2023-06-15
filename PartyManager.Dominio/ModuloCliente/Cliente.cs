@@ -1,4 +1,6 @@
-﻿namespace PartyManager.Dominio.ModuloCliente
+﻿using PartyManager.Dominio.ModuloAluguel;
+
+namespace PartyManager.Dominio.ModuloCliente
 {
      public class Cliente : EntidadeBase<Cliente>
      {
@@ -6,6 +8,7 @@
           public string nome { get; set; }
           public string telefone;
           public int contadorFesta = 0;
+          public List<Aluguel> alugueis;
           private decimal desconto;
           public Cliente()
           {
@@ -16,6 +19,7 @@
                this.id = id;
                this.nome = nome;
                this.telefone = telefone;
+               alugueis = new List<Aluguel>();
           }
 
           public decimal Desconto
@@ -27,6 +31,7 @@
           {
                nome = registroAtualizado.nome;
                telefone = registroAtualizado.telefone;
+               alugueis = registroAtualizado.alugueis;
           }
 
         public decimal CalcularDescontoCliente()

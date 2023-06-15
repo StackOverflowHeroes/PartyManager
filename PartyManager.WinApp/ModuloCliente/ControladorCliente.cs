@@ -32,6 +32,12 @@ namespace PartyManager.WinApp.ModuloCliente
                     return;
                }
 
+               if (cliente.alugueis.Count > 0)
+               {
+                    TelaPrincipalForm.Instancia.AtualizarRodape("Cliente possui aluguéis cadastrados!", TipoStatusEnum.Erro);
+                    return;
+               }
+
                DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o cliente {cliente.nome}?", "Exclusão de Clientes",
                    MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
