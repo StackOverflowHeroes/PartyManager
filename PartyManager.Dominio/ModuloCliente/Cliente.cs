@@ -1,11 +1,13 @@
-﻿namespace PartyManager.Dominio.ModuloCliente
+﻿using PartyManager.Dominio.ModuloAluguel;
+
+namespace PartyManager.Dominio.ModuloCliente
 {
      public class Cliente : EntidadeBase<Cliente>
      {
+          
           public string nome { get; set; }
           public string telefone;
-          public int contadorFesta = 0;
-          private decimal desconto;
+          public List<Aluguel> alugueis;
           public Cliente()
           {
 
@@ -15,37 +17,15 @@
                this.id = id;
                this.nome = nome;
                this.telefone = telefone;
-          }
-
-          public decimal Desconto
-          {
-               get { return desconto; }
+               alugueis = new List<Aluguel>();
           }
 
         public override void AtualizarRegistros(Cliente registroAtualizado)
           {
                nome = registroAtualizado.nome;
                telefone = registroAtualizado.telefone;
+               alugueis = registroAtualizado.alugueis;
           }
-
-        public decimal CalcularDescontoCliente()
-        {
-               switch (contadorFesta)
-               {
-                    case 1: desconto = 1; break;
-                    case 2: desconto = 0.95m; break;
-                    case 3: desconto = 0.90m; break;
-                    case 4: desconto = 0.85m; break;
-                    default: desconto = 0.80m; break;
-               }
-
-               return desconto;
-        }
-
-        public void AumentarContagemFestas()
-        {
-               contadorFesta++;
-        }
 
         public override string[] ValidarErros()
           {
@@ -56,6 +36,9 @@
 
                if (telefone == "(  )     -")
                     erros.Add("Campo \"Telefone\"é obrigatório!");
+
+               if (nome.Length < 5)
+                    erros.Add("Campo \"Nome\"deve conter cinco ou mais letras!");
 
                return erros.ToArray();
           }
@@ -70,8 +53,7 @@
                return obj is Cliente cliente &&
                       id == cliente.id &&
                       nome == cliente.nome &&
-                      telefone == cliente.telefone &&
-                      contadorFesta == cliente.contadorFesta;
+                      telefone == cliente.telefone;
           }
      }
 }

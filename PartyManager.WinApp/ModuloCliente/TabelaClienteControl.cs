@@ -32,6 +32,12 @@ namespace PartyManager.WinApp.ModuloCliente
                     {
                          Name = "telefone",
                          HeaderText = "Telefone"
+                    },
+
+                    new DataGridViewTextBoxColumn()
+                    {
+                         Name = "alugueis",
+                         HeaderText = "Qtd. Aluguéis Realizados"
                     }
                };
 
@@ -44,7 +50,7 @@ namespace PartyManager.WinApp.ModuloCliente
 
                foreach (Cliente cliente in clientes)
                {
-                    tabelaCliente.Rows.Add(cliente.id, cliente.nome, cliente.telefone);
+                    tabelaCliente.Rows.Add(cliente.id, cliente.nome, cliente.telefone, cliente.alugueis.Count);
                }
           }
 

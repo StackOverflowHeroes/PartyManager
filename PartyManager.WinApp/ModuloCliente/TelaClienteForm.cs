@@ -1,9 +1,11 @@
 ﻿using PartyManager.Dominio.ModuloCliente;
+using System;
 
 namespace PartyManager.WinApp.ModuloCliente
 {
      public partial class TelaClienteForm : Form
      {
+          private List<Cliente> clientes;
           public TelaClienteForm()
           {
                InitializeComponent();
@@ -39,17 +41,36 @@ namespace PartyManager.WinApp.ModuloCliente
 
                if (!mtboxTelefone.MaskFull)
                {
-                    Array.Resize(ref erros, erros.Length + 1);
-                    erros[erros.Length - 1] = "Campo \"Telefone\" está incompleto!";
+                    string erro = "Campo \"Telefone\" está incompleto!";
+
+                    if (erros.Length == 0 || erros[erros.Length - 1] != erro)
+                    {
+                         Array.Resize(ref erros, erros.Length + 1);
+                         erros[erros.Length - 1] = erro;
+                    }
+               }
+
+               if (clientes.Exists(x => x.nome == cliente.nome))
+               {
+                    string erro = "Nome já cadastrado, entre com um nome diferente!";
+
+                    if (erros.Length == 0 || erros[erros.Length - 1] != erro)
+                    {
+                         Array.Resize(ref erros, erros.Length + 1);
+                         erros[erros.Length - 1] = erro;
+                    }
                }
 
                if (erros.Length > 0)
                {
                     TelaPrincipalForm.Instancia.AtualizarRodape(erros[0], TipoStatusEnum.Erro);
-
                     DialogResult = DialogResult.None;
                }
+          }
 
+          public void PegarListaNome(List<Cliente> clientes)
+          {
+               this.clientes = clientes;     
           }
      }
 }

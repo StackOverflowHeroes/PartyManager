@@ -32,6 +32,12 @@ namespace PartyManager.WinApp.ModuloCliente
                     return;
                }
 
+               if (cliente.alugueis.Count > 0)
+               {
+                    TelaPrincipalForm.Instancia.AtualizarRodape("Cliente possui aluguéis cadastrados!", TipoStatusEnum.Erro);
+                    return;
+               }
+
                DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o cliente {cliente.nome}?", "Exclusão de Clientes",
                    MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
@@ -67,8 +73,7 @@ namespace PartyManager.WinApp.ModuloCliente
                TelaClienteForm telaCliente = new TelaClienteForm();
                telaCliente.Text = "Edição de Clientes";
                telaCliente.ConfigurarTela(cliente);
-
-
+               telaCliente.PegarListaNome(repoCliente.SelecionarTodos());
                DialogResult opcaoEscolhida = telaCliente.ShowDialog();
 
                if (opcaoEscolhida == DialogResult.OK)
@@ -87,12 +92,13 @@ namespace PartyManager.WinApp.ModuloCliente
           public override void Inserir()
           {
                TelaClienteForm telaCliente = new TelaClienteForm();
-
+               telaCliente.PegarListaNome(repoCliente.SelecionarTodos());
                DialogResult opcaoEscolhida = telaCliente.ShowDialog();
 
                if (opcaoEscolhida == DialogResult.OK)
                {
                     Cliente cliente = telaCliente.ObterCliente();
+                    List<Cliente> clientes = repoCliente.SelecionarTodos();
                     repoCliente.Inserir(cliente);
                }
 
