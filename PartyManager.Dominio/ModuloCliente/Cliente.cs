@@ -2,6 +2,7 @@
 {
      public class Cliente : EntidadeBase<Cliente>
      {
+          
           public string nome { get; set; }
           public string telefone;
           public int contadorFesta = 0;
@@ -57,11 +58,8 @@
                if (telefone == "(  )     -")
                     erros.Add("Campo \"Telefone\"é obrigatório!");
 
-               if (nome.Length <= 5)
+               if (nome.Length < 5)
                     erros.Add("Campo \"Nome\"deve conter cinco ou mais letras!");
-
-               if ()
-
 
                return erros.ToArray();
           }

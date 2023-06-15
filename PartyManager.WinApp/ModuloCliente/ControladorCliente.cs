@@ -67,8 +67,7 @@ namespace PartyManager.WinApp.ModuloCliente
                TelaClienteForm telaCliente = new TelaClienteForm();
                telaCliente.Text = "Edição de Clientes";
                telaCliente.ConfigurarTela(cliente);
-
-
+               telaCliente.PegarListaNome(repoCliente.SelecionarTodos());
                DialogResult opcaoEscolhida = telaCliente.ShowDialog();
 
                if (opcaoEscolhida == DialogResult.OK)
@@ -87,12 +86,13 @@ namespace PartyManager.WinApp.ModuloCliente
           public override void Inserir()
           {
                TelaClienteForm telaCliente = new TelaClienteForm();
-
+               telaCliente.PegarListaNome(repoCliente.SelecionarTodos());
                DialogResult opcaoEscolhida = telaCliente.ShowDialog();
 
                if (opcaoEscolhida == DialogResult.OK)
                {
                     Cliente cliente = telaCliente.ObterCliente();
+                    List<Cliente> clientes = repoCliente.SelecionarTodos();
                     repoCliente.Inserir(cliente);
                }
 
