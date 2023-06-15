@@ -28,17 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
+            tabelaItens = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)tabelaItens).BeginInit();
             SuspendLayout();
+            // 
+            // tabelaItens
+            // 
+            tabelaItens.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            tabelaItens.Dock = DockStyle.Fill;
+            tabelaItens.Location = new Point(0, 0);
+            tabelaItens.Name = "tabelaItens";
+            tabelaItens.RowHeadersWidth = 51;
+            tabelaItens.RowTemplate.Height = 29;
+            tabelaItens.Size = new Size(544, 512);
+            tabelaItens.TabIndex = 0;
             // 
             // TabelaItensControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(tabelaItens);
             Name = "TabelaItensControl";
-            Size = new Size(635, 500);
+            Size = new Size(544, 512);
+            ((System.ComponentModel.ISupportInitialize)tabelaItens).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
+
+        private DataGridView tabelaItens;
     }
 }
