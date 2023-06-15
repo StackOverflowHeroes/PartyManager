@@ -32,10 +32,6 @@ namespace PartyManager.Dominio.ModuloAluguel
             dataFechamento = registroAtualizado.dataFechamento;
         }
 
-        public void CalcularValorPagamento()
-        {             
-            valor = festa.cliente.CalcularDescontoCliente() * festa.tema.valorTotalItens;
-        }
 
         public override string[] ValidarErros()
         {

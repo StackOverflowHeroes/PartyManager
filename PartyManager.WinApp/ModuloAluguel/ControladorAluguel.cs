@@ -74,7 +74,7 @@ namespace PartyManager.WinApp.ModuloAluguel
                if (opcaoEscolhida == DialogResult.OK)
                {
                     Aluguel aluguelAtualizado = telaAluguel.ObterAluguel();
-                    aluguelAtualizado.CalcularValorPagamento();
+ 
                     repoAluguel.Editar(aluguelSelecionado.id, aluguelAtualizado);
 
                }
@@ -97,7 +97,6 @@ namespace PartyManager.WinApp.ModuloAluguel
                if (opcaoEscolhida == DialogResult.OK)
                {
                     Aluguel aluguel = telaAluguel.ObterAluguel();
-                    aluguel.CalcularValorPagamento();
                     repoAluguel.Inserir(aluguel);
                }
 

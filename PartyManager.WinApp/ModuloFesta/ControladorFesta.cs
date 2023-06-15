@@ -99,7 +99,7 @@ namespace PartyManager.WinApp.ModuloFesta
                {
                     Festa novaFesta = telaFesta.ObterFesta();
                     repoFesta.Inserir(novaFesta);
-                    novaFesta.cliente.AumentarContagemFestas();
+               
                }
 
                CarregarFestas();

@@ -50,7 +50,7 @@ namespace PartyManager.WinApp.ModuloCliente
 
                foreach (Cliente cliente in clientes)
                {
-                    tabelaCliente.Rows.Add(cliente.id, cliente.nome, cliente.telefone, cliente.alugueis.Count);
+                    tabelaCliente.Rows.Add(cliente.id, cliente.nome, cliente.telefone/*, cliente.alugueis.Count*/);
                }
           }
 
