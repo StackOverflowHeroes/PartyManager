@@ -10,8 +10,8 @@ namespace PartyManager.WinApp.ModuloItens
         {
             InitializeComponent();
             ConfigurarColunas();
-            tabelaTemas.ConfigurarGridSomenteLeitura();
-            tabelaTemas.ConfigurarGridZebrado();
+            tabelaItens.ConfigurarGridSomenteLeitura();
+            tabelaItens.ConfigurarGridZebrado();
         }
 
         private void ConfigurarColunas()

@@ -15,25 +15,82 @@ namespace PartyManager.WinApp.ModuloItens
             this.repoItem = repositorioItem;
         }
 
-        public override string ToolTipInserir => throw new NotImplementedException();
+        public override string ToolTipInserir => "Inserir item";
 
-        public override string ToolTipEditar => throw new NotImplementedException();
+        public override string ToolTipEditar => "Editar Item";
 
-        public override string ToolTipDeletar => throw new NotImplementedException();
+        public override string ToolTipDeletar => "Deletar Item";
 
         public override void Deletar()
         {
-            throw new NotImplementedException();
+            Item itemSelecionado = ObterItemSelecionado();
+
+            if (itemSelecionado == null)
+            {
+                MessageBox.Show($"Selecione um item primeiro!",
+                    "Exclusão de Itens",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+
+                return;
+            }
+
+            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o item {itemSelecionado.nome.ToUpper()}?", "Exclusão de Itens",
+            MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            if (opcaoEscolhida == DialogResult.OK)
+            {
+                repoItem.Deletar(itemSelecionado);
+            }
+
+            CarregarItens();
+
+            if (opcaoEscolhida == DialogResult.OK)
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Tema deletado com sucesso!", TipoStatusEnum.Sucesso);
         }
 
         public override void Editar()
         {
-            throw new NotImplementedException();
+            TelaItensForm telaItens = new TelaItensForm();
+            Item itemSelecionado = ObterItemSelecionado();
+
+            if (itemSelecionado == null)
+            {
+                MessageBox.Show($"Selecione um item primeiro!",
+                    "Edição de Itens",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            telaItens.Text = "Edição de Temas";
+            telaItens.ConfigurarTela(itemSelecionado);
+
+            DialogResult opcaoEscolhida = telaItens.ShowDialog();
+            if (opcaoEscolhida == DialogResult.OK)
+            {
+                Item itemAtualizado = telaItens.ObterItem();
+                repoItem.Editar(itemAtualizado.id, itemAtualizado);
+            }
+
+            CarregarItens();
+
+            if (opcaoEscolhida == DialogResult.OK)
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Tema editado com sucesso!", TipoStatusEnum.Sucesso);
         }
 
         public override void Inserir()
         {
-            throw new NotImplementedException();
+            TelaItensForm telaItens = new TelaItensForm();
+
+            if (telaItens.ShowDialog() == DialogResult.OK)
+            {
+                Item novoItem = telaItens.ObterItem();
+                repoItem.Inserir(novoItem);
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Item inserido com sucesso!", TipoStatusEnum.Sucesso);
+            }
+
+            CarregarItens();
         }
 
         public override UserControl ObterListagem()
