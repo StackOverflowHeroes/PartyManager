@@ -1,14 +1,17 @@
 using PartyManager.Dados.Arquivo.ModuloAluguel;
 using PartyManager.Dados.Arquivo.ModuloCliente;
 using PartyManager.Dados.Arquivo.ModuloFesta;
+using PartyManager.Dados.Arquivo.ModuloItens;
 using PartyManager.Dados.Arquivo.ModuloTema;
 using PartyManager.Dominio.ModuloAluguel;
 using PartyManager.Dominio.ModuloCliente;
 using PartyManager.Dominio.ModuloFesta;
+using PartyManager.Dominio.ModuloItens;
 using PartyManager.Dominio.ModuloTema;
 using PartyManager.WinApp.ModuloAluguel;
 using PartyManager.WinApp.ModuloCliente;
 using PartyManager.WinApp.ModuloFesta;
+using PartyManager.WinApp.ModuloItens;
 using PartyManager.WinApp.ModuloTema;
 
 namespace PartyManager.WinApp
@@ -22,6 +25,7 @@ namespace PartyManager.WinApp
         private IRepositorioTema repositorioTema = new RepositorioTemaArquivo(contexto);
         private IRepositorioFesta repositorioFesta = new RepositorioFestaArquivo(contexto);
         private IRepositorioAluguel repositorioAluguel = new RepositorioAluguelArquivo(contexto);
+        private IRepositorioItem repositorioItem = new RepositorioItensArquivo(contexto);
 
         private static TelaPrincipalForm telaPrincipal;
 
@@ -147,6 +151,12 @@ namespace PartyManager.WinApp
         private void AluguelMenuItem_Click(object sender, EventArgs e)
         {
             controlador = new ControladorAluguel(repositorioAluguel, repositorioFesta, repositorioCliente);
+            ConfigurarTelaPrincipal(controlador);
+        }
+
+        private void itensToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            controlador = new ControladorItens(repositorioItem);
             ConfigurarTelaPrincipal(controlador);
         }
     }

@@ -46,6 +46,7 @@
             tslTipoCadastros = new ToolStripLabel();
             panelRegistros = new Panel();
             temporizador = new System.Windows.Forms.Timer(components);
+            itensToolStripMenuItem = new ToolStripMenuItem();
             statusStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
@@ -95,6 +96,7 @@
             // 
             // temasToolStripMenuItem
             // 
+            temasToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { itensToolStripMenuItem });
             temasToolStripMenuItem.Name = "temasToolStripMenuItem";
             temasToolStripMenuItem.Size = new Size(224, 26);
             temasToolStripMenuItem.Text = "Temas";
@@ -190,6 +192,13 @@
             // 
             temporizador.Interval = 1000;
             // 
+            // itensToolStripMenuItem
+            // 
+            itensToolStripMenuItem.Name = "itensToolStripMenuItem";
+            itensToolStripMenuItem.Size = new Size(224, 26);
+            itensToolStripMenuItem.Text = "Itens";
+            itensToolStripMenuItem.Click += itensToolStripMenuItem_Click;
+            // 
             // TelaPrincipalForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -233,5 +242,6 @@
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripMenuItem festasMenuItem;
         private ToolStripMenuItem aluguéisToolStripMenuItem;
+        private ToolStripMenuItem itensToolStripMenuItem;
     }
 }
