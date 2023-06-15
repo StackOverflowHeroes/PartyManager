@@ -34,7 +34,7 @@
             label2 = new Label();
             tboxId = new TextBox();
             label1 = new Label();
-            checkedListBox1 = new CheckedListBox();
+            CheckListBoxItens = new CheckedListBox();
             SuspendLayout();
             // 
             // btnCadastrar
@@ -110,20 +110,20 @@
             label1.TabIndex = 49;
             label1.Text = "Nº";
             // 
-            // checkedListBox1
+            // CheckListBoxItens
             // 
-            checkedListBox1.FormattingEnabled = true;
-            checkedListBox1.Location = new Point(62, 148);
-            checkedListBox1.Name = "checkedListBox1";
-            checkedListBox1.Size = new Size(438, 246);
-            checkedListBox1.TabIndex = 53;
+            CheckListBoxItens.FormattingEnabled = true;
+            CheckListBoxItens.Location = new Point(62, 148);
+            CheckListBoxItens.Name = "CheckListBoxItens";
+            CheckListBoxItens.Size = new Size(438, 246);
+            CheckListBoxItens.TabIndex = 53;
             // 
             // TelaTemaForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(559, 501);
-            Controls.Add(checkedListBox1);
+            Controls.Add(CheckListBoxItens);
             Controls.Add(tboxNome);
             Controls.Add(label2);
             Controls.Add(tboxId);
@@ -145,6 +145,6 @@
         private Label label2;
         private TextBox tboxId;
         private Label label1;
-        private CheckedListBox checkedListBox1;
+        private CheckedListBox CheckListBoxItens;
     }
 }

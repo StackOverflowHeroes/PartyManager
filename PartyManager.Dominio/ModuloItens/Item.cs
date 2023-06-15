@@ -4,6 +4,7 @@
     {
         public string nome;
         public decimal valor;
+        public bool statusItem;
 
         public Item()
         {
@@ -18,7 +19,7 @@
 
         public override string? ToString()
         {
-            return $"Nome: {nome}, valor: R$: {valor}";
+            return $"NOME: {nome.ToUpper()}, VALOR: R$: {valor}";
         }
 
         public override void AtualizarRegistros(Item registroAtualizado)
@@ -39,6 +40,16 @@
 
 
             return ErrosItens.ToArray();
+        }
+
+        public void MarcarComoSelecionado()
+        {
+            statusItem = true;
+        }
+
+        public void MarcarComoNaoSelecionado()
+        {
+            statusItem = false;
         }
     }
 }
