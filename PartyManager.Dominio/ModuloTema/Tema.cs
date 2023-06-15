@@ -1,4 +1,6 @@
-﻿namespace PartyManager.Dominio.ModuloTema
+﻿using PartyManager.Dominio.ModuloItens;
+
+namespace PartyManager.Dominio.ModuloTema
 {
     public class Tema : EntidadeBase<Tema>
     {

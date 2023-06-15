@@ -1,4 +1,4 @@
-﻿namespace PartyManager.Dominio.ModuloTema
+﻿namespace PartyManager.Dominio.ModuloItens
 {
     public class Item : EntidadeBase<Item>
     {

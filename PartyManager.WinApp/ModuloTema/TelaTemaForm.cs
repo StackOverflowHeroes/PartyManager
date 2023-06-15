@@ -1,8 +1,9 @@
-﻿using PartyManager.Dominio.ModuloTema;
+﻿using PartyManager.Dominio.ModuloItens;
+using PartyManager.Dominio.ModuloTema;
 
 namespace PartyManager.WinApp.ModuloTema
 {
-     public partial class TelaTemaForm : Form
+    public partial class TelaTemaForm : Form
      {
           List<Item> ListaItensTema = new List<Item>();
           List<string> erros = new List<string>();

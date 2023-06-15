@@ -1,6 +1,7 @@
 ﻿using PartyManager.Dominio.ModuloAluguel;
 using PartyManager.Dominio.ModuloCliente;
 using PartyManager.Dominio.ModuloFesta;
+using PartyManager.Dominio.ModuloItens;
 using PartyManager.Dominio.ModuloTema;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -15,6 +16,7 @@ namespace PartyManager.Dados.Arquivo.Compartilhado
         public List<Tema> temas;
         public List<Festa> festas;
         public List<Aluguel> alugueis;
+        public List<Item> itens;
 
         public ContextoDados()
         {
@@ -22,6 +24,7 @@ namespace PartyManager.Dados.Arquivo.Compartilhado
             temas = new List<Tema>();
             festas = new List<Festa>();
             alugueis = new List<Aluguel>();
+            itens = new List<Item>();
         }
 
         public ContextoDados(bool carregarDados) : this()
@@ -55,6 +58,7 @@ namespace PartyManager.Dados.Arquivo.Compartilhado
                     temas = dadosJson.temas;
                     festas = dadosJson.festas;
                     alugueis = dadosJson.alugueis;
+                    itens = dadosJson.itens;
                 }
             }
         }
