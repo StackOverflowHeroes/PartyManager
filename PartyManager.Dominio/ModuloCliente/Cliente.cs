@@ -7,9 +7,7 @@ namespace PartyManager.Dominio.ModuloCliente
           
           public string nome { get; set; }
           public string telefone;
-          public int contadorFesta = 0;
           public List<Aluguel> alugueis;
-          private decimal desconto;
           public Cliente()
           {
 
@@ -22,36 +20,12 @@ namespace PartyManager.Dominio.ModuloCliente
                alugueis = new List<Aluguel>();
           }
 
-          public decimal Desconto
-          {
-               get { return desconto; }
-          }
-
         public override void AtualizarRegistros(Cliente registroAtualizado)
           {
                nome = registroAtualizado.nome;
                telefone = registroAtualizado.telefone;
                alugueis = registroAtualizado.alugueis;
           }
-
-        public decimal CalcularDescontoCliente()
-        {
-               switch (contadorFesta)
-               {
-                    case 1: desconto = 1; break;
-                    case 2: desconto = 0.95m; break;
-                    case 3: desconto = 0.90m; break;
-                    case 4: desconto = 0.85m; break;
-                    default: desconto = 0.80m; break;
-               }
-
-               return desconto;
-        }
-
-        public void AumentarContagemFestas()
-        {
-               contadorFesta++;
-        }
 
         public override string[] ValidarErros()
           {
@@ -79,8 +53,7 @@ namespace PartyManager.Dominio.ModuloCliente
                return obj is Cliente cliente &&
                       id == cliente.id &&
                       nome == cliente.nome &&
-                      telefone == cliente.telefone &&
-                      contadorFesta == cliente.contadorFesta;
+                      telefone == cliente.telefone;
           }
      }
 }
