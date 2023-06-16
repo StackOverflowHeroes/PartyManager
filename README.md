@@ -32,3 +32,4 @@ Projeto destinado a Rafaela, que precisa controlar os aluguéis de seu negócio 
 
 - [@jotaskalski](https://github.com/jotaskalski)
 - [@andradeleo](https://github.com/andradeleo)
+- [@Viito404](https://github.com/viito404)
