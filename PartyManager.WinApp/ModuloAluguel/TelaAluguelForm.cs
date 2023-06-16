@@ -72,6 +72,7 @@ namespace PartyManager.WinApp.ModuloAluguel
             if (comboBoxPagamento.SelectedItem.ToString() == StatusPagamentoEnum.PagamentoParcial.ToString())
             {
                 TextBoxValorEntrada.Enabled = true;
+                InputPorcentagem.Enabled = true;
                 InputPorcentagem.Value = 40;
                 CalcularValorEntrada();
             }
@@ -79,6 +80,8 @@ namespace PartyManager.WinApp.ModuloAluguel
             {
                 TextBoxValorEntrada.Enabled = true;
                 InputPorcentagem.Value = 100;
+                InputPorcentagem.Enabled = false;
+                TextBoxValorEntrada.Enabled = false;
             }
 
             else
