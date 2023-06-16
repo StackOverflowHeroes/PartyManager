@@ -44,13 +44,16 @@
             label7 = new Label();
             TextBoxValorEntrada = new TextBox();
             txtCliente = new TextBox();
+            InputPorcentagem = new NumericUpDown();
+            label8 = new Label();
+            ((System.ComponentModel.ISupportInitialize)InputPorcentagem).BeginInit();
             SuspendLayout();
             // 
             // comboBoxFesta
             // 
             comboBoxFesta.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxFesta.FormattingEnabled = true;
-            comboBoxFesta.Location = new Point(207, 130);
+            comboBoxFesta.Location = new Point(209, 127);
             comboBoxFesta.Name = "comboBoxFesta";
             comboBoxFesta.Size = new Size(239, 28);
             comboBoxFesta.TabIndex = 0;
@@ -60,16 +63,17 @@
             // 
             comboBoxPagamento.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxPagamento.FormattingEnabled = true;
-            comboBoxPagamento.Location = new Point(207, 324);
+            comboBoxPagamento.Location = new Point(209, 321);
             comboBoxPagamento.Name = "comboBoxPagamento";
             comboBoxPagamento.Size = new Size(239, 28);
             comboBoxPagamento.TabIndex = 2;
+            comboBoxPagamento.SelectedIndexChanged += comboBoxPagamento_SelectedIndexChanged;
             // 
             // dateAbertura
             // 
             dateAbertura.CustomFormat = "";
             dateAbertura.Format = DateTimePickerFormat.Short;
-            dateAbertura.Location = new Point(207, 231);
+            dateAbertura.Location = new Point(209, 228);
             dateAbertura.Name = "dateAbertura";
             dateAbertura.Size = new Size(239, 27);
             dateAbertura.TabIndex = 3;
@@ -77,7 +81,7 @@
             // dateFechamento
             // 
             dateFechamento.Format = DateTimePickerFormat.Short;
-            dateFechamento.Location = new Point(207, 270);
+            dateFechamento.Location = new Point(209, 267);
             dateFechamento.Name = "dateFechamento";
             dateFechamento.Size = new Size(239, 27);
             dateFechamento.TabIndex = 4;
@@ -116,7 +120,7 @@
             tboxId.Anchor = AnchorStyles.None;
             tboxId.BackColor = SystemColors.ActiveBorder;
             tboxId.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            tboxId.Location = new Point(250, 46);
+            tboxId.Location = new Point(255, 80);
             tboxId.Margin = new Padding(3, 4, 3, 4);
             tboxId.Name = "tboxId";
             tboxId.ReadOnly = true;
@@ -129,7 +133,7 @@
             label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(222, 48);
+            label1.Location = new Point(227, 82);
             label1.Name = "label1";
             label1.Size = new Size(28, 20);
             label1.TabIndex = 21;
@@ -139,7 +143,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(71, 134);
+            label2.Location = new Point(73, 131);
             label2.Name = "label2";
             label2.Size = new Size(46, 20);
             label2.TabIndex = 23;
@@ -149,7 +153,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(71, 184);
+            label3.Location = new Point(73, 181);
             label3.Name = "label3";
             label3.Size = new Size(57, 20);
             label3.TabIndex = 24;
@@ -159,7 +163,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(71, 234);
+            label4.Location = new Point(73, 231);
             label4.Name = "label4";
             label4.Size = new Size(106, 20);
             label4.TabIndex = 25;
@@ -169,7 +173,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(71, 273);
+            label5.Location = new Point(73, 270);
             label5.Name = "label5";
             label5.Size = new Size(130, 20);
             label5.TabIndex = 26;
@@ -179,7 +183,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.Location = new Point(71, 328);
+            label6.Location = new Point(73, 325);
             label6.Name = "label6";
             label6.Size = new Size(89, 20);
             label6.TabIndex = 27;
@@ -189,7 +193,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label7.Location = new Point(71, 372);
+            label7.Location = new Point(73, 403);
             label7.Name = "label7";
             label7.Size = new Size(124, 20);
             label7.TabIndex = 29;
@@ -198,24 +202,48 @@
             // TextBoxValorEntrada
             // 
             TextBoxValorEntrada.Enabled = false;
-            TextBoxValorEntrada.Location = new Point(207, 369);
+            TextBoxValorEntrada.Location = new Point(210, 400);
             TextBoxValorEntrada.Name = "TextBoxValorEntrada";
             TextBoxValorEntrada.Size = new Size(238, 27);
             TextBoxValorEntrada.TabIndex = 30;
             // 
             // txtCliente
             // 
-            txtCliente.Location = new Point(206, 181);
+            txtCliente.Location = new Point(208, 178);
             txtCliente.Name = "txtCliente";
             txtCliente.ReadOnly = true;
             txtCliente.Size = new Size(239, 27);
             txtCliente.TabIndex = 31;
+            // 
+            // InputPorcentagem
+            // 
+            InputPorcentagem.Increment = new decimal(new int[] { 10, 0, 0, 0 });
+            InputPorcentagem.Location = new Point(210, 362);
+            InputPorcentagem.Name = "InputPorcentagem";
+            InputPorcentagem.ReadOnly = true;
+            InputPorcentagem.Size = new Size(238, 27);
+            InputPorcentagem.TabIndex = 32;
+            InputPorcentagem.TextAlign = HorizontalAlignment.Right;
+            InputPorcentagem.Value = new decimal(new int[] { 40, 0, 0, 0 });
+            InputPorcentagem.ValueChanged += InputPorcentagem_ValueChanged;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.Location = new Point(73, 365);
+            label8.Name = "label8";
+            label8.Size = new Size(102, 20);
+            label8.TabIndex = 33;
+            label8.Text = "Porcentagem";
             // 
             // TelaAluguelForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(511, 519);
+            Controls.Add(label8);
+            Controls.Add(InputPorcentagem);
             Controls.Add(txtCliente);
             Controls.Add(TextBoxValorEntrada);
             Controls.Add(label7);
@@ -235,6 +263,7 @@
             Name = "TelaAluguelForm";
             ShowIcon = false;
             Text = "Cadastro de Aluguéis";
+            ((System.ComponentModel.ISupportInitialize)InputPorcentagem).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -257,5 +286,7 @@
         private Label label7;
         private TextBox TextBoxValorEntrada;
         private TextBox txtCliente;
+        private NumericUpDown InputPorcentagem;
+        private Label label8;
     }
 }

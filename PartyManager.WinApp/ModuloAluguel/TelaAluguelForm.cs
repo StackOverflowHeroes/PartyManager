@@ -66,5 +66,32 @@ namespace PartyManager.WinApp.ModuloAluguel
             Festa festaSelecionada = (Festa)comboBoxFesta.SelectedItem;
             txtCliente.Text = festaSelecionada.cliente.nome;
         }
+
+        private void comboBoxPagamento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxPagamento.SelectedItem.ToString() == StatusPagamentoEnum.PagamentoParcial.ToString())
+            {
+                TextBoxValorEntrada.Enabled = true;
+                CalcularValorEntrada();
+                
+            }
+
+            else
+                TextBoxValorEntrada.Enabled = false;
+
+        }
+
+        private void CalcularValorEntrada()
+        {
+            Festa festa = (Festa)comboBoxFesta.SelectedItem;
+
+            decimal porcentagem = InputPorcentagem.Value / 100;
+            TextBoxValorEntrada.Text = (festa.tema.valorTotalItens * porcentagem).ToString();
+        }
+
+        private void InputPorcentagem_ValueChanged(object sender, EventArgs e)
+        {
+            CalcularValorEntrada();
+        }
     }
 }
