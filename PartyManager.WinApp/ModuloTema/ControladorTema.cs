@@ -65,7 +65,7 @@ namespace PartyManager.WinApp.ModuloTema
             }
 
             telaTema.Text = "Edição de Temas";
-            telaTema.ConfigurarTela(temaSelecionado);
+            telaTema.ConfigurarTela(temaSelecionado, repoItem.SelecionarTodos());
 
             DialogResult opcaoEscolhida = telaTema.ShowDialog();
             if (opcaoEscolhida == DialogResult.OK)
