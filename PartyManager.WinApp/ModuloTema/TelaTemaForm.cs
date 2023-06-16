@@ -5,7 +5,7 @@ namespace PartyManager.WinApp.ModuloTema
 {
     public partial class TelaTemaForm : Form
     {
-        private List<Item> ListaItensTema =new List<Item>();
+        private List<Item> ListaItensTema = new List<Item>();
         public TelaTemaForm()
         {
             InitializeComponent();
@@ -20,13 +20,10 @@ namespace PartyManager.WinApp.ModuloTema
             ListaItensTema.Clear();
 
             List<Item> ListaItensSelecionados = PegarItensSelecionados();
-            List<Item> ListaItensNaoSelecionados = PegarItensNaoSelecionados();
 
             ListaItensSelecionados.ForEach(item => item.MarcarComoSelecionado());
-            ListaItensNaoSelecionados.ForEach(item => item.MarcarComoNaoSelecionado());
 
             ListaItensTema.AddRange(ListaItensSelecionados);
-            ListaItensTema.AddRange(ListaItensNaoSelecionados);
 
             Tema tema = new Tema(id, nome, ListaItensTema);
 
@@ -36,19 +33,23 @@ namespace PartyManager.WinApp.ModuloTema
             return tema;
         }
 
-        public void ConfigurarTela(Tema tema)
+        public void ConfigurarTela(Tema tema, List<Item> ListaCompleta)
         {
             tboxId.Text = tema.id.ToString();
             tboxNome.Text = tema.nome;
 
             ListaItensTema.Clear();
 
+            List<Item> ListaItensCompleta = ListaCompleta.Except(tema.ListaItens).ToList();
+
             foreach (Item registro in tema.ListaItens)
             {
-                if (registro.statusItem == true)
-                    CheckListBoxItens.Items.Add(registro, true);
-                else
-                    CheckListBoxItens.Items.Add(registro, false); 
+                CheckListBoxItens.Items.Add(registro, true);
+            }
+
+            foreach (Item registro in ListaItensCompleta)
+            {
+                CheckListBoxItens.Items.Add(registro, false);
             }
         }
 
