@@ -18,6 +18,8 @@ namespace PartyManager.WinApp.ModuloCliente
 
           public override string ToolTipDeletar => "Deletar Cliente";
 
+          public override string ToolTipVisualizarHistorico => "Histórico Cliente";
+
           public override void Deletar()
           {
                Cliente cliente = ObterClienteSelecionado();

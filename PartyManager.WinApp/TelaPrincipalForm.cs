@@ -16,148 +16,154 @@ using PartyManager.WinApp.ModuloTema;
 
 namespace PartyManager.WinApp
 {
-    public partial class TelaPrincipalForm : Form
-    {
-        private int contadorTemporizador = 5;
-        private ControladorBase controlador;
-        private static ContextoDados contexto = new ContextoDados(carregarDados: true);
-        private IRepositorioCliente repositorioCliente = new RepositorioClienteArquivo(contexto);
-        private IRepositorioTema repositorioTema = new RepositorioTemaArquivo(contexto);
-        private IRepositorioFesta repositorioFesta = new RepositorioFestaArquivo(contexto);
-        private IRepositorioAluguel repositorioAluguel = new RepositorioAluguelArquivo(contexto);
-        private IRepositorioItem repositorioItem = new RepositorioItensArquivo(contexto);
+     public partial class TelaPrincipalForm : Form
+     {
+          private int contadorTemporizador = 5;
+          private ControladorBase controlador;
+          private static ContextoDados contexto = new ContextoDados(carregarDados: true);
+          private IRepositorioCliente repositorioCliente = new RepositorioClienteArquivo(contexto);
+          private IRepositorioTema repositorioTema = new RepositorioTemaArquivo(contexto);
+          private IRepositorioFesta repositorioFesta = new RepositorioFestaArquivo(contexto);
+          private IRepositorioAluguel repositorioAluguel = new RepositorioAluguelArquivo(contexto);
+          private IRepositorioItem repositorioItem = new RepositorioItensArquivo(contexto);
 
-        private static TelaPrincipalForm telaPrincipal;
+          private static TelaPrincipalForm telaPrincipal;
 
-        public static TelaPrincipalForm Instancia
-        {
-            get
-            {
-                if (telaPrincipal == null)
-                    telaPrincipal = new TelaPrincipalForm();
+          public static TelaPrincipalForm Instancia
+          {
+               get
+               {
+                    if (telaPrincipal == null)
+                         telaPrincipal = new TelaPrincipalForm();
 
-                return telaPrincipal;
-            }
-        }
+                    return telaPrincipal;
+               }
+          }
 
-        public TelaPrincipalForm()
-        {
-            InitializeComponent();
-            temporizador.Interval = 1000;
-            temporizador.Tick += Timer_tick;
-            telaPrincipal = this;
-        }
+          public TelaPrincipalForm()
+          {
+               InitializeComponent();
+               temporizador.Interval = 1000;
+               temporizador.Tick += Timer_tick;
+               telaPrincipal = this;
+          }
 
-        public void AtualizarRodape(string mensagem, TipoStatusEnum tipoStatus)
-        {
-            contadorTemporizador = 5;
-            Color cor = default;
-            switch (tipoStatus)
-            {
-                case TipoStatusEnum.Nenhum: break;
-                case TipoStatusEnum.Erro: cor = Color.Red; break;
-                case TipoStatusEnum.Sucesso: cor = Color.Green; break;
-                case TipoStatusEnum.Visualizando: cor = Color.Blue; break;
-            }
+          public void AtualizarRodape(string mensagem, TipoStatusEnum tipoStatus)
+          {
+               contadorTemporizador = 5;
+               Color cor = default;
+               switch (tipoStatus)
+               {
+                    case TipoStatusEnum.Nenhum: break;
+                    case TipoStatusEnum.Erro: cor = Color.Red; break;
+                    case TipoStatusEnum.Sucesso: cor = Color.Green; break;
+                    case TipoStatusEnum.Visualizando: cor = Color.Blue; break;
+               }
 
-            tssStatus.ForeColor = cor;
-            tssStatus.Text = mensagem;
+               tssStatus.ForeColor = cor;
+               tssStatus.Text = mensagem;
 
-            if (tipoStatus != TipoStatusEnum.Visualizando)
-                temporizador.Start();
-        }
+               if (tipoStatus != TipoStatusEnum.Visualizando)
+                    temporizador.Start();
+          }
 
-        private void Timer_tick(object? sender, EventArgs e)
-        {
-            contadorTemporizador--;
+          private void Timer_tick(object? sender, EventArgs e)
+          {
+               contadorTemporizador--;
 
-            if (contadorTemporizador == 0)
-            {
-                tssStatus.ForeColor = default;
-                tssStatus.Text = "Status";
-                temporizador.Stop();
-            }
-        }
+               if (contadorTemporizador == 0)
+               {
+                    tssStatus.ForeColor = default;
+                    tssStatus.Text = "Status";
+                    temporizador.Stop();
+               }
+          }
 
-        private void ConfigurarToolTips(ControladorBase controlador)
-        {
-            btnInserir.ToolTipText = controlador.ToolTipInserir;
-            btnEditar.ToolTipText = controlador.ToolTipEditar;
-            btnDeletar.ToolTipText = controlador.ToolTipDeletar;
-        }
+          private void ConfigurarToolTips(ControladorBase controlador)
+          {
+               btnInserir.ToolTipText = controlador.ToolTipInserir;
+               btnEditar.ToolTipText = controlador.ToolTipEditar;
+               btnDeletar.ToolTipText = controlador.ToolTipDeletar;
+          }
 
-        private void ConfigurarListas(ControladorBase controladorBase)
-        {
-            UserControl listas = controladorBase.ObterListagem();
-            listas.Dock = DockStyle.Fill;
-            panelRegistros.Controls.Clear();
-            panelRegistros.Controls.Add(listas);
-        }
+          private void ConfigurarListas(ControladorBase controladorBase)
+          {
+               UserControl listas = controladorBase.ObterListagem();
+               listas.Dock = DockStyle.Fill;
+               panelRegistros.Controls.Clear();
+               panelRegistros.Controls.Add(listas);
+          }
 
-        private void ConfigurarBarraFerramentas(ControladorBase controlador)
-        {
-            toolStrip1.Enabled = true;
-            ConfigurarToolTips(controlador);
-            ConfigurarEstadosBotoes(controlador);
-        }
+          private void ConfigurarBarraFerramentas(ControladorBase controlador)
+          {
+               toolStrip1.Enabled = true;
+               ConfigurarToolTips(controlador);
+               ConfigurarEstadosBotoes(controlador);
+          }
 
-        private void ConfigurarEstadosBotoes(ControladorBase controlador)
-        {
-            btnInserir.Enabled = controlador.InserirHabilitado;
-            btnEditar.Enabled = controlador.EditarHabilitado;
-            btnDeletar.Enabled = controlador.DeletarHabilitado;
-        }
+          private void ConfigurarEstadosBotoes(ControladorBase controlador)
+          {
+               btnInserir.Enabled = controlador.InserirHabilitado;
+               btnEditar.Enabled = controlador.EditarHabilitado;
+               btnDeletar.Enabled = controlador.DeletarHabilitado;
+          }
 
-        private void ConfigurarTelaPrincipal(ControladorBase controladorBase)
-        {
-            tslTipoCadastros.Text = controlador.ObterTipoCadastro();
-            ConfigurarBarraFerramentas(controladorBase);
-            ConfigurarListas(controladorBase);
-        }
+          private void ConfigurarTelaPrincipal(ControladorBase controladorBase)
+          {
+               tslTipoCadastros.Text = controlador.ObterTipoCadastro();
+               ConfigurarBarraFerramentas(controladorBase);
+               ConfigurarListas(controladorBase);
+          }
 
-        private void btnInserir_Click(object sender, EventArgs e)
-        {
-            controlador.Inserir();
-        }
+          private void btnInserir_Click(object sender, EventArgs e)
+          {
+               controlador.Inserir();
+          }
 
-        private void btnEditar_Click(object sender, EventArgs e)
-        {
-            controlador.Editar();
-        }
+          private void btnEditar_Click(object sender, EventArgs e)
+          {
+               controlador.Editar();
+          }
 
-        private void btnDeletar_Click(object sender, EventArgs e)
-        {
-            controlador.Deletar();
-        }
+          private void btnDeletar_Click(object sender, EventArgs e)
+          {
+               controlador.Deletar();
+          }
+          private void btnHistorico_Click(object sender, EventArgs e)
+          {
+               controlador.VisualizarHistorico();
+          }
 
-        private void clientesMenuItem_Click(object sender, EventArgs e)
-        {
-            controlador = new ControladorCliente(repositorioCliente);
-            ConfigurarTelaPrincipal(controlador);
-        }
+          private void clientesMenuItem_Click(object sender, EventArgs e)
+          {
+               controlador = new ControladorCliente(repositorioCliente);
+               btnHistorico.Enabled = controlador.VisualizarHistoricoHabilitado;
+               ConfigurarTelaPrincipal(controlador);
+          }
 
-        private void temasMenuItem_Click(object sender, EventArgs e)
-        {
-            controlador = new ControladorTema(repositorioTema, repositorioItem);
-            ConfigurarTelaPrincipal(controlador);
-        }
+          private void temasMenuItem_Click(object sender, EventArgs e)
+          {
+               controlador = new ControladorTema(repositorioTema, repositorioItem);
+               ConfigurarTelaPrincipal(controlador);
+          }
 
-        private void festasMenuItem_Click(object sender, EventArgs e)
-        {
-            controlador = new ControladorFesta(repositorioFesta, repositorioCliente, repositorioTema);
-            ConfigurarTelaPrincipal(controlador);
-        }
+          private void festasMenuItem_Click(object sender, EventArgs e)
+          {
+               controlador = new ControladorFesta(repositorioFesta, repositorioCliente, repositorioTema);
+               ConfigurarTelaPrincipal(controlador);
+          }
 
-        private void AluguelMenuItem_Click(object sender, EventArgs e)
-        {
-            controlador = new ControladorAluguel(repositorioAluguel, repositorioFesta, repositorioCliente);
-            ConfigurarTelaPrincipal(controlador);
-        }
+          private void AluguelMenuItem_Click(object sender, EventArgs e)
+          {
+               controlador = new ControladorAluguel(repositorioAluguel, repositorioFesta, repositorioCliente);
+               ConfigurarTelaPrincipal(controlador);
+          }
 
-        private void itensToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            controlador = new ControladorItens(repositorioItem);
-            ConfigurarTelaPrincipal(controlador);
-        }
-    }
+          private void itensToolStripMenuItem_Click(object sender, EventArgs e)
+          {
+               controlador = new ControladorItens(repositorioItem);
+               ConfigurarTelaPrincipal(controlador);
+          }
+
+     }
 }
