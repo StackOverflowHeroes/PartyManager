@@ -167,5 +167,9 @@ namespace PartyManager.WinApp
             ConfigurarTelaPrincipal(controlador);
         }
 
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            controlador.Filtrar();
+        }
     }
 }

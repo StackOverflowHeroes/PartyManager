@@ -206,6 +206,7 @@
             btnFiltrar.Name = "btnFiltrar";
             btnFiltrar.Size = new Size(29, 42);
             btnFiltrar.Text = "Filtrar";
+            btnFiltrar.Click += btnFiltrar_Click;
             // 
             // toolStripSeparator2
             // 

@@ -129,6 +129,40 @@ namespace PartyManager.WinApp.ModuloAluguel
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Aluguel inserido com sucesso!", TipoStatusEnum.Sucesso);
         }
 
+        public override void Filtrar()
+        {
+            TelaFiltroAlugueisForm telaFiltroAluguel = new TelaFiltroAlugueisForm();
+
+            if (telaFiltroAluguel.ShowDialog() == DialogResult.OK)
+            {
+                StatusFiltroAlugueisEnum status = telaFiltroAluguel.ObterStatusFiltro();
+
+                List<Aluguel> listaFiltrada = SelecionarAlugueisPeloStatus(status);
+                CarregarAlugueis(listaFiltrada);
+            }
+        }
+
+        private List<Aluguel> SelecionarAlugueisPeloStatus(StatusFiltroAlugueisEnum status)
+        {
+            List<Aluguel> ListaFiltrada = new List<Aluguel>();
+
+            switch(status)
+            {
+                case StatusFiltroAlugueisEnum.Pendentes:
+                    ListaFiltrada = repoAluguel.SelecionarAlugueisPendentes();
+                    break;
+
+                case StatusFiltroAlugueisEnum.Concluidos:
+                    ListaFiltrada =  repoAluguel.SelecionarAlugueisConcluidos();
+                    break;
+                default:
+                    ListaFiltrada = repoAluguel.SelecionarTodos();
+                    break;
+            }
+
+            return ListaFiltrada;
+        }
+
         private Aluguel ObterAluguelSelecionado()
         {
             int id = tabelaAluguel.ObterIdSelecionado();
@@ -140,6 +174,12 @@ namespace PartyManager.WinApp.ModuloAluguel
             List<Aluguel> alugueis = repoAluguel.SelecionarTodos();
             tabelaAluguel.AtualizarRegistros(alugueis);
             TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {alugueis.Count} aluguel/alguéis", TipoStatusEnum.Visualizando);
+        }
+
+        public void CarregarAlugueis(List<Aluguel> ListaFiltrada)
+        {
+            tabelaAluguel.AtualizarRegistros(ListaFiltrada);
+            TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {ListaFiltrada.Count} aluguel/alguéis", TipoStatusEnum.Visualizando);
         }
 
         public override UserControl ObterListagem()
