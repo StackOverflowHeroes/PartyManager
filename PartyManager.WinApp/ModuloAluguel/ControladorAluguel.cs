@@ -38,6 +38,15 @@ namespace PartyManager.WinApp.ModuloAluguel
                 return;
             }
 
+            if (aluguelSelecionado.statusPagamento == StatusPagamentoEnum.PagamentoParcial || aluguelSelecionado.statusPagamento == StatusPagamentoEnum.PagamentoParcial)
+            {
+                MessageBox.Show($"Não é possível deletar um aluguel com o pagamento pendente",
+                    "Edição de Aluguéis",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+                return;
+            }
+
             DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o aluguel do cliente {aluguelSelecionado.festa.cliente.nome}?", "Exclusão de Aluguéis",
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
@@ -63,6 +72,16 @@ namespace PartyManager.WinApp.ModuloAluguel
                     MessageBoxIcon.Exclamation);
                 return;
             }
+
+            if (aluguelSelecionado.statusPagamento == StatusPagamentoEnum.PagamentoConcluido)
+            {
+                MessageBox.Show($"Não é possível editar um aluguel já concluído",
+                    "Edição de Aluguéis",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+                return;
+            }
+            
 
             List<Cliente> ListaCompletaCliente = repoCliente.SelecionarTodos();
             List<Festa> ListaCompletaFesta = repoFesta.SelecionarTodos();
