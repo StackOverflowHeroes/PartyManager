@@ -53,6 +53,7 @@ namespace PartyManager.WinApp.ModuloTema
         public override void Editar()
         {
             TelaTemaForm telaTema = new TelaTemaForm();
+            telaTema.PegarListaNome(repoTema.SelecionarTodos());
             Tema temaSelecionado = ObterTemaSelecionado();
 
             if (temaSelecionado == null)
@@ -85,7 +86,7 @@ namespace PartyManager.WinApp.ModuloTema
         public override void Inserir()
         {
             TelaTemaForm telaTema = new TelaTemaForm();
-
+            telaTema.PegarListaNome(repoTema.SelecionarTodos());
             telaTema.PopularCheckedListBox(repoItem.SelecionarTodos());
             DialogResult opcaoEscolhida = telaTema.ShowDialog();
 

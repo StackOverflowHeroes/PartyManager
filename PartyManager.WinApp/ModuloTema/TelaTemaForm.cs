@@ -5,6 +5,7 @@ namespace PartyManager.WinApp.ModuloTema
 {
     public partial class TelaTemaForm : Form
     {
+        private List<Tema> temas;
         private List<Item> ListaItensTema = new List<Item>();
         public TelaTemaForm()
         {
@@ -77,12 +78,29 @@ namespace PartyManager.WinApp.ModuloTema
 
             string[] erros = tema.ValidarErros();
 
+            if (temas.Exists(x => x.nome.ToLower() == tema.nome.ToLower()))
+            {
+                string erro = "Tema já cadastrado, entre com um nome diferente!";
+
+                if (erros.Length == 0 || erros[erros.Length - 1] != erro)
+                {
+                    Array.Resize(ref erros, erros.Length + 1);
+                    erros[erros.Length - 1] = erro;
+                }
+            }
+
             if (erros.Length > 0)
             {
                 TelaPrincipalForm.Instancia.AtualizarRodape(erros[0], TipoStatusEnum.Erro);
                 DialogResult = DialogResult.None;
             }
         }
+
+        public void PegarListaNome(List<Tema> temas)
+        {
+            this.temas = temas;
+        }
+
     }
 }
 

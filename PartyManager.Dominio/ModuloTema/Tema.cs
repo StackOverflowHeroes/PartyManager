@@ -57,6 +57,9 @@ namespace PartyManager.Dominio.ModuloTema
             if (string.IsNullOrEmpty(nome) || string.IsNullOrWhiteSpace(nome))
                 ErrosTema.Add("O nome é obrigatório");
 
+            if (nome.Length < 5)
+                ErrosTema.Add("O nome deve conter no mínimo 5 caracteres");
+
             int ItensSelecionados = ListaItens.Count(item => item.statusItem == true);
 
             if (ItensSelecionados == 0)
