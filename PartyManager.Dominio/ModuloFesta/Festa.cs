@@ -75,9 +75,12 @@ namespace PartyManager.Dominio.ModuloFesta
                if (numero < 0)
                     errosFesta.Add("Campo \"Número\" não pode ser menor que 0!");
 
-               if (data < DateTime.Now)
+               if (nome.Length < 5)
+                    errosFesta.Add("Campo \"Nome\" deve ter no mínimo 5 caracteres!");
+
+               if (data.Day < DateTime.Now.Date.Day)
                     errosFesta.Add("Campo \"Data\" não pode ser anterior a data atual!");
-    
+
                if (horaTermino <= horaInicio)
                     errosFesta.Add("Campo \"Hora Término\" deve ser superior ao horário de início!");
 
