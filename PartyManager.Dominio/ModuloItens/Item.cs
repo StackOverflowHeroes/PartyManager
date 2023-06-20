@@ -35,6 +35,9 @@
             if (string.IsNullOrEmpty(nome) || string.IsNullOrWhiteSpace(nome))
                 ErrosItens.Add("O campo nome é obrigatório");
 
+            if (nome.Length < 5)
+                ErrosItens.Add("O campo nome deve conter no mínimo 5 caracteres");
+
             if (valor < 0)
                 ErrosItens.Add("O valor tem que ser ZERO ou MAIOR QUE ZERO");
 

@@ -1,5 +1,6 @@
 ﻿
 using PartyManager.Dominio.ModuloItens;
+using PartyManager.Dominio.ModuloTema;
 
 namespace PartyManager.Dados.Arquivo.ModuloItens
 {
@@ -7,6 +8,16 @@ namespace PartyManager.Dados.Arquivo.ModuloItens
     {
         public RepositorioItensArquivo(ContextoDados contexto) : base(contexto)
         {
+        }
+
+        public bool VerificarSeRegistroEstaSendoUsado(Item itemSelecionado, List<Tema> temas)
+        {
+            bool RegistroExiste = temas.Exists(tema => tema.ListaItens.Exists(item => item.nome == itemSelecionado.nome));
+
+            if (RegistroExiste)
+                return true;
+            else
+                return false;
         }
 
         protected override List<Item> ObterRegistros()

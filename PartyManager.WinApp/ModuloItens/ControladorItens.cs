@@ -8,11 +8,13 @@ namespace PartyManager.WinApp.ModuloItens
     public class ControladorItens : ControladorBase
     {
         private IRepositorioItem repoItem;
+        private IRepositorioTema repoTema;
         private TabelaItensControl tabelaItens;
 
-        public ControladorItens(IRepositorioItem repositorioItem)
+        public ControladorItens(IRepositorioItem repositorioItem, IRepositorioTema repoTema)
         {
             this.repoItem = repositorioItem;
+            this.repoTema = repoTema;
         }
 
         public override string ToolTipInserir => "Inserir item";
@@ -28,6 +30,16 @@ namespace PartyManager.WinApp.ModuloItens
             if (itemSelecionado == null)
             {
                 MessageBox.Show($"Selecione um item primeiro!",
+                    "Exclusão de Itens",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+
+                return;
+            }
+
+            if (repoItem.VerificarSeRegistroEstaSendoUsado(itemSelecionado, repoTema.SelecionarTodos()))
+            {
+                MessageBox.Show($"Não é possível excluir um item em uso",
                     "Exclusão de Itens",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
@@ -52,6 +64,7 @@ namespace PartyManager.WinApp.ModuloItens
         public override void Editar()
         {
             TelaItensForm telaItens = new TelaItensForm();
+            telaItens.PegarListaNome(repoItem.SelecionarTodos());
             Item itemSelecionado = ObterItemSelecionado();
 
             if (itemSelecionado == null)
@@ -82,6 +95,7 @@ namespace PartyManager.WinApp.ModuloItens
         public override void Inserir()
         {
             TelaItensForm telaItens = new TelaItensForm();
+            telaItens.PegarListaNome(repoItem.SelecionarTodos());
 
             if (telaItens.ShowDialog() == DialogResult.OK)
             {
