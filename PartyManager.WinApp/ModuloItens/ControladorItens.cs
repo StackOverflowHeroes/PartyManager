@@ -52,6 +52,7 @@ namespace PartyManager.WinApp.ModuloItens
         public override void Editar()
         {
             TelaItensForm telaItens = new TelaItensForm();
+            telaItens.PegarListaNome(repoItem.SelecionarTodos());
             Item itemSelecionado = ObterItemSelecionado();
 
             if (itemSelecionado == null)
@@ -82,6 +83,7 @@ namespace PartyManager.WinApp.ModuloItens
         public override void Inserir()
         {
             TelaItensForm telaItens = new TelaItensForm();
+            telaItens.PegarListaNome(repoItem.SelecionarTodos());
 
             if (telaItens.ShowDialog() == DialogResult.OK)
             {
