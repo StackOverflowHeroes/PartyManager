@@ -72,6 +72,7 @@ namespace PartyManager.WinApp.ModuloFesta
                TelaFestaForm telaFesta = new TelaFestaForm(clientes, temas);
                telaFesta.Text = "Edição de Festas";
                telaFesta.ConfigurarTela(festaSelecionado);
+               telaFesta.PegarListaNome(repoFesta.SelecionarTodos());
                DialogResult opcaoEscolhida = telaFesta.ShowDialog();
 
                if (opcaoEscolhida == DialogResult.OK)
@@ -93,6 +94,7 @@ namespace PartyManager.WinApp.ModuloFesta
                List<Tema> temas = repositorioTema.SelecionarTodos();
 
                TelaFestaForm telaFesta = new TelaFestaForm(clientes, temas);
+               telaFesta.PegarListaNome(repoFesta.SelecionarTodos());
                DialogResult opcaoEscolhida = telaFesta.ShowDialog();
 
                if (opcaoEscolhida == DialogResult.OK)

@@ -44,12 +44,12 @@
                txtData = new DateTimePicker();
                tboxNome = new TextBox();
                label8 = new Label();
-               mtboxCidade = new MaskedTextBox();
                label2 = new Label();
                label9 = new Label();
-               mtboxNumero = new MaskedTextBox();
                label10 = new Label();
-               mtboxRua = new MaskedTextBox();
+               tboxCidade = new TextBox();
+               tboxRua = new TextBox();
+               tboxNumero = new TextBox();
                SuspendLayout();
                // 
                // label1
@@ -225,13 +225,6 @@
                label8.TabIndex = 45;
                label8.Text = "Nome";
                // 
-               // mtboxCidade
-               // 
-               mtboxCidade.Location = new Point(161, 121);
-               mtboxCidade.Name = "mtboxCidade";
-               mtboxCidade.Size = new Size(96, 23);
-               mtboxCidade.TabIndex = 47;
-               // 
                // label2
                // 
                label2.Anchor = AnchorStyles.None;
@@ -254,13 +247,6 @@
                label9.TabIndex = 50;
                label9.Text = "Número";
                // 
-               // mtboxNumero
-               // 
-               mtboxNumero.Location = new Point(324, 121);
-               mtboxNumero.Name = "mtboxNumero";
-               mtboxNumero.Size = new Size(84, 23);
-               mtboxNumero.TabIndex = 49;
-               // 
                // label10
                // 
                label10.Anchor = AnchorStyles.None;
@@ -272,24 +258,41 @@
                label10.TabIndex = 52;
                label10.Text = "Cidade";
                // 
-               // mtboxRua
+               // tboxCidade
                // 
-               mtboxRua.Location = new Point(161, 150);
-               mtboxRua.Name = "mtboxRua";
-               mtboxRua.Size = new Size(247, 23);
-               mtboxRua.TabIndex = 51;
+               tboxCidade.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+               tboxCidade.Location = new Point(161, 121);
+               tboxCidade.Name = "tboxCidade";
+               tboxCidade.Size = new Size(98, 23);
+               tboxCidade.TabIndex = 53;
+               // 
+               // tboxRua
+               // 
+               tboxRua.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+               tboxRua.Location = new Point(161, 150);
+               tboxRua.Name = "tboxRua";
+               tboxRua.Size = new Size(247, 23);
+               tboxRua.TabIndex = 54;
+               // 
+               // tboxNumero
+               // 
+               tboxNumero.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+               tboxNumero.Location = new Point(322, 121);
+               tboxNumero.Name = "tboxNumero";
+               tboxNumero.Size = new Size(86, 23);
+               tboxNumero.TabIndex = 55;
                // 
                // TelaFestaForm
                // 
                AutoScaleDimensions = new SizeF(7F, 15F);
                AutoScaleMode = AutoScaleMode.Font;
                ClientSize = new Size(513, 408);
+               Controls.Add(tboxNumero);
+               Controls.Add(tboxRua);
+               Controls.Add(tboxCidade);
                Controls.Add(label10);
-               Controls.Add(mtboxRua);
                Controls.Add(label9);
-               Controls.Add(mtboxNumero);
                Controls.Add(label2);
-               Controls.Add(mtboxCidade);
                Controls.Add(tboxNome);
                Controls.Add(label8);
                Controls.Add(txtData);
@@ -329,11 +332,11 @@
           private DateTimePicker txtData;
           private TextBox tboxNome;
           private Label label8;
-          private MaskedTextBox mtboxCidade;
           private Label label2;
           private Label label9;
-          private MaskedTextBox mtboxNumero;
           private Label label10;
-          private MaskedTextBox mtboxRua;
+          private TextBox tboxCidade;
+          private TextBox tboxRua;
+          private TextBox tboxNumero;
      }
 }
