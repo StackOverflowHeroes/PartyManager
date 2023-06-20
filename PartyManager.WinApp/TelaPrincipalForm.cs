@@ -108,6 +108,7 @@ namespace PartyManager.WinApp
             btnEditar.Enabled = controlador.EditarHabilitado;
             btnDeletar.Enabled = controlador.DeletarHabilitado;
             btnFiltrar.Enabled = controlador.FiltrarHabilitado;
+            btnHistorico.Enabled = controlador.VisualizarHistoricoHabilitado;
         }
 
         private void ConfigurarTelaPrincipal(ControladorBase controladorBase)
