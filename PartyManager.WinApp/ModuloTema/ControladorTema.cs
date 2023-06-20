@@ -60,7 +60,6 @@ namespace PartyManager.WinApp.ModuloTema
 
             CarregarTemas();
         }
-
         public override void Editar()
         {
             TelaTemaForm telaTema = new TelaTemaForm();
@@ -93,7 +92,6 @@ namespace PartyManager.WinApp.ModuloTema
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Tema editado com sucesso!", TipoStatusEnum.Sucesso);
 
         }
-
         public override void Inserir()
         {
             TelaTemaForm telaTema = new TelaTemaForm();
@@ -113,13 +111,11 @@ namespace PartyManager.WinApp.ModuloTema
             if (opcaoEscolhida == DialogResult.OK)
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Tema inserido com sucesso!", TipoStatusEnum.Sucesso);
         }
-
         private Tema ObterTemaSelecionado()
         {
             int id = tabelaTema.ObterIdSelecionado();
             return repoTema.SelecionarPorId(id);
         }
-
         private void CarregarTemas()
         {
             List<Tema> temas = repoTema.SelecionarTodos();

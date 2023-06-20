@@ -163,7 +163,7 @@ namespace PartyManager.WinApp
 
         private void itensToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorItens(repositorioItem);
+            controlador = new ControladorItens(repositorioItem, repositorioTema);
             ConfigurarTelaPrincipal(controlador);
         }
 
