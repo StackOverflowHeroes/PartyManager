@@ -12,7 +12,7 @@
           public virtual bool EditarHabilitado { get { return true; } }
           public virtual bool DeletarHabilitado { get { return true; } }
           public virtual bool FiltrarHabilitado { get { return false; } }
-          public virtual bool VisualizarHistoricoHabilitado { get { return true; } }
+          public virtual bool VisualizarHistoricoHabilitado { get { return false; } }
 
 
 

@@ -50,7 +50,7 @@ namespace PartyManager.WinApp.ModuloCliente
                     }
                }
 
-               if (clientes.Exists(x => x.nome == cliente.nome))
+               if (clientes.Exists(x => x.nome == cliente.nome.ToLower()))
                {
                     string erro = "Nome já cadastrado, entre com um nome diferente!";
 
