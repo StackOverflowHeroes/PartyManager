@@ -89,7 +89,7 @@ namespace PartyManager.WinApp.ModuloFesta
                     }
                }
 
-               if (festas.Exists(x => x.nome == festa.nome))
+               if (festas.Exists(x => x.nome == festa.nome.ToLower()))
                {
                     string erro = "Nome já cadastrado, entre com um nome diferente!";
 
