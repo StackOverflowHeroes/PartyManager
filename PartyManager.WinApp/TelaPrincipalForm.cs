@@ -145,7 +145,7 @@ namespace PartyManager.WinApp
 
         private void temasMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorTema(repositorioTema, repositorioItem);
+            controlador = new ControladorTema(repositorioTema, repositorioItem, repositorioAluguel);
             ConfigurarTelaPrincipal(controlador);
         }
 

@@ -1,4 +1,5 @@
-﻿using PartyManager.Dominio.ModuloCliente;
+﻿using PartyManager.Dominio.ModuloAluguel;
+using PartyManager.Dominio.ModuloCliente;
 using PartyManager.Dominio.ModuloItens;
 using PartyManager.Dominio.ModuloTema;
 
@@ -8,12 +9,14 @@ namespace PartyManager.WinApp.ModuloTema
     {
         private IRepositorioTema repoTema;
         private IRepositorioItem repoItem;
+        private IRepositorioAluguel repoAluguel;
         private TabelaTemaControl tabelaTema;
 
-        public ControladorTema(IRepositorioTema repoTema, IRepositorioItem repoItem)
+        public ControladorTema(IRepositorioTema repoTema, IRepositorioItem repoItem, IRepositorioAluguel repoAluguel)
         {
             this.repoTema = repoTema;
             this.repoItem = repoItem;
+            this.repoAluguel = repoAluguel;
         }
 
         public override string ToolTipInserir => "Inserir Tema";
@@ -36,18 +39,26 @@ namespace PartyManager.WinApp.ModuloTema
                 return;
             }
 
+            if(repoTema.VerificarSeRegistroEstaSendoUsado(temaSelecionado, repoAluguel.SelecionarTodos()))
+            {
+                MessageBox.Show($"Não é possível excluir um tema em uso",
+                    "Exclusão de Temas",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+
+                return;
+            }
+
             DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o tema {temaSelecionado.nome.ToUpper()}?", "Exclusão de Temas",
             MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (opcaoEscolhida == DialogResult.OK)
             {
                 repoTema.Deletar(temaSelecionado);
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Tema deletado com sucesso!", TipoStatusEnum.Sucesso);
             }
 
             CarregarTemas();
-
-            if (opcaoEscolhida == DialogResult.OK)
-                TelaPrincipalForm.Instancia.AtualizarRodape($"Tema deletado com sucesso!", TipoStatusEnum.Sucesso);
         }
 
         public override void Editar()
