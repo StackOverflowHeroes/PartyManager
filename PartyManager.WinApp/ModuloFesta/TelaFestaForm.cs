@@ -89,17 +89,19 @@ namespace PartyManager.WinApp.ModuloFesta
                     }
                }
 
-               if (festas.Exists(x => x.nome == festa.nome.ToLower()))
+               if (festas != null)
                {
-                    string erro = "Nome já cadastrado, entre com um nome diferente!";
-
-                    if (erros.Length == 0 || erros[erros.Length - 1] != erro)
+                    if (festas.Exists(x => x.nome == festa.nome.ToLower()))
                     {
-                         Array.Resize(ref erros, erros.Length + 1);
-                         erros[erros.Length - 1] = erro;
+                         string erro = "Nome já cadastrado, entre com um nome diferente!";
+
+                         if (erros.Length == 0 || erros[erros.Length - 1] != erro)
+                         {
+                              Array.Resize(ref erros, erros.Length + 1);
+                              erros[erros.Length - 1] = erro;
+                         }
                     }
                }
-
                if (erros.Length > 0)
                {
                     TelaPrincipalForm.Instancia.AtualizarRodape(erros[0], TipoStatusEnum.Erro);

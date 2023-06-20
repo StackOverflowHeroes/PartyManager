@@ -72,7 +72,6 @@ namespace PartyManager.WinApp.ModuloFesta
                TelaFestaForm telaFesta = new TelaFestaForm(clientes, temas);
                telaFesta.Text = "Edição de Festas";
                telaFesta.ConfigurarTela(festaSelecionado);
-               telaFesta.PegarListaNome(repoFesta.SelecionarTodos());
                DialogResult opcaoEscolhida = telaFesta.ShowDialog();
 
                if (opcaoEscolhida == DialogResult.OK)

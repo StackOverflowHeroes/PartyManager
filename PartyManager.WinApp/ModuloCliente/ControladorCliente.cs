@@ -77,7 +77,7 @@ namespace PartyManager.WinApp.ModuloCliente
                TelaClienteForm telaCliente = new TelaClienteForm();
                telaCliente.Text = "Edição de Clientes";
                telaCliente.ConfigurarTela(cliente);
-               telaCliente.PegarListaNome(repoCliente.SelecionarTodos());
+               //telaCliente.PegarListaNome(repoCliente.SelecionarTodos());
                DialogResult opcaoEscolhida = telaCliente.ShowDialog();
 
                if (opcaoEscolhida == DialogResult.OK)

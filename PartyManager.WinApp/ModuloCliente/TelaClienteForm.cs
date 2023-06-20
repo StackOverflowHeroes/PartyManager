@@ -50,17 +50,19 @@ namespace PartyManager.WinApp.ModuloCliente
                     }
                }
 
-               if (clientes.Exists(x => x.nome == cliente.nome.ToLower()))
+               if (clientes != null)
                {
-                    string erro = "Nome já cadastrado, entre com um nome diferente!";
-
-                    if (erros.Length == 0 || erros[erros.Length - 1] != erro)
+                    if (clientes.Exists(x => x.nome == cliente.nome.ToLower()))
                     {
-                         Array.Resize(ref erros, erros.Length + 1);
-                         erros[erros.Length - 1] = erro;
+                         string erro = "Nome já cadastrado, entre com um nome diferente!";
+
+                         if (erros.Length == 0 || erros[erros.Length - 1] != erro)
+                         {
+                              Array.Resize(ref erros, erros.Length + 1);
+                              erros[erros.Length - 1] = erro;
+                         }
                     }
                }
-
                if (erros.Length > 0)
                {
                     TelaPrincipalForm.Instancia.AtualizarRodape(erros[0], TipoStatusEnum.Erro);
