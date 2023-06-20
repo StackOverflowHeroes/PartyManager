@@ -78,16 +78,20 @@ namespace PartyManager.WinApp.ModuloTema
 
             string[] erros = tema.ValidarErros();
 
-            if (temas.Exists(x => x.nome.ToLower() == tema.nome.ToLower()))
+            if (temas != null)
             {
-                string erro = "Tema já cadastrado, entre com um nome diferente!";
-
-                if (erros.Length == 0 || erros[erros.Length - 1] != erro)
+                if (temas.Exists(x => x.nome.ToLower() == tema.nome.ToLower()))
                 {
-                    Array.Resize(ref erros, erros.Length + 1);
-                    erros[erros.Length - 1] = erro;
+                    string erro = "Tema já cadastrado, entre com um nome diferente!";
+
+                    if (erros.Length == 0 || erros[erros.Length - 1] != erro)
+                    {
+                        Array.Resize(ref erros, erros.Length + 1);
+                        erros[erros.Length - 1] = erro;
+                    }
                 }
             }
+
 
             if (erros.Length > 0)
             {

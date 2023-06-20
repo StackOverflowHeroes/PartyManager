@@ -51,17 +51,21 @@ namespace PartyManager.WinApp.ModuloItens
 
             string[] erros = item.ValidarErros();
 
-
-            if (itens.Exists(x => x.nome.ToLower() == item.nome.ToLower()))
+            if (itens != null)
             {
-                string erro = "Item já cadastrado, entre com um nome diferente!";
-
-                if (erros.Length == 0 || erros[erros.Length - 1] != erro)
+                if (itens.Exists(x => x.nome.ToLower() == item.nome.ToLower()))
                 {
-                    Array.Resize(ref erros, erros.Length + 1);
-                    erros[erros.Length - 1] = erro;
+                    string erro = "Item já cadastrado, entre com um nome diferente!";
+
+                    if (erros.Length == 0 || erros[erros.Length - 1] != erro)
+                    {
+                        Array.Resize(ref erros, erros.Length + 1);
+                        erros[erros.Length - 1] = erro;
+                    }
                 }
             }
+
+
 
             if (erros.Length > 0)
             {

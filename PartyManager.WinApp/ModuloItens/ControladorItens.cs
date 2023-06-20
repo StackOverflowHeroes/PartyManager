@@ -64,7 +64,6 @@ namespace PartyManager.WinApp.ModuloItens
         public override void Editar()
         {
             TelaItensForm telaItens = new TelaItensForm();
-            telaItens.PegarListaNome(repoItem.SelecionarTodos());
             Item itemSelecionado = ObterItemSelecionado();
 
             if (itemSelecionado == null)
