@@ -4,7 +4,6 @@ namespace PartyManager.Dominio.ModuloCliente
 {
      public class Cliente : EntidadeBase<Cliente>
      {
-          
           public string nome { get; set; }
           public string telefone;
           public List<Aluguel> alugueis;
@@ -34,7 +33,7 @@ namespace PartyManager.Dominio.ModuloCliente
                if (string.IsNullOrEmpty(nome))
                     erros.Add("Campo \"Nome\" é obrigatório!");
 
-               if (telefone == "(  )     -")
+               if (telefone == "(  )      -")
                     erros.Add("Campo \"Telefone\"é obrigatório!");
 
                if (nome.Length < 5)

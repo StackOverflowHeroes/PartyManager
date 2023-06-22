@@ -77,7 +77,6 @@ namespace PartyManager.WinApp.ModuloCliente
                TelaClienteForm telaCliente = new TelaClienteForm();
                telaCliente.Text = "Edição de Clientes";
                telaCliente.ConfigurarTela(cliente);
-               //telaCliente.PegarListaNome(repoCliente.SelecionarTodos());
                DialogResult opcaoEscolhida = telaCliente.ShowDialog();
 
                if (opcaoEscolhida == DialogResult.OK)
@@ -127,6 +126,31 @@ namespace PartyManager.WinApp.ModuloCliente
                CarregarClientes();
 
                return tabelaCliente;
+          }
+
+          public override void VisualizarHistorico()
+          {
+               Cliente cliente = ObterClienteSelecionado();
+
+               if (cliente == null)
+               {
+                    MessageBox.Show($"Selecione um cliente primeiro!",
+                        "Histórico de Aluguéis",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                    return;
+               }
+               if (cliente.alugueis.Count() == 0)
+               {
+                    MessageBox.Show($"Cliente não possui aluguéis cadastrados!",
+                        "Histórico de Aluguéis",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                    return;
+               }
+
+               TelaHistoricoClienteForm telaHistorico = new TelaHistoricoClienteForm(cliente);
+               telaHistorico.ShowDialog();
           }
 
           public override string ObterTipoCadastro()

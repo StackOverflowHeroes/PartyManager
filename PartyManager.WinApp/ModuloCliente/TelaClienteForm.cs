@@ -10,6 +10,7 @@ namespace PartyManager.WinApp.ModuloCliente
           {
                InitializeComponent();
                this.ConfigurarDialog();
+
           }
 
           public Cliente ObterCliente()
@@ -39,7 +40,7 @@ namespace PartyManager.WinApp.ModuloCliente
 
                string[] erros = cliente.ValidarErros();
 
-               if (!mtboxTelefone.MaskFull)
+               if (!mtboxTelefone.MaskCompleted)
                {
                     string erro = "Campo \"Telefone\" está incompleto!";
 
@@ -72,7 +73,7 @@ namespace PartyManager.WinApp.ModuloCliente
 
           public void PegarListaNome(List<Cliente> clientes)
           {
-               this.clientes = clientes;     
+               this.clientes = clientes;
           }
      }
 }

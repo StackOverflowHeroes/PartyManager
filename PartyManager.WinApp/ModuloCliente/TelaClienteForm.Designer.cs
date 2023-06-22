@@ -67,9 +67,11 @@
                // 
                // mtboxTelefone
                // 
+               mtboxTelefone.AllowPromptAsInput = false;
                mtboxTelefone.Anchor = AnchorStyles.None;
+               mtboxTelefone.HideSelection = false;
                mtboxTelefone.Location = new Point(115, 179);
-               mtboxTelefone.Mask = "(00) 0000-0000";
+               mtboxTelefone.Mask = "(00) 90000-0000";
                mtboxTelefone.Name = "mtboxTelefone";
                mtboxTelefone.RejectInputOnFirstFailure = true;
                mtboxTelefone.Size = new Size(251, 23);
@@ -99,7 +101,7 @@
                label2.Anchor = AnchorStyles.None;
                label2.AutoSize = true;
                label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-               label2.Location = new Point(72, 140);
+               label2.Location = new Point(71, 140);
                label2.Name = "label2";
                label2.Size = new Size(41, 15);
                label2.TabIndex = 21;
