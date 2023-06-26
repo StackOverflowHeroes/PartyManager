@@ -47,6 +47,8 @@
             btnHistorico = new ToolStripButton();
             btnFiltrar = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
+            btnConfigurarDesconto = new ToolStripButton();
+            toolStripSeparator3 = new ToolStripSeparator();
             tslTipoCadastros = new ToolStripLabel();
             panelRegistros = new Panel();
             temporizador = new System.Windows.Forms.Timer(components);
@@ -129,7 +131,7 @@
             // toolStrip1
             // 
             toolStrip1.ImageScalingSize = new Size(20, 20);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnInserir, btnEditar, btnDeletar, toolStripSeparator1, btnHistorico, btnFiltrar, toolStripSeparator2, tslTipoCadastros });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnInserir, btnEditar, btnDeletar, toolStripSeparator1, btnHistorico, btnFiltrar, toolStripSeparator2, btnConfigurarDesconto, toolStripSeparator3, tslTipoCadastros });
             toolStrip1.Location = new Point(0, 30);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(1026, 45);
@@ -213,6 +215,23 @@
             toolStripSeparator2.Name = "toolStripSeparator2";
             toolStripSeparator2.Size = new Size(6, 45);
             // 
+            // btnConfigurarDesconto
+            // 
+            btnConfigurarDesconto.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnConfigurarDesconto.Enabled = false;
+            btnConfigurarDesconto.Image = Properties.Resources.configIcon;
+            btnConfigurarDesconto.ImageTransparentColor = Color.Magenta;
+            btnConfigurarDesconto.Name = "btnConfigurarDesconto";
+            btnConfigurarDesconto.Size = new Size(29, 42);
+            btnConfigurarDesconto.Text = "toolStripButton1";
+            btnConfigurarDesconto.ToolTipText = "Configurar desconto";
+            btnConfigurarDesconto.Click += btnConfigurarDesconto_Click;
+            // 
+            // toolStripSeparator3
+            // 
+            toolStripSeparator3.Name = "toolStripSeparator3";
+            toolStripSeparator3.Size = new Size(6, 45);
+            // 
             // tslTipoCadastros
             // 
             tslTipoCadastros.Name = "tslTipoCadastros";
@@ -279,5 +298,7 @@
         private ToolStripButton btnHistorico;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripButton btnFiltrar;
+        private ToolStripButton btnConfigurarDesconto;
+        private ToolStripSeparator toolStripSeparator3;
     }
 }

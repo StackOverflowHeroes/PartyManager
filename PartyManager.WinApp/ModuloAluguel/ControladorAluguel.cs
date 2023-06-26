@@ -9,13 +9,15 @@ namespace PartyManager.WinApp.ModuloAluguel
         private IRepositorioAluguel repoAluguel;
         private IRepositorioFesta repoFesta;
         private IRepositorioCliente repoCliente;
+        private IRepositorioConfiguracaoDesconto repoDescontoAluguel;
         private TabelaAluguelControl tabelaAluguel;
 
-        public ControladorAluguel(IRepositorioAluguel repositorioAluguel, IRepositorioFesta repositorioFesta, IRepositorioCliente repositorioCliente)
+        public ControladorAluguel(IRepositorioAluguel repositorioAluguel, IRepositorioFesta repositorioFesta, IRepositorioCliente repositorioCliente, IRepositorioConfiguracaoDesconto repositorioDescontoAluguel)
         {
             repoAluguel = repositorioAluguel;
             repoFesta = repositorioFesta;
             repoCliente = repositorioCliente;
+            repoDescontoAluguel = repositorioDescontoAluguel;
         }
 
         public override string ToolTipInserir => "Inserir Aluguel";
@@ -26,6 +28,7 @@ namespace PartyManager.WinApp.ModuloAluguel
 
         public override string ToolTipFiltrar => "Filtrar aluguéis";
         public override bool FiltrarHabilitado { get { return true; } }
+        public override bool ConfigurarDescontoHabilitado { get { return true; } }
 
         public override void Deletar()
         {
@@ -64,7 +67,7 @@ namespace PartyManager.WinApp.ModuloAluguel
 
         public override void Editar()
         {
-            TelaAluguelForm telaAluguel = new TelaAluguelForm();
+            TelaAluguelForm telaAluguel = new TelaAluguelForm(repoDescontoAluguel.ObterConfiguracaoDeDesconto());
             Aluguel aluguelSelecionado = ObterAluguelSelecionado();
 
             if (aluguelSelecionado == null)
@@ -99,6 +102,9 @@ namespace PartyManager.WinApp.ModuloAluguel
 
                 repoAluguel.Editar(aluguelSelecionado.id, aluguelAtualizado);
 
+                if (aluguelAtualizado.statusPagamento == StatusPagamentoEnum.PagamentoConcluido)
+                    aluguelAtualizado.festa.cliente.alugueis.Add(aluguelAtualizado);
+
             }
 
             CarregarAlugueis();
@@ -112,14 +118,13 @@ namespace PartyManager.WinApp.ModuloAluguel
             List<Cliente> ListaCompletaCliente = repoCliente.SelecionarTodos();
             List<Festa> ListaCompletaFesta = repoFesta.SelecionarTodos();
 
-            TelaAluguelForm telaAluguel = new TelaAluguelForm();
+            TelaAluguelForm telaAluguel = new TelaAluguelForm(repoDescontoAluguel.ObterConfiguracaoDeDesconto());
             telaAluguel.PopularComboBox(ListaCompletaCliente, ListaCompletaFesta);
 
             DialogResult opcaoEscolhida = telaAluguel.ShowDialog();
             if (opcaoEscolhida == DialogResult.OK)
             {
                 Aluguel aluguel = telaAluguel.ObterAluguel();
-                aluguel.festa.cliente.alugueis.Add(aluguel);
                 repoAluguel.Inserir(aluguel);
             }
 
@@ -139,6 +144,22 @@ namespace PartyManager.WinApp.ModuloAluguel
 
                 List<Aluguel> listaFiltrada = SelecionarAlugueisPeloStatus(status);
                 CarregarAlugueis(listaFiltrada);
+            }
+        }
+
+        public void ConfigurarDescontos()
+        {
+            ConfiguracaoDesconto configuracao = repoDescontoAluguel.ObterConfiguracaoDeDesconto();
+
+            TelaConfiguracaoDescontoForm telaConfiguracao = new TelaConfiguracaoDescontoForm(configuracao);
+
+            DialogResult opcaoEscolhida = telaConfiguracao.ShowDialog();
+
+            if (opcaoEscolhida == DialogResult.OK)
+            {
+                ConfiguracaoDesconto novaConfiguracao = telaConfiguracao.ObterConfiguracaoDesconto();
+
+                repoDescontoAluguel.GravarConfiguracoesDesconto(novaConfiguracao);
             }
         }
 

@@ -63,16 +63,6 @@ namespace PartyManager.WinApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap add_itens_icon {
-            get {
-                object obj = ResourceManager.GetObject("add_itens_icon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap addIcon {
             get {
                 object obj = ResourceManager.GetObject("addIcon", resourceCulture);
@@ -86,6 +76,16 @@ namespace PartyManager.WinApp.Properties {
         internal static System.Drawing.Bitmap celebrationIcon {
             get {
                 object obj = ResourceManager.GetObject("celebrationIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap configIcon {
+            get {
+                object obj = ResourceManager.GetObject("configIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -26,6 +26,7 @@ namespace PartyManager.WinApp
         private IRepositorioFesta repositorioFesta = new RepositorioFestaArquivo(contexto);
         private IRepositorioAluguel repositorioAluguel = new RepositorioAluguelArquivo(contexto);
         private IRepositorioItem repositorioItem = new RepositorioItensArquivo(contexto);
+        private IRepositorioConfiguracaoDesconto repositorioDesconto = new RepositorioConfiguracaoEmArquivo(carregarDados: true);
 
         private static TelaPrincipalForm telaPrincipal;
 
@@ -85,6 +86,7 @@ namespace PartyManager.WinApp
             btnEditar.ToolTipText = controlador.ToolTipEditar;
             btnDeletar.ToolTipText = controlador.ToolTipDeletar;
             btnFiltrar.ToolTipText = controlador.ToolTipFiltrar;
+            btnConfigurarDesconto.ToolTipText = controlador.ToolTipConfigurarDesconto;
         }
 
         private void ConfigurarListas(ControladorBase controladorBase)
@@ -109,6 +111,7 @@ namespace PartyManager.WinApp
             btnDeletar.Enabled = controlador.DeletarHabilitado;
             btnFiltrar.Enabled = controlador.FiltrarHabilitado;
             btnHistorico.Enabled = controlador.VisualizarHistoricoHabilitado;
+            btnConfigurarDesconto.Enabled = controlador.ConfigurarDescontoHabilitado;
         }
 
         private void ConfigurarTelaPrincipal(ControladorBase controladorBase)
@@ -158,7 +161,7 @@ namespace PartyManager.WinApp
 
         private void AluguelMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorAluguel(repositorioAluguel, repositorioFesta, repositorioCliente);
+            controlador = new ControladorAluguel(repositorioAluguel, repositorioFesta, repositorioCliente, repositorioDesconto);
             ConfigurarTelaPrincipal(controlador);
         }
 
@@ -171,6 +174,11 @@ namespace PartyManager.WinApp
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
             controlador.Filtrar();
+        }
+
+        private void btnConfigurarDesconto_Click(object sender, EventArgs e)
+        {
+            (controlador as ControladorAluguel)!.ConfigurarDescontos();
         }
     }
 }

@@ -6,6 +6,7 @@ namespace PartyManager.Dominio.ModuloAluguel
     {
         public Festa festa;
         public decimal valor;
+        public decimal valorTotal;
         public StatusPagamentoEnum statusPagamento;
         public DateTime dataAbertura;
         public DateTime dataFechamento;
@@ -14,11 +15,12 @@ namespace PartyManager.Dominio.ModuloAluguel
         {
         }
 
-        public Aluguel(int id, Festa festa, decimal valor, DateTime dataAbertura, DateTime dataFechamento, StatusPagamentoEnum statusPagamento = StatusPagamentoEnum.Pendente)
+        public Aluguel(int id, Festa festa, decimal valor, decimal valorTotal, DateTime dataAbertura, DateTime dataFechamento, StatusPagamentoEnum statusPagamento = StatusPagamentoEnum.Pendente)
         {
             this.id = id;
             this.festa = festa;
             this.valor = valor;
+            this.valorTotal = valorTotal;
             this.statusPagamento = statusPagamento;
             this.dataAbertura = dataAbertura;
             this.dataFechamento = dataFechamento;
@@ -28,6 +30,7 @@ namespace PartyManager.Dominio.ModuloAluguel
         {
             festa = registroAtualizado.festa;
             valor = registroAtualizado.valor;
+            valorTotal = registroAtualizado.valorTotal;
             statusPagamento = registroAtualizado.statusPagamento;
             dataAbertura = registroAtualizado.dataAbertura;
             dataFechamento = registroAtualizado.dataFechamento;
