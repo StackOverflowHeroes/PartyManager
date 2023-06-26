@@ -9,13 +9,15 @@ namespace PartyManager.WinApp.ModuloAluguel
         private IRepositorioAluguel repoAluguel;
         private IRepositorioFesta repoFesta;
         private IRepositorioCliente repoCliente;
+        private IRepositorioConfiguracaoDesconto repoDescontoAluguel;
         private TabelaAluguelControl tabelaAluguel;
 
-        public ControladorAluguel(IRepositorioAluguel repositorioAluguel, IRepositorioFesta repositorioFesta, IRepositorioCliente repositorioCliente)
+        public ControladorAluguel(IRepositorioAluguel repositorioAluguel, IRepositorioFesta repositorioFesta, IRepositorioCliente repositorioCliente, IRepositorioConfiguracaoDesconto repositorioDescontoAluguel)
         {
             repoAluguel = repositorioAluguel;
             repoFesta = repositorioFesta;
             repoCliente = repositorioCliente;
+            repoDescontoAluguel = repositorioDescontoAluguel;
         }
 
         public override string ToolTipInserir => "Inserir Aluguel";
@@ -140,6 +142,22 @@ namespace PartyManager.WinApp.ModuloAluguel
 
                 List<Aluguel> listaFiltrada = SelecionarAlugueisPeloStatus(status);
                 CarregarAlugueis(listaFiltrada);
+            }
+        }
+
+        public void ConfigurarDescontos()
+        {
+            ConfiguracaoDesconto configuracao = repoDescontoAluguel.ObterConfiguracaoDeDesconto();
+
+            TelaConfiguracaoDescontoForm telaConfiguracao = new TelaConfiguracaoDescontoForm(configuracao);
+
+            DialogResult opcaoEscolhida = telaConfiguracao.ShowDialog();
+
+            if (opcaoEscolhida == DialogResult.OK)
+            {
+                ConfiguracaoDesconto novaConfiguracao = telaConfiguracao.ObterConfiguracaoDesconto();
+
+                repoDescontoAluguel.GravarConfiguracoesDesconto(novaConfiguracao);
             }
         }
 

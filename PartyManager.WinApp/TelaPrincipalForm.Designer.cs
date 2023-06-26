@@ -47,11 +47,11 @@
             btnHistorico = new ToolStripButton();
             btnFiltrar = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
+            btnConfigurarDesconto = new ToolStripButton();
+            toolStripSeparator3 = new ToolStripSeparator();
             tslTipoCadastros = new ToolStripLabel();
             panelRegistros = new Panel();
             temporizador = new System.Windows.Forms.Timer(components);
-            btnConfigurarDesconto = new ToolStripButton();
-            toolStripSeparator3 = new ToolStripSeparator();
             statusStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
@@ -215,6 +215,23 @@
             toolStripSeparator2.Name = "toolStripSeparator2";
             toolStripSeparator2.Size = new Size(6, 45);
             // 
+            // btnConfigurarDesconto
+            // 
+            btnConfigurarDesconto.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnConfigurarDesconto.Enabled = false;
+            btnConfigurarDesconto.Image = Properties.Resources.configIcon;
+            btnConfigurarDesconto.ImageTransparentColor = Color.Magenta;
+            btnConfigurarDesconto.Name = "btnConfigurarDesconto";
+            btnConfigurarDesconto.Size = new Size(29, 42);
+            btnConfigurarDesconto.Text = "toolStripButton1";
+            btnConfigurarDesconto.ToolTipText = "Configurar desconto";
+            btnConfigurarDesconto.Click += btnConfigurarDesconto_Click;
+            // 
+            // toolStripSeparator3
+            // 
+            toolStripSeparator3.Name = "toolStripSeparator3";
+            toolStripSeparator3.Size = new Size(6, 45);
+            // 
             // tslTipoCadastros
             // 
             tslTipoCadastros.Name = "tslTipoCadastros";
@@ -233,22 +250,6 @@
             // temporizador
             // 
             temporizador.Interval = 1000;
-            // 
-            // btnConfigurarDesconto
-            // 
-            btnConfigurarDesconto.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            btnConfigurarDesconto.Enabled = false;
-            btnConfigurarDesconto.Image = Properties.Resources.configIcon;
-            btnConfigurarDesconto.ImageTransparentColor = Color.Magenta;
-            btnConfigurarDesconto.Name = "btnConfigurarDesconto";
-            btnConfigurarDesconto.Size = new Size(29, 42);
-            btnConfigurarDesconto.Text = "toolStripButton1";
-            btnConfigurarDesconto.ToolTipText = "Configurar desconto";
-            // 
-            // toolStripSeparator3
-            // 
-            toolStripSeparator3.Name = "toolStripSeparator3";
-            toolStripSeparator3.Size = new Size(6, 45);
             // 
             // TelaPrincipalForm
             // 
