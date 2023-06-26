@@ -50,6 +50,8 @@
             tslTipoCadastros = new ToolStripLabel();
             panelRegistros = new Panel();
             temporizador = new System.Windows.Forms.Timer(components);
+            btnConfigurarDesconto = new ToolStripButton();
+            toolStripSeparator3 = new ToolStripSeparator();
             statusStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
@@ -129,7 +131,7 @@
             // toolStrip1
             // 
             toolStrip1.ImageScalingSize = new Size(20, 20);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnInserir, btnEditar, btnDeletar, toolStripSeparator1, btnHistorico, btnFiltrar, toolStripSeparator2, tslTipoCadastros });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnInserir, btnEditar, btnDeletar, toolStripSeparator1, btnHistorico, btnFiltrar, toolStripSeparator2, btnConfigurarDesconto, toolStripSeparator3, tslTipoCadastros });
             toolStrip1.Location = new Point(0, 30);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(1026, 45);
@@ -232,6 +234,22 @@
             // 
             temporizador.Interval = 1000;
             // 
+            // btnConfigurarDesconto
+            // 
+            btnConfigurarDesconto.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnConfigurarDesconto.Enabled = false;
+            btnConfigurarDesconto.Image = Properties.Resources.configIcon;
+            btnConfigurarDesconto.ImageTransparentColor = Color.Magenta;
+            btnConfigurarDesconto.Name = "btnConfigurarDesconto";
+            btnConfigurarDesconto.Size = new Size(29, 42);
+            btnConfigurarDesconto.Text = "toolStripButton1";
+            btnConfigurarDesconto.ToolTipText = "Configurar desconto";
+            // 
+            // toolStripSeparator3
+            // 
+            toolStripSeparator3.Name = "toolStripSeparator3";
+            toolStripSeparator3.Size = new Size(6, 45);
+            // 
             // TelaPrincipalForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -279,5 +297,7 @@
         private ToolStripButton btnHistorico;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripButton btnFiltrar;
+        private ToolStripButton btnConfigurarDesconto;
+        private ToolStripSeparator toolStripSeparator3;
     }
 }

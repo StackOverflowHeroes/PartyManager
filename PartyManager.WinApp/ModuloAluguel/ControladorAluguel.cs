@@ -26,6 +26,7 @@ namespace PartyManager.WinApp.ModuloAluguel
 
         public override string ToolTipFiltrar => "Filtrar aluguéis";
         public override bool FiltrarHabilitado { get { return true; } }
+        public override bool ConfigurarDescontoHabilitado { get { return true; } }
 
         public override void Deletar()
         {

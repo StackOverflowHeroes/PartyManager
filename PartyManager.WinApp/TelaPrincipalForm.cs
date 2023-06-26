@@ -85,6 +85,7 @@ namespace PartyManager.WinApp
             btnEditar.ToolTipText = controlador.ToolTipEditar;
             btnDeletar.ToolTipText = controlador.ToolTipDeletar;
             btnFiltrar.ToolTipText = controlador.ToolTipFiltrar;
+            btnConfigurarDesconto.ToolTipText = controlador.ToolTipConfigurarDesconto;
         }
 
         private void ConfigurarListas(ControladorBase controladorBase)
@@ -108,6 +109,7 @@ namespace PartyManager.WinApp
             btnEditar.Enabled = controlador.EditarHabilitado;
             btnDeletar.Enabled = controlador.DeletarHabilitado;
             btnFiltrar.Enabled = controlador.FiltrarHabilitado;
+            btnConfigurarDesconto.Enabled = controlador.ConfigurarDescontoHabilitado;
         }
 
         private void ConfigurarTelaPrincipal(ControladorBase controladorBase)
