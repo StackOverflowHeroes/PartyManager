@@ -6,27 +6,60 @@ namespace PartyManager.WinApp.ModuloAluguel
 {
     public partial class TelaAluguelForm : Form
     {
-        public TelaAluguelForm()
+        private ConfiguracaoDesconto desconto;
+        public TelaAluguelForm(ConfiguracaoDesconto desconto)
         {
             InitializeComponent();
             this.ConfigurarDialog();
+            this.desconto = desconto;
         }
 
         public Aluguel ObterAluguel()
         {
             int id = Convert.ToInt32(tboxId.Text);
             Festa festa = comboBoxFesta.SelectedItem as Festa;
-            decimal valor = Convert.ToDecimal(TextBoxValorEntrada.Text);
+            decimal valorTotal = CalcularValorTotal(festa.tema.valorTotalItens, festa.cliente);
+            decimal valorEntrada = CalcularValorEntrada(valorTotal);
             DateTime dataAbertura = dateAbertura.Value.Date;
             DateTime dataFechamento = dateFechamento.Value.Date;
             StatusPagamentoEnum status = (StatusPagamentoEnum)comboBoxPagamento.SelectedItem;
 
-            Aluguel aluguel = new Aluguel(id, festa, valor, dataAbertura, dataFechamento, status);
+            Aluguel aluguel = new Aluguel(id, festa, valorEntrada, valorTotal, dataAbertura, dataFechamento, status);
 
             if (id > 0)
                 aluguel.id = id;
 
             return aluguel;
+        }
+
+        public Festa ObterFesta()
+        {
+            Festa festa = comboBoxFesta.SelectedItem as Festa;
+
+            if (festa == null)
+            {
+                TelaPrincipalForm.Instancia.AtualizarRodape("Festa é um campo obrigatório", TipoStatusEnum.Erro);
+                DialogResult = DialogResult.None;
+            }
+
+            return festa;
+        }
+        private decimal CalcularValorTotal(decimal valorTotalItens, Cliente cliente)
+        {
+            decimal valorDescontoCliente = desconto.PorcentagemDesconto * cliente.alugueis.Count();
+            decimal valorParaSerDescontado;
+
+            if (cliente.alugueis.Count() == 0)
+                return valorTotalItens;
+
+            if (valorDescontoCliente >= desconto.PorcentagemMaxima)
+                valorParaSerDescontado = desconto.PorcentagemMaxima / 100;
+            else
+                valorParaSerDescontado = valorDescontoCliente / 100;
+
+            decimal descontoSobreTotal =  valorTotalItens * valorParaSerDescontado;
+            return valorTotalItens - descontoSobreTotal;
+
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
@@ -69,12 +102,14 @@ namespace PartyManager.WinApp.ModuloAluguel
 
         private void comboBoxPagamento_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Festa festa = ObterFesta();
+
             if (comboBoxPagamento.SelectedItem.ToString() == StatusPagamentoEnum.PagamentoParcial.ToString())
             {
                 TextBoxValorEntrada.Enabled = true;
                 InputPorcentagem.Enabled = true;
                 InputPorcentagem.Value = 40;
-                CalcularValorEntrada();
+                CalcularValorEntrada(CalcularValorTotal(festa.tema.valorTotalItens, festa.cliente));
             }
             else if (comboBoxPagamento.SelectedItem.ToString() == StatusPagamentoEnum.PagamentoConcluido.ToString()) 
             {
@@ -89,25 +124,22 @@ namespace PartyManager.WinApp.ModuloAluguel
 
         }
 
-        private void CalcularValorEntrada()
+        private decimal CalcularValorEntrada(decimal valorPagar)
         {
-            Festa festa = (Festa)comboBoxFesta.SelectedItem;
-
-            if (festa == null)
-            {
-                TelaPrincipalForm.Instancia.AtualizarRodape("O campo festa é obrigatório para o cadastro da entrada", TipoStatusEnum.Erro);
-
-                DialogResult = DialogResult.None;
-                return;
-            }
-
+            decimal valorTotal = valorPagar;
             decimal porcentagem = InputPorcentagem.Value / 100;
-            TextBoxValorEntrada.Text = (festa.tema.valorTotalItens * porcentagem).ToString();
+            decimal resultadoValor = (valorTotal * porcentagem);
+
+            TextBoxValorEntrada.Text = resultadoValor.ToString();
+
+            return resultadoValor;
         }
 
         private void InputPorcentagem_ValueChanged(object sender, EventArgs e)
         {
-            CalcularValorEntrada();
+            Festa festa = ObterFesta();
+
+            CalcularValorEntrada(CalcularValorTotal(festa.tema.valorTotalItens, festa.cliente));
         }
     }
 }

@@ -67,7 +67,7 @@ namespace PartyManager.WinApp.ModuloAluguel
 
         public override void Editar()
         {
-            TelaAluguelForm telaAluguel = new TelaAluguelForm();
+            TelaAluguelForm telaAluguel = new TelaAluguelForm(repoDescontoAluguel.ObterConfiguracaoDeDesconto());
             Aluguel aluguelSelecionado = ObterAluguelSelecionado();
 
             if (aluguelSelecionado == null)
@@ -102,6 +102,9 @@ namespace PartyManager.WinApp.ModuloAluguel
 
                 repoAluguel.Editar(aluguelSelecionado.id, aluguelAtualizado);
 
+                if (aluguelAtualizado.statusPagamento == StatusPagamentoEnum.PagamentoConcluido)
+                    aluguelAtualizado.festa.cliente.alugueis.Add(aluguelAtualizado);
+
             }
 
             CarregarAlugueis();
@@ -115,14 +118,13 @@ namespace PartyManager.WinApp.ModuloAluguel
             List<Cliente> ListaCompletaCliente = repoCliente.SelecionarTodos();
             List<Festa> ListaCompletaFesta = repoFesta.SelecionarTodos();
 
-            TelaAluguelForm telaAluguel = new TelaAluguelForm();
+            TelaAluguelForm telaAluguel = new TelaAluguelForm(repoDescontoAluguel.ObterConfiguracaoDeDesconto());
             telaAluguel.PopularComboBox(ListaCompletaCliente, ListaCompletaFesta);
 
             DialogResult opcaoEscolhida = telaAluguel.ShowDialog();
             if (opcaoEscolhida == DialogResult.OK)
             {
                 Aluguel aluguel = telaAluguel.ObterAluguel();
-                aluguel.festa.cliente.alugueis.Add(aluguel);
                 repoAluguel.Inserir(aluguel);
             }
 
