@@ -126,6 +126,9 @@ namespace PartyManager.WinApp.ModuloAluguel
             {
                 Aluguel aluguel = telaAluguel.ObterAluguel();
                 repoAluguel.Inserir(aluguel);
+
+                if (aluguel.statusPagamento == StatusPagamentoEnum.PagamentoConcluido)
+                    aluguel.festa.cliente.alugueis.Add(aluguel);
             }
 
             CarregarAlugueis();

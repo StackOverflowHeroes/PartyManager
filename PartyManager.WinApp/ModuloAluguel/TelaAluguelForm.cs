@@ -46,7 +46,7 @@ namespace PartyManager.WinApp.ModuloAluguel
         }
         private decimal CalcularValorTotal(decimal valorTotalItens, Cliente cliente)
         {
-            decimal valorDescontoCliente = desconto.PorcentagemDesconto * cliente.alugueis.Count();
+            decimal valorDescontoCliente = desconto.PorcentagemDesconto * cliente.alugueis.Count;
             decimal valorParaSerDescontado;
 
             if (cliente.alugueis.Count() == 0)
