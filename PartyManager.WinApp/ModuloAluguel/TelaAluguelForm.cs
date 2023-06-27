@@ -34,16 +34,11 @@ namespace PartyManager.WinApp.ModuloAluguel
 
         public Festa ObterFesta()
         {
-            Festa festa = comboBoxFesta.SelectedItem as Festa;
-
-            if (festa == null)
-            {
-                TelaPrincipalForm.Instancia.AtualizarRodape("Festa é um campo obrigatório", TipoStatusEnum.Erro);
-                DialogResult = DialogResult.None;
-            }
+            Festa festa = comboBoxFesta.SelectedItem as Festa;                       
 
             return festa;
         }
+
         private decimal CalcularValorTotal(decimal valorTotalItens, Cliente cliente)
         {
             decimal valorDescontoCliente = desconto.PorcentagemDesconto * cliente.alugueis.Count;
