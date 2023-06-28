@@ -1,15 +1,18 @@
-﻿using PartyManager.Dominio.ModuloCliente;
+﻿using PartyManager.Dominio.ModuloAluguel;
+using PartyManager.Dominio.ModuloCliente;
 
 namespace PartyManager.WinApp.ModuloCliente
 {
      public class ControladorCliente : ControladorBase
      {
           private IRepositorioCliente repoCliente;
+          private IRepositorioAluguel repoAluguel;
           private TabelaClienteControl tabelaCliente;
 
-          public ControladorCliente(IRepositorioCliente repoCliente)
+          public ControladorCliente(IRepositorioCliente repoCliente, IRepositorioAluguel repoAluguel)
           {
                this.repoCliente = repoCliente;
+               this.repoAluguel = repoAluguel;
           }
 
           public override string ToolTipInserir => "Inserir Cliente";
@@ -36,9 +39,9 @@ namespace PartyManager.WinApp.ModuloCliente
                     return;
                }
 
-               if (cliente.alugueis.Count > 0)
+               if (repoAluguel.ExistePagamentoPendente())
                {
-                    TelaPrincipalForm.Instancia.AtualizarRodape("Cliente possui aluguéis cadastrados!", TipoStatusEnum.Erro);
+                    TelaPrincipalForm.Instancia.AtualizarRodape("Cliente possui aluguéis em aberto!", TipoStatusEnum.Erro);
                     return;
                }
 

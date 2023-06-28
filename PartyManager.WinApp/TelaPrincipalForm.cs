@@ -142,7 +142,7 @@ namespace PartyManager.WinApp
 
         private void clientesMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorCliente(repositorioCliente);
+            controlador = new ControladorCliente(repositorioCliente, repositorioAluguel);
             btnHistorico.Enabled = controlador.VisualizarHistoricoHabilitado;
             ConfigurarTelaPrincipal(controlador);
         }

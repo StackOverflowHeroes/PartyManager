@@ -4,5 +4,6 @@
     {
         List<Aluguel> SelecionarAlugueisConcluidos();
         List<Aluguel> SelecionarAlugueisPendentes();
+        bool ExistePagamentoPendente();
     }
 }
