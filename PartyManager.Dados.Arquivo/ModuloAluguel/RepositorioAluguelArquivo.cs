@@ -14,6 +14,16 @@ namespace PartyManager.Dados.Arquivo.ModuloAluguel
             return ListaCompleta.Where(x => x.statusPagamento == StatusPagamentoEnum.PagamentoConcluido).ToList();
         }
 
+        public bool ExistePagamentoPendente()
+        {
+            bool Verificacao = false;
+
+            if (SelecionarAlugueisPendentes().Count > 0)
+                Verificacao = true;
+
+            return Verificacao;
+        }
+
         public List<Aluguel> SelecionarAlugueisPendentes()
         {
             List<Aluguel> ListaFiltrada = new List<Aluguel>();
