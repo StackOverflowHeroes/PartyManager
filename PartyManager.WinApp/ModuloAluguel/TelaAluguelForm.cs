@@ -41,7 +41,7 @@ namespace PartyManager.WinApp.ModuloAluguel
 
         private decimal CalcularValorTotal(decimal valorTotalItens, Cliente cliente)
         {
-            decimal valorDescontoCliente = desconto.PorcentagemDesconto * cliente.alugueis.Count;
+            decimal valorDescontoCliente = desconto.PorcentagemDesconto * PegarAlugueisConcluidos(cliente);
             decimal valorParaSerDescontado;
 
             if (cliente.alugueis.Count() == 0)
@@ -56,6 +56,12 @@ namespace PartyManager.WinApp.ModuloAluguel
             return valorTotalItens - descontoSobreTotal;
 
         }
+
+        private decimal PegarAlugueisConcluidos(Cliente cliente)
+        {
+            List<Aluguel> ListaAlugueis = cliente.alugueis.FindAll(aluguel => aluguel.statusPagamento == StatusPagamentoEnum.PagamentoConcluido);
+            return ListaAlugueis.Count;
+        }   
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
