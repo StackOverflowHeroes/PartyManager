@@ -101,9 +101,7 @@ namespace PartyManager.WinApp.ModuloAluguel
                 Aluguel aluguelAtualizado = telaAluguel.ObterAluguel();
 
                 repoAluguel.Editar(aluguelSelecionado.id, aluguelAtualizado);
-
-                if (aluguelAtualizado.statusPagamento == StatusPagamentoEnum.PagamentoConcluido)
-                    aluguelAtualizado.festa.cliente.alugueis.Add(aluguelAtualizado);
+                aluguelAtualizado.festa.cliente.alugueis.Add(aluguelAtualizado);
 
             }
 
@@ -126,9 +124,7 @@ namespace PartyManager.WinApp.ModuloAluguel
             {
                 Aluguel aluguel = telaAluguel.ObterAluguel();
                 repoAluguel.Inserir(aluguel);
-
-                if (aluguel.statusPagamento == StatusPagamentoEnum.PagamentoConcluido)
-                    aluguel.festa.cliente.alugueis.Add(aluguel);
+                aluguel.festa.cliente.alugueis.Add(aluguel);
             }
 
             CarregarAlugueis();
