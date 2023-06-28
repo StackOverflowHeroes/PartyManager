@@ -44,7 +44,7 @@ namespace PartyManager.WinApp.ModuloAluguel
                 return;
             }
 
-            if (aluguelSelecionado.statusPagamento == StatusPagamentoEnum.PagamentoParcial || aluguelSelecionado.statusPagamento == StatusPagamentoEnum.PagamentoParcial)
+            if (aluguelSelecionado.statusPagamento == StatusPagamentoEnum.PagamentoParcial || aluguelSelecionado.statusPagamento == StatusPagamentoEnum.Pendente)
             {
                 MessageBox.Show($"Não é possível deletar um aluguel com o pagamento pendente",
                     "Edição de Aluguéis",
